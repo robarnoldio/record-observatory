@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+## my customizations
+# Local Discogs collection export
+src/data/collection/*.csv
