@@ -12,7 +12,7 @@
     {
         "discogs_id": 3781724,
         "discogs_type": "release",
-        "title": "Introducing...The Beatles",
+        "title": "Introducing... The Beatles (Englands No.1 Vocal Group)",
         "artist": "The Beatles",
         "artist_ids": "82730",
         "year": 1964,
@@ -72,7 +72,7 @@
     {
         "discogs_id": 478424,
         "discogs_type": "release",
-        "title": "Help! (Original Motion Picture Soundtrack)",
+        "title": "Help!",
         "artist": "The Beatles",
         "artist_ids": "82730",
         "year": 1965,
@@ -260,16 +260,6 @@
         "url": "/release/5411056-The-Beatles-West-Coast-Invasion"
     },
     {
-        "discogs_id": 2751428,
-        "discogs_type": "release",
-        "title": "Help!",
-        "artist": "The Beatles",
-        "artist_ids": "82730",
-        "year": 1985,
-        "in_collection": 1,
-        "url": "/release/2751428-The-Beatles-Help"
-    },
-    {
         "discogs_id": 3245808,
         "discogs_type": "release",
         "title": "Things We Said Today",
@@ -380,16 +370,6 @@
         "url": "/release/1801697-The-Beatles-Live-At-The-BBC"
     },
     {
-        "discogs_id": 2551976,
-        "discogs_type": "release",
-        "title": "Let It Be",
-        "artist": "The Beatles",
-        "artist_ids": "82730",
-        "year": 1995,
-        "in_collection": 0,
-        "url": "/release/2551976-The-Beatles-Let-It-Be"
-    },
-    {
         "discogs_id": 1801677,
         "discogs_type": "release",
         "title": "Anthology 2",
@@ -408,26 +388,6 @@
         "year": 1996,
         "in_collection": 0,
         "url": "/release/1801690-The-Beatles-Anthology-3"
-    },
-    {
-        "discogs_id": 1130456,
-        "discogs_type": "release",
-        "title": "The Early Beatles",
-        "artist": "The Beatles",
-        "artist_ids": "82730",
-        "year": 1965,
-        "in_collection": 1,
-        "url": "/release/1130456-The-Beatles-The-Early-Beatles"
-    },
-    {
-        "discogs_id": 9822053,
-        "discogs_type": "release",
-        "title": "Yesterday And Today",
-        "artist": "The Beatles",
-        "artist_ids": "82730",
-        "year": 1966,
-        "in_collection": 1,
-        "url": "/release/9822053-The-Beatles-Yesterday-And-Today"
     },
     {
         "discogs_id": 2023725,
@@ -588,16 +548,6 @@
         "year": 1996,
         "in_collection": 0,
         "url": "/release/3688180-The-Beatles-Anthology-2"
-    },
-    {
-        "discogs_id": 4057575,
-        "discogs_type": "release",
-        "title": "The Beatles",
-        "artist": "The Beatles",
-        "artist_ids": "82730",
-        "year": 2012,
-        "in_collection": 0,
-        "url": "/release/4057575-The-Beatles-The-Beatles"
     },
     {
         "discogs_id": 14578598,

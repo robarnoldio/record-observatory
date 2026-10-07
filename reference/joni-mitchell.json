@@ -1,332 +1,302 @@
 [
-  {
-    "discogs_id": 740080,
-    "discogs_type": "release",
-    "title": "Song To A Seagull",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 1968,
-    "in_collection": 1,
-    "url": "/release/740080-Joni-Mitchell-Song-To-A-Seagull"
-  },
-  {
-    "discogs_id": 1755865,
-    "discogs_type": "release",
-    "title": "Song To A Seagull",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 1968,
-    "in_collection": 1,
-    "url": "/release/1755865-Joni-Mitchell-Song-To-A-Seagull"
-  },
-  {
-    "discogs_id": 14005505,
-    "discogs_type": "release",
-    "title": "Clouds",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 1969,
-    "in_collection": 1,
-    "url": "/release/14005505-Joni-Mitchell-Clouds"
-  },
-  {
-    "discogs_id": 5379044,
-    "discogs_type": "release",
-    "title": "Ladies Of The Canyon",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 1970,
-    "in_collection": 1,
-    "url": "/release/5379044-Joni-Mitchell-Ladies-Of-The-Canyon"
-  },
-  {
-    "discogs_id": 30679357,
-    "discogs_type": "release",
-    "title": "Song To A Seagull",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 1970,
-    "in_collection": 0,
-    "url": "/release/30679357-Joni-Mitchell-Song-To-A-Seagull"
-  },
-  {
-    "discogs_id": 10028381,
-    "discogs_type": "release",
-    "title": "Blue",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 1971,
-    "in_collection": 2,
-    "url": "/release/10028381-Joni-Mitchell-Blue"
-  },
-  {
-    "discogs_id": 1305074,
-    "discogs_type": "release",
-    "title": "For The Roses",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 1972,
-    "in_collection": 1,
-    "url": "/release/1305074-Joni-Mitchell-For-The-Roses"
-  },
-  {
-    "discogs_id": 7876643,
-    "discogs_type": "release",
-    "title": "Pick Of The Pops For Your D.J.-374/375",
-    "artist": "Joni Mitchell / James Taylor (2)",
-    "artist_ids": "90233,262944",
-    "year": 1972,
-    "in_collection": 0,
-    "url": "/release/7876643-Joni-Mitchell-And-James-Taylor-Pick-Of-The-Pops-For-Your-DJ-374375"
-  },
-  {
-    "discogs_id": 5951388,
-    "discogs_type": "release",
-    "title": "Miles Of Aisles",
-    "artist": "Joni Mitchell / The L.A. Express",
-    "artist_ids": "90233,415336",
-    "year": 1974,
-    "in_collection": 1,
-    "url": "/release/5951388-Joni-Mitchell-And-The-LA-Express-Miles-Of-Aisles"
-  },
-  {
-    "discogs_id": 8258978,
-    "discogs_type": "release",
-    "title": "Court And Spark",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 1974,
-    "in_collection": 1,
-    "url": "/release/8258978-Joni-Mitchell-Court-And-Spark"
-  },
-  {
-    "discogs_id": 1455268,
-    "discogs_type": "release",
-    "title": "The Hissing Of Summer Lawns",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 1975,
-    "in_collection": 1,
-    "url": "/release/1455268-Joni-Mitchell-The-Hissing-Of-Summer-Lawns"
-  },
-  {
-    "discogs_id": 940323,
-    "discogs_type": "release",
-    "title": "Hejira",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 1976,
-    "in_collection": 1,
-    "url": "/release/940323-Joni-Mitchell-Hejira"
-  },
-  {
-    "discogs_id": 625916,
-    "discogs_type": "release",
-    "title": "Don Juan's Reckless Daughter",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 1977,
-    "in_collection": 1,
-    "url": "/release/625916-Joni-Mitchell-Don-Juans-Reckless-Daughter"
-  },
-  {
-    "discogs_id": 5426750,
-    "discogs_type": "release",
-    "title": "Mingus",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 1979,
-    "in_collection": 2,
-    "url": "/release/5426750-Joni-Mitchell-Mingus"
-  },
-  {
-    "discogs_id": 814053,
-    "discogs_type": "release",
-    "title": "Shadows And Light",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 1980,
-    "in_collection": 1,
-    "url": "/release/814053-Joni-Mitchell-Shadows-And-Light"
-  },
-  {
-    "discogs_id": 1698656,
-    "discogs_type": "release",
-    "title": "Wild Things Run Fast",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 1982,
-    "in_collection": 1,
-    "url": "/release/1698656-Joni-Mitchell-Wild-Things-Run-Fast"
-  },
-  {
-    "discogs_id": 919393,
-    "discogs_type": "release",
-    "title": "Dog Eat Dog",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 1985,
-    "in_collection": 1,
-    "url": "/release/919393-Joni-Mitchell-Dog-Eat-Dog"
-  },
-  {
-    "discogs_id": 773058,
-    "discogs_type": "release",
-    "title": "Chalk Mark In A Rain Storm",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 1988,
-    "in_collection": 1,
-    "url": "/release/773058-Joni-Mitchell-Chalk-Mark-In-A-Rain-Storm"
-  },
-  {
-    "discogs_id": 8010165,
-    "discogs_type": "release",
-    "title": "Night Ride Home",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 1991,
-    "in_collection": 0,
-    "url": "/release/8010165-Joni-Mitchell-Night-Ride-Home"
-  },
-  {
-    "discogs_id": 7154533,
-    "discogs_type": "release",
-    "title": "The Second Fret",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 2014,
-    "in_collection": 0,
-    "url": "/release/7154533-Joni-Mitchell-The-Second-Fret"
-  },
-  {
-    "discogs_id": 15500800,
-    "discogs_type": "release",
-    "title": "Shine",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 2020,
-    "in_collection": 0,
-    "url": "/release/15500800-Joni-Mitchell-Shine"
-  },
-  {
-    "discogs_id": 16131553,
-    "discogs_type": "release",
-    "title": "Live At Canterbury House - 1967",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 2020,
-    "in_collection": 0,
-    "url": "/release/16131553-Joni-Mitchell-Live-At-Canterbury-House-1967"
-  },
-  {
-    "discogs_id": 16171190,
-    "discogs_type": "release",
-    "title": "Early Joni – 1963",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 2020,
-    "in_collection": 0,
-    "url": "/release/16171190-Joni-Mitchell-Early-Joni-1963"
-  },
-  {
-    "discogs_id": 19358584,
-    "discogs_type": "release",
-    "title": "The Reprise Albums (1968-1971)",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 2021,
-    "in_collection": 0,
-    "url": "/release/19358584-Joni-Mitchell-The-Reprise-Albums-1968-1971"
-  },
-  {
-    "discogs_id": 20964796,
-    "discogs_type": "release",
-    "title": "Live At Carnegie Hall - 1969",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 2021,
-    "in_collection": 0,
-    "url": "/release/20964796-Joni-Mitchell-Live-At-Carnegie-Hall-1969"
-  },
-  {
-    "discogs_id": 22214329,
-    "discogs_type": "release",
-    "title": "Archives – Volume 2: The Reprise Years (1968-1971)",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 2022,
-    "in_collection": 0,
-    "url": "/release/22214329-Joni-Mitchell-Archives-Volume-2-The-Reprise-Years-1968-1971"
-  },
-  {
-    "discogs_id": 29004502,
-    "discogs_type": "release",
-    "title": "Court And Spark Demos",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 2023,
-    "in_collection": 0,
-    "url": "/release/29004502-Joni-Mitchell-Court-And-Spark-Demos"
-  },
-  {
-    "discogs_id": 28533589,
-    "discogs_type": "release",
-    "title": "Archives – Volume 3: The Asylum Years (1972-1975)",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 2023,
-    "in_collection": 0,
-    "url": "/release/28533589-Joni-Mitchell-Archives-Volume-3-The-Asylum-Years-1972-1975"
-  },
-  {
-    "discogs_id": 36129802,
-    "discogs_type": "release",
-    "title": "At Newport",
-    "artist": "Joni Mitchell / The Joni Jam",
-    "artist_ids": "90233,13316883",
-    "year": 2023,
-    "in_collection": 0,
-    "url": "/release/36129802-Joni-Mitchell-Featuring-The-Joni-Jam-At-Newport"
-  },
-  {
-    "discogs_id": 31974977,
-    "discogs_type": "release",
-    "title": "Archives Volume 4: Asylum Years (1976-1980)",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 2024,
-    "in_collection": 0,
-    "url": "/release/31974977-Joni-Mitchell-Archives-Volume-4-Asylum-Years-1976-1980"
-  },
-  {
-    "discogs_id": 32429883,
-    "discogs_type": "release",
-    "title": "Hejira Demos",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 2024,
-    "in_collection": 0,
-    "url": "/release/32429883-Joni-Mitchell-Hejira-Demos"
-  },
-  {
-    "discogs_id": 35788144,
-    "discogs_type": "release",
-    "title": "Rolling Thunder Revue",
-    "artist": "Joni Mitchell",
-    "artist_ids": "90233",
-    "year": 2025,
-    "in_collection": 0,
-    "url": "/release/35788144-Joni-Mitchell-Rolling-Thunder-Revue"
-  },
-  {
-    "discogs_id": 23625023,
-    "discogs_type": "release",
-    "title": "Nighthawks At The Diner / Miles Of Aisles",
-    "artist": "Tom Waits / Joni Mitchell / The L.A. Express",
-    "artist_ids": "82294,90233,415336",
-    "year": null,
-    "in_collection": 0,
-    "url": "/release/23625023-Tom-Waits-Joni-Mitchell-And-The-LA-Express-Nighthawks-At-The-Diner-Miles-Of-Aisles"
-  }
+    {
+        "discogs_id": 740080,
+        "discogs_type": "release",
+        "title": "Song To A Seagull",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 1968,
+        "in_collection": 1,
+        "url": "/release/740080-Joni-Mitchell-Song-To-A-Seagull"
+    },
+    {
+        "discogs_id": 14005505,
+        "discogs_type": "release",
+        "title": "Clouds",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 1969,
+        "in_collection": 1,
+        "url": "/release/14005505-Joni-Mitchell-Clouds"
+    },
+    {
+        "discogs_id": 5379044,
+        "discogs_type": "release",
+        "title": "Ladies Of The Canyon",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 1970,
+        "in_collection": 1,
+        "url": "/release/5379044-Joni-Mitchell-Ladies-Of-The-Canyon"
+    },
+    {
+        "discogs_id": 10028381,
+        "discogs_type": "release",
+        "title": "Blue",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 1971,
+        "in_collection": 2,
+        "url": "/release/10028381-Joni-Mitchell-Blue"
+    },
+    {
+        "discogs_id": 1305074,
+        "discogs_type": "release",
+        "title": "For The Roses",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 1972,
+        "in_collection": 1,
+        "url": "/release/1305074-Joni-Mitchell-For-The-Roses"
+    },
+    {
+        "discogs_id": 5951388,
+        "discogs_type": "release",
+        "title": "Miles Of Aisles",
+        "artist": "Joni Mitchell / The L.A. Express",
+        "artist_ids": "90233,415336",
+        "year": 1974,
+        "in_collection": 1,
+        "url": "/release/5951388-Joni-Mitchell-And-The-LA-Express-Miles-Of-Aisles"
+    },
+    {
+        "discogs_id": 8258978,
+        "discogs_type": "release",
+        "title": "Court And Spark",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 1974,
+        "in_collection": 1,
+        "url": "/release/8258978-Joni-Mitchell-Court-And-Spark"
+    },
+    {
+        "discogs_id": 1455268,
+        "discogs_type": "release",
+        "title": "The Hissing Of Summer Lawns",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 1975,
+        "in_collection": 1,
+        "url": "/release/1455268-Joni-Mitchell-The-Hissing-Of-Summer-Lawns"
+    },
+    {
+        "discogs_id": 940323,
+        "discogs_type": "release",
+        "title": "Hejira",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 1976,
+        "in_collection": 1,
+        "url": "/release/940323-Joni-Mitchell-Hejira"
+    },
+    {
+        "discogs_id": 625916,
+        "discogs_type": "release",
+        "title": "Don Juan's Reckless Daughter",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 1977,
+        "in_collection": 1,
+        "url": "/release/625916-Joni-Mitchell-Don-Juans-Reckless-Daughter"
+    },
+    {
+        "discogs_id": 5426750,
+        "discogs_type": "release",
+        "title": "Mingus",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 1979,
+        "in_collection": 2,
+        "url": "/release/5426750-Joni-Mitchell-Mingus"
+    },
+    {
+        "discogs_id": 814053,
+        "discogs_type": "release",
+        "title": "Shadows And Light",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 1980,
+        "in_collection": 1,
+        "url": "/release/814053-Joni-Mitchell-Shadows-And-Light"
+    },
+    {
+        "discogs_id": 1698656,
+        "discogs_type": "release",
+        "title": "Wild Things Run Fast",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 1982,
+        "in_collection": 1,
+        "url": "/release/1698656-Joni-Mitchell-Wild-Things-Run-Fast"
+    },
+    {
+        "discogs_id": 919393,
+        "discogs_type": "release",
+        "title": "Dog Eat Dog",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 1985,
+        "in_collection": 1,
+        "url": "/release/919393-Joni-Mitchell-Dog-Eat-Dog"
+    },
+    {
+        "discogs_id": 773058,
+        "discogs_type": "release",
+        "title": "Chalk Mark In A Rain Storm",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 1988,
+        "in_collection": 1,
+        "url": "/release/773058-Joni-Mitchell-Chalk-Mark-In-A-Rain-Storm"
+    },
+    {
+        "discogs_id": 8010165,
+        "discogs_type": "release",
+        "title": "Night Ride Home",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 1991,
+        "in_collection": 0,
+        "url": "/release/8010165-Joni-Mitchell-Night-Ride-Home"
+    },
+    {
+        "discogs_id": 7154533,
+        "discogs_type": "release",
+        "title": "The Second Fret",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 2014,
+        "in_collection": 0,
+        "url": "/release/7154533-Joni-Mitchell-The-Second-Fret"
+    },
+    {
+        "discogs_id": 15500800,
+        "discogs_type": "release",
+        "title": "Shine",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 2020,
+        "in_collection": 0,
+        "url": "/release/15500800-Joni-Mitchell-Shine"
+    },
+    {
+        "discogs_id": 16131553,
+        "discogs_type": "release",
+        "title": "Live At Canterbury House - 1967",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 2020,
+        "in_collection": 0,
+        "url": "/release/16131553-Joni-Mitchell-Live-At-Canterbury-House-1967"
+    },
+    {
+        "discogs_id": 16171190,
+        "discogs_type": "release",
+        "title": "Early Joni – 1963",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 2020,
+        "in_collection": 0,
+        "url": "/release/16171190-Joni-Mitchell-Early-Joni-1963"
+    },
+    {
+        "discogs_id": 19358584,
+        "discogs_type": "release",
+        "title": "The Reprise Albums (1968-1971)",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 2021,
+        "in_collection": 0,
+        "url": "/release/19358584-Joni-Mitchell-The-Reprise-Albums-1968-1971"
+    },
+    {
+        "discogs_id": 20964796,
+        "discogs_type": "release",
+        "title": "Live At Carnegie Hall - 1969",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 2021,
+        "in_collection": 0,
+        "url": "/release/20964796-Joni-Mitchell-Live-At-Carnegie-Hall-1969"
+    },
+    {
+        "discogs_id": 22214329,
+        "discogs_type": "release",
+        "title": "Archives – Volume 2: The Reprise Years (1968-1971)",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 2022,
+        "in_collection": 0,
+        "url": "/release/22214329-Joni-Mitchell-Archives-Volume-2-The-Reprise-Years-1968-1971"
+    },
+    {
+        "discogs_id": 29004502,
+        "discogs_type": "release",
+        "title": "Court And Spark Demos",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 2023,
+        "in_collection": 0,
+        "url": "/release/29004502-Joni-Mitchell-Court-And-Spark-Demos"
+    },
+    {
+        "discogs_id": 28533589,
+        "discogs_type": "release",
+        "title": "Archives – Volume 3: The Asylum Years (1972-1975)",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 2023,
+        "in_collection": 0,
+        "url": "/release/28533589-Joni-Mitchell-Archives-Volume-3-The-Asylum-Years-1972-1975"
+    },
+    {
+        "discogs_id": 36129802,
+        "discogs_type": "release",
+        "title": "At Newport",
+        "artist": "Joni Mitchell / The Joni Jam",
+        "artist_ids": "90233,13316883",
+        "year": 2023,
+        "in_collection": 0,
+        "url": "/release/36129802-Joni-Mitchell-Featuring-The-Joni-Jam-At-Newport"
+    },
+    {
+        "discogs_id": 31974977,
+        "discogs_type": "release",
+        "title": "Archives Volume 4: Asylum Years (1976-1980)",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 2024,
+        "in_collection": 0,
+        "url": "/release/31974977-Joni-Mitchell-Archives-Volume-4-Asylum-Years-1976-1980"
+    },
+    {
+        "discogs_id": 32429883,
+        "discogs_type": "release",
+        "title": "Hejira Demos",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 2024,
+        "in_collection": 0,
+        "url": "/release/32429883-Joni-Mitchell-Hejira-Demos"
+    },
+    {
+        "discogs_id": 35788144,
+        "discogs_type": "release",
+        "title": "Rolling Thunder Revue",
+        "artist": "Joni Mitchell",
+        "artist_ids": "90233",
+        "year": 2025,
+        "in_collection": 0,
+        "url": "/release/35788144-Joni-Mitchell-Rolling-Thunder-Revue"
+    },
+    {
+        "discogs_id": 23625023,
+        "discogs_type": "release",
+        "title": "Nighthawks At The Diner / Miles Of Aisles",
+        "artist": "Tom Waits / Joni Mitchell / The L.A. Express",
+        "artist_ids": "82294,90233,415336",
+        "year": null,
+        "in_collection": 0,
+        "url": "/release/23625023-Tom-Waits-Joni-Mitchell-And-The-LA-Express-Nighthawks-At-The-Diner-Miles-Of-Aisles"
+    }
 ]

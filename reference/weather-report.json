@@ -30,26 +30,6 @@
         "url": "/release/26142230-Weather-Report-Weather-Report-Live-In-Tokyo"
     },
     {
-        "discogs_id": 481001,
-        "discogs_type": "release",
-        "title": "Sweetnighter",
-        "artist": "Weather Report",
-        "artist_ids": "10082",
-        "year": 1973,
-        "in_collection": 1,
-        "url": "/release/481001-Weather-Report-Sweetnighter"
-    },
-    {
-        "discogs_id": 369172,
-        "discogs_type": "release",
-        "title": "Mysterious Traveller",
-        "artist": "Weather Report",
-        "artist_ids": "10082",
-        "year": 1974,
-        "in_collection": 2,
-        "url": "/release/369172-Weather-Report-Mysterious-Traveller"
-    },
-    {
         "discogs_id": 585746,
         "discogs_type": "release",
         "title": "Tale Spinnin'",
@@ -190,16 +170,6 @@
         "url": "/release/32628276-Weather-Report-Live-In-London"
     },
     {
-        "discogs_id": 3965035,
-        "discogs_type": "release",
-        "title": "Weather Report",
-        "artist": "Weather Report",
-        "artist_ids": "10082",
-        "year": 1981,
-        "in_collection": 0,
-        "url": "/release/3965035-Weather-Report-Weather-Report"
-    },
-    {
         "discogs_id": 6213235,
         "discogs_type": "release",
         "title": "Die 70er Jahre",
@@ -208,16 +178,6 @@
         "year": null,
         "in_collection": 0,
         "url": "/release/6213235-Weather-Report-Die-70er-Jahre"
-    },
-    {
-        "discogs_id": 13279977,
-        "discogs_type": "release",
-        "title": "Weather Report",
-        "artist": "Weather Report",
-        "artist_ids": "10082",
-        "year": 1985,
-        "in_collection": 0,
-        "url": "/release/13279977-Weather-Report-Weather-Report"
     },
     {
         "discogs_id": 3844481,
