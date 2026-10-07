@@ -1,0 +1,772 @@
+[
+    {
+        "discogs_id": 2511568,
+        "discogs_type": "release",
+        "title": "Life Between The Exit Signs",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1968,
+        "in_collection": 0,
+        "url": "/release/2511568-Keith-Jarrett-Life-Between-The-Exit-Signs"
+    },
+    {
+        "discogs_id": 2593576,
+        "discogs_type": "release",
+        "title": "Restoration Ruin",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1968,
+        "in_collection": 0,
+        "url": "/release/2593576-Keith-Jarrett-Restoration-Ruin"
+    },
+    {
+        "discogs_id": 1557136,
+        "discogs_type": "release",
+        "title": "The Mourning Of A Star",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1971,
+        "in_collection": 0,
+        "url": "/release/1557136-Keith-Jarrett-The-Mourning-Of-A-Star"
+    },
+    {
+        "discogs_id": 2071058,
+        "discogs_type": "release",
+        "title": "Gary Burton & Keith Jarrett",
+        "artist": "Gary Burton / Keith Jarrett",
+        "artist_ids": "256558,145273",
+        "year": 1971,
+        "in_collection": 1,
+        "url": "/release/2071058-Gary-Burton-Keith-Jarrett-Gary-Burton-Keith-Jarrett"
+    },
+    {
+        "discogs_id": 1177995,
+        "discogs_type": "release",
+        "title": "Birth",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1972,
+        "in_collection": 1,
+        "url": "/release/1177995-Keith-Jarrett-Birth"
+    },
+    {
+        "discogs_id": 1405202,
+        "discogs_type": "release",
+        "title": "Facing You",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1972,
+        "in_collection": 0,
+        "url": "/release/1405202-Keith-Jarrett-Facing-You"
+    },
+    {
+        "discogs_id": 519933,
+        "discogs_type": "release",
+        "title": "Expectations",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1972,
+        "in_collection": 0,
+        "url": "/release/519933-Keith-Jarrett-Expectations"
+    },
+    {
+        "discogs_id": 1220863,
+        "discogs_type": "release",
+        "title": "Fort Yawuh",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1973,
+        "in_collection": 0,
+        "url": "/release/1220863-Keith-Jarrett-Fort-Yawuh"
+    },
+    {
+        "discogs_id": 1542699,
+        "discogs_type": "release",
+        "title": "Ruta And Daitya",
+        "artist": "Keith Jarrett / Jack DeJohnette",
+        "artist_ids": "145273,238626",
+        "year": 1973,
+        "in_collection": 0,
+        "url": "/release/1542699-Keith-Jarrett-Jack-DeJohnette-Ruta-And-Daitya"
+    },
+    {
+        "discogs_id": 7011637,
+        "discogs_type": "release",
+        "title": "Solo Concerts: Bremen / Lausanne",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1973,
+        "in_collection": 1,
+        "url": "/release/7011637-Keith-Jarrett-Solo-Concerts-Bremen-Lausanne"
+    },
+    {
+        "discogs_id": 38440680,
+        "discogs_type": "release",
+        "title": "Fort Yawuh",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1973,
+        "in_collection": 0,
+        "url": "/release/38440680-Keith-Jarrett-Fort-Yawuh"
+    },
+    {
+        "discogs_id": 3092267,
+        "discogs_type": "release",
+        "title": "Treasure Island",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1974,
+        "in_collection": 0,
+        "url": "/release/3092267-Keith-Jarrett-Treasure-Island"
+    },
+    {
+        "discogs_id": 1813000,
+        "discogs_type": "release",
+        "title": "In The Light",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1974,
+        "in_collection": 1,
+        "url": "/release/1813000-Keith-Jarrett-In-The-Light"
+    },
+    {
+        "discogs_id": 547603,
+        "discogs_type": "release",
+        "title": "Belonging",
+        "artist": "Jan Garbarek / Keith Jarrett / Palle Danielsson / Jon Christensen",
+        "artist_ids": "209085,145273,257308,257306",
+        "year": 1974,
+        "in_collection": 0,
+        "url": "/release/547603-Jan-Garbarek-Keith-Jarrett-Palle-Danielsson-Jon-Christensen-Belonging"
+    },
+    {
+        "discogs_id": 1903153,
+        "discogs_type": "release",
+        "title": "El Juicio (The Judgement)",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1975,
+        "in_collection": 0,
+        "url": "/release/1903153-Keith-Jarrett-El-Juicio-The-Judgement"
+    },
+    {
+        "discogs_id": 430419,
+        "discogs_type": "release",
+        "title": "Death And The Flower",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1975,
+        "in_collection": 1,
+        "url": "/release/430419-Keith-Jarrett-Death-And-The-Flower"
+    },
+    {
+        "discogs_id": 2704471,
+        "discogs_type": "release",
+        "title": "Backhand",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1975,
+        "in_collection": 0,
+        "url": "/release/2704471-Keith-Jarrett-Backhand"
+    },
+    {
+        "discogs_id": 831214,
+        "discogs_type": "release",
+        "title": "Luminessence",
+        "artist": "Keith Jarrett / Jan Garbarek",
+        "artist_ids": "145273,209085",
+        "year": 1975,
+        "in_collection": 1,
+        "url": "/release/831214-Keith-Jarrett-Jan-Garbarek-Luminessence"
+    },
+    {
+        "discogs_id": 8735978,
+        "discogs_type": "release",
+        "title": "The Köln Concert",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1975,
+        "in_collection": 2,
+        "url": "/release/8735978-Keith-Jarrett-The-K%C3%B6ln-Concert"
+    },
+    {
+        "discogs_id": 8967618,
+        "discogs_type": "release",
+        "title": "Shades",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1976,
+        "in_collection": 2,
+        "url": "/release/8967618-Keith-Jarrett-Shades"
+    },
+    {
+        "discogs_id": 1164606,
+        "discogs_type": "release",
+        "title": "Mysteries",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1976,
+        "in_collection": 1,
+        "url": "/release/1164606-Keith-Jarrett-Mysteries"
+    },
+    {
+        "discogs_id": 7475334,
+        "discogs_type": "release",
+        "title": "Hymns Spheres",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1976,
+        "in_collection": 0,
+        "url": "/release/7475334-Keith-Jarrett-Hymns-Spheres"
+    },
+    {
+        "discogs_id": 874152,
+        "discogs_type": "release",
+        "title": "Arbour Zena",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1976,
+        "in_collection": 1,
+        "url": "/release/874152-Keith-Jarrett-Arbour-Zena"
+    },
+    {
+        "discogs_id": 4364033,
+        "discogs_type": "release",
+        "title": "Solo Improvisations",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1976,
+        "in_collection": 0,
+        "url": "/release/4364033-Keith-Jarrett-Solo-Improvisations"
+    },
+    {
+        "discogs_id": 1941899,
+        "discogs_type": "release",
+        "title": "Byablue",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1977,
+        "in_collection": 0,
+        "url": "/release/1941899-Keith-Jarrett-Byablue"
+    },
+    {
+        "discogs_id": 494905,
+        "discogs_type": "release",
+        "title": "The Survivors' Suite",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1977,
+        "in_collection": 0,
+        "url": "/release/494905-Keith-Jarrett-The-Survivors-Suite"
+    },
+    {
+        "discogs_id": 1299608,
+        "discogs_type": "release",
+        "title": "Staircase",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1977,
+        "in_collection": 1,
+        "url": "/release/1299608-Keith-Jarrett-Staircase"
+    },
+    {
+        "discogs_id": 789615,
+        "discogs_type": "release",
+        "title": "Tales Of Another",
+        "artist": "Gary Peacock / Keith Jarrett / Jack DeJohnette",
+        "artist_ids": "255129,145273,238626",
+        "year": 1977,
+        "in_collection": 0,
+        "url": "/release/789615-Gary-Peacock-Keith-Jarrett-Jack-DeJohnette-Tales-Of-Another"
+    },
+    {
+        "discogs_id": 1542657,
+        "discogs_type": "release",
+        "title": "Bop-Be",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1978,
+        "in_collection": 0,
+        "url": "/release/1542657-Keith-Jarrett-Bop-Be"
+    },
+    {
+        "discogs_id": 879287,
+        "discogs_type": "release",
+        "title": "Sun Bear Concerts",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1978,
+        "in_collection": 1,
+        "url": "/release/879287-Keith-Jarrett-Sun-Bear-Concerts"
+    },
+    {
+        "discogs_id": 382824,
+        "discogs_type": "release",
+        "title": "My Song",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1978,
+        "in_collection": 0,
+        "url": "/release/382824-Keith-Jarrett-My-Song"
+    },
+    {
+        "discogs_id": 11646745,
+        "discogs_type": "release",
+        "title": "Sun Bear Concerts (Excerpts)",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1978,
+        "in_collection": 0,
+        "url": "/release/11646745-Keith-Jarrett-Sun-Bear-Concerts-Excerpts"
+    },
+    {
+        "discogs_id": 1899089,
+        "discogs_type": "release",
+        "title": "Eyes Of The Heart",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1979,
+        "in_collection": 1,
+        "url": "/release/1899089-Keith-Jarrett-Eyes-Of-The-Heart"
+    },
+    {
+        "discogs_id": 687730,
+        "discogs_type": "release",
+        "title": "Nude Ants (Live At The Village Vanguard)",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1980,
+        "in_collection": 1,
+        "url": "/release/687730-Keith-Jarrett-Nude-Ants-Live-At-The-Village-Vanguard"
+    },
+    {
+        "discogs_id": 1309049,
+        "discogs_type": "release",
+        "title": "Sacred Hymns",
+        "artist": "G. I. Gurdjieff / Keith Jarrett",
+        "artist_ids": "592272,145273",
+        "year": 1980,
+        "in_collection": 0,
+        "url": "/release/1309049-G-I-Gurdjieff-Keith-Jarrett-Sacred-Hymns"
+    },
+    {
+        "discogs_id": 1386180,
+        "discogs_type": "release",
+        "title": "The Celestial Hawk - For Orchestra, Percussion And Piano",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1980,
+        "in_collection": 0,
+        "url": "/release/1386180-Keith-Jarrett-The-Celestial-Hawk-For-Orchestra-Percussion-And-Piano"
+    },
+    {
+        "discogs_id": 1901881,
+        "discogs_type": "release",
+        "title": "Invocations / The Moth And The Flame",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1981,
+        "in_collection": 0,
+        "url": "/release/1901881-Keith-Jarrett-Invocations-The-Moth-And-The-Flame"
+    },
+    {
+        "discogs_id": 2856471,
+        "discogs_type": "release",
+        "title": "Concerts",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1982,
+        "in_collection": 1,
+        "url": "/release/2856471-Keith-Jarrett-Concerts"
+    },
+    {
+        "discogs_id": 1897922,
+        "discogs_type": "release",
+        "title": "Ritual",
+        "artist": "Keith Jarrett / Dennis Russell Davies",
+        "artist_ids": "145273,361603",
+        "year": 1982,
+        "in_collection": 0,
+        "url": "/release/1897922-Keith-Jarrett-Dennis-Russell-Davies-Ritual"
+    },
+    {
+        "discogs_id": 371529,
+        "discogs_type": "release",
+        "title": "Standards, Vol. 1",
+        "artist": "Keith Jarrett / Gary Peacock / Jack DeJohnette",
+        "artist_ids": "145273,255129,238626",
+        "year": 1983,
+        "in_collection": 0,
+        "url": "/release/371529-Keith-Jarrett-Gary-Peacock-Jack-DeJohnette-Standards-Vol-1"
+    },
+    {
+        "discogs_id": 1172696,
+        "discogs_type": "release",
+        "title": "Changes",
+        "artist": "Keith Jarrett / Gary Peacock / Jack DeJohnette",
+        "artist_ids": "145273,255129,238626",
+        "year": 1984,
+        "in_collection": 0,
+        "url": "/release/1172696-Keith-Jarrett-Gary-Peacock-Jack-DeJohnette-Changes"
+    },
+    {
+        "discogs_id": 371533,
+        "discogs_type": "release",
+        "title": "Standards, Vol. 2",
+        "artist": "Keith Jarrett / Gary Peacock / Jack DeJohnette",
+        "artist_ids": "145273,255129,238626",
+        "year": 1985,
+        "in_collection": 1,
+        "url": "/release/371533-Keith-Jarrett-Gary-Peacock-Jack-DeJohnette-Standards-Vol-2"
+    },
+    {
+        "discogs_id": 940342,
+        "discogs_type": "release",
+        "title": "Spirits",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1986,
+        "in_collection": 0,
+        "url": "/release/940342-Keith-Jarrett-Spirits"
+    },
+    {
+        "discogs_id": 4945915,
+        "discogs_type": "release",
+        "title": "Standards Live",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1986,
+        "in_collection": 0,
+        "url": "/release/4945915-Keith-Jarrett-Standards-Live"
+    },
+    {
+        "discogs_id": 1602033,
+        "discogs_type": "release",
+        "title": "Book Of Ways",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1987,
+        "in_collection": 0,
+        "url": "/release/1602033-Keith-Jarrett-Book-Of-Ways"
+    },
+    {
+        "discogs_id": 617835,
+        "discogs_type": "release",
+        "title": "Dark Intervals",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1988,
+        "in_collection": 0,
+        "url": "/release/617835-Keith-Jarrett-Dark-Intervals"
+    },
+    {
+        "discogs_id": 2016856,
+        "discogs_type": "release",
+        "title": "Das Wohltemperierte Klavier Buch I",
+        "artist": "J. S. Bach / Keith Jarrett",
+        "artist_ids": "95537,145273",
+        "year": 1988,
+        "in_collection": 0,
+        "url": "/release/2016856-J-S-Bach-Keith-Jarrett-Das-Wohltemperierte-Klavier-Buch-I"
+    },
+    {
+        "discogs_id": 1985480,
+        "discogs_type": "release",
+        "title": "Piano Concerto / Suite For Violin, Piano And Small Orchestra",
+        "artist": "Keith Jarrett / Lou Harrison / New Japan Philharmonic / Naoto Otomo / Lucy Stoltzman / Robert Hughes (2)",
+        "artist_ids": "145273,296745,1490932,1612358,1147753,776701",
+        "year": 1988,
+        "in_collection": 0,
+        "url": "/release/1985480-Keith-Jarrett-Lou-Harrison-New-Japan-Philharmonic-Naoto-Otomo-Lucy-Stoltzman-Robert-Hughes-Piano-Con"
+    },
+    {
+        "discogs_id": 1606743,
+        "discogs_type": "release",
+        "title": "Goldberg Variations",
+        "artist": "J. S. Bach / Keith Jarrett",
+        "artist_ids": "95537,145273",
+        "year": 1989,
+        "in_collection": 0,
+        "url": "/release/1606743-J-S-Bach-Keith-Jarrett-Goldberg-Variations"
+    },
+    {
+        "discogs_id": 517360,
+        "discogs_type": "release",
+        "title": "Personal Mountains",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1989,
+        "in_collection": 0,
+        "url": "/release/517360-Keith-Jarrett-Personal-Mountains"
+    },
+    {
+        "discogs_id": 1044622,
+        "discogs_type": "release",
+        "title": "Paris Concert",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1990,
+        "in_collection": 0,
+        "url": "/release/1044622-Keith-Jarrett-Paris-Concert"
+    },
+    {
+        "discogs_id": 1911339,
+        "discogs_type": "release",
+        "title": "Yesterdays",
+        "artist": "Keith Jarrett / Gary Peacock / Jack DeJohnette",
+        "artist_ids": "145273,255129,238626",
+        "year": 2009,
+        "in_collection": 0,
+        "url": "/release/1911339-Keith-Jarrett-Gary-Peacock-Jack-DeJohnette-Yesterdays"
+    },
+    {
+        "discogs_id": 6128387,
+        "discogs_type": "release",
+        "title": "Last Dance",
+        "artist": "Keith Jarrett / Charlie Haden",
+        "artist_ids": "145273,253592",
+        "year": 2014,
+        "in_collection": 0,
+        "url": "/release/6128387-Keith-Jarrett-Charlie-Haden-Last-Dance"
+    },
+    {
+        "discogs_id": 13938049,
+        "discogs_type": "release",
+        "title": "The Melody At Night, With You",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 2019,
+        "in_collection": 0,
+        "url": "/release/13938049-Keith-Jarrett-The-Melody-At-Night-With-You"
+    },
+    {
+        "discogs_id": 14431144,
+        "discogs_type": "release",
+        "title": "Munich 2016",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 2019,
+        "in_collection": 0,
+        "url": "/release/14431144-Keith-Jarrett-Munich-2016"
+    },
+    {
+        "discogs_id": 17380627,
+        "discogs_type": "release",
+        "title": "Budapest Concert",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 2020,
+        "in_collection": 0,
+        "url": "/release/17380627-Keith-Jarrett-Budapest-Concert"
+    },
+    {
+        "discogs_id": 24843719,
+        "discogs_type": "release",
+        "title": "Bordeaux Concert",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 2022,
+        "in_collection": 0,
+        "url": "/release/24843719-Keith-Jarrett-Bordeaux-Concert"
+    },
+    {
+        "discogs_id": 29787574,
+        "discogs_type": "release",
+        "title": "Carl Philipp Emanuel Bach",
+        "artist": "Carl Philipp Emanuel Bach / Keith Jarrett",
+        "artist_ids": "841803,145273",
+        "year": 2024,
+        "in_collection": 0,
+        "url": "/release/29787574-Carl-Philipp-Emanuel-Bach-Keith-Jarrett-Carl-Philipp-Emanuel-Bach"
+    },
+    {
+        "discogs_id": 35436160,
+        "discogs_type": "release",
+        "title": "Ritual",
+        "artist": "François Mardirossian / Keith Jarrett",
+        "artist_ids": "7579874,145273",
+        "year": 2025,
+        "in_collection": 0,
+        "url": "/release/35436160-Fran%C3%A7ois-Mardirossian-Keith-Jarrett-Ritual"
+    },
+    {
+        "discogs_id": 34617898,
+        "discogs_type": "release",
+        "title": "New Vienna (At The Musikverein, 2016)",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 2025,
+        "in_collection": 0,
+        "url": "/release/34617898-Keith-Jarrett-New-Vienna-At-The-Musikverein-2016"
+    },
+    {
+        "discogs_id": 38569677,
+        "discogs_type": "release",
+        "title": "Jasmine",
+        "artist": "Keith Jarrett / Charlie Haden",
+        "artist_ids": "145273,253592",
+        "year": 2026,
+        "in_collection": 0,
+        "url": "/release/38569677-Keith-Jarrett-Charlie-Haden-Jasmine"
+    },
+    {
+        "discogs_id": 1826239,
+        "discogs_type": "release",
+        "title": "Chick Corea, Herbie Hancock, Keith Jarrett, McCoy Tyner",
+        "artist": "Chick Corea / Herbie Hancock / Keith Jarrett / McCoy Tyner",
+        "artist_ids": "37731,3865,145273,10620",
+        "year": 1976,
+        "in_collection": 0,
+        "url": "/release/1826239-Chick-Corea-Herbie-Hancock-Keith-Jarrett-McCoy-Tyner-Chick-Corea-Herbie-Hancock-Keith-Jarrett-McCoy-"
+    },
+    {
+        "discogs_id": 23428595,
+        "discogs_type": "release",
+        "title": "Keith Jarrett",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1976,
+        "in_collection": 0,
+        "url": "/release/23428595-Keith-Jarrett-Keith-Jarrett"
+    },
+    {
+        "discogs_id": 1536382,
+        "discogs_type": "release",
+        "title": "Best Of Keith Jarrett",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1978,
+        "in_collection": 0,
+        "url": "/release/1536382-Keith-Jarrett-Best-Of-Keith-Jarrett"
+    },
+    {
+        "discogs_id": 3353347,
+        "discogs_type": "release",
+        "title": "Masters Of The Piano",
+        "artist": "Keith Jarrett / McCoy Tyner",
+        "artist_ids": "145273,10620",
+        "year": 1978,
+        "in_collection": 1,
+        "url": "/release/3353347-Keith-Jarrett-McCoy-Tyner-Masters-Of-The-Piano"
+    },
+    {
+        "discogs_id": 11631509,
+        "discogs_type": "release",
+        "title": "Solo, Duo, Trio & Quintet On Impulse",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1978,
+        "in_collection": 0,
+        "url": "/release/11631509-Keith-Jarrett-Solo-Duo-Trio-Quintet-On-Impulse"
+    },
+    {
+        "discogs_id": 2483430,
+        "discogs_type": "release",
+        "title": "Europa Jazz",
+        "artist": "Keith Jarrett / Charles Lloyd / Dollar Brand / Michael White (2)",
+        "artist_ids": "145273,274429,338287,254823",
+        "year": 1981,
+        "in_collection": 0,
+        "url": "/release/2483430-Keith-Jarrett-Charles-Lloyd-Dollar-Brand-Michael-White-Europa-Jazz"
+    },
+    {
+        "discogs_id": 4677791,
+        "discogs_type": "release",
+        "title": "Great Moments With Keith Jarrett",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1981,
+        "in_collection": 0,
+        "url": "/release/4677791-Keith-Jarrett-Great-Moments-With-Keith-Jarrett"
+    },
+    {
+        "discogs_id": 10038093,
+        "discogs_type": "release",
+        "title": "Keith Jarrett",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1981,
+        "in_collection": 0,
+        "url": "/release/10038093-Keith-Jarrett-Keith-Jarrett"
+    },
+    {
+        "discogs_id": 13422960,
+        "discogs_type": "release",
+        "title": "ECM Presents",
+        "artist": "Pat Metheny Group / Keith Jarrett / John Abercrombie / Jack Dejohnette's Special Edition",
+        "artist_ids": "38210,145273,258942,577882",
+        "year": 1984,
+        "in_collection": 0,
+        "url": "/release/13422960-Pat-Metheny-Group-Keith-Jarrett-John-Abercrombie-Jack-Dejohnettes-Special-Edition-ECM-Presents"
+    },
+    {
+        "discogs_id": 2072570,
+        "discogs_type": "release",
+        "title": "Works",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1985,
+        "in_collection": 0,
+        "url": "/release/2072570-Keith-Jarrett-Works"
+    },
+    {
+        "discogs_id": 23459264,
+        "discogs_type": "release",
+        "title": "Keith Jarrett",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1985,
+        "in_collection": 0,
+        "url": "/release/23459264-Keith-Jarrett-Keith-Jarrett"
+    },
+    {
+        "discogs_id": 17553085,
+        "discogs_type": "release",
+        "title": "Los Pianistas",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": 1986,
+        "in_collection": 0,
+        "url": "/release/17553085-Keith-Jarrett-Los-Pianistas"
+    },
+    {
+        "discogs_id": 2340613,
+        "discogs_type": "release",
+        "title": "Contemporary Currents",
+        "artist": "Coleman / Hancock / Jarrett / Corea",
+        "artist_ids": "224506,3865,145273,37731",
+        "year": 1986,
+        "in_collection": 0,
+        "url": "/release/2340613-Coleman-Hancock-Jarrett-Corea-Contemporary-Currents"
+    },
+    {
+        "discogs_id": 34709331,
+        "discogs_type": "release",
+        "title": "At The Deer Head Inn (The Complete Recordings)",
+        "artist": "Keith Jarrett / Gary Peacock / Paul Motian",
+        "artist_ids": "145273,255129,255882",
+        "year": 2025,
+        "in_collection": 0,
+        "url": "/release/34709331-Keith-Jarrett-Gary-Peacock-Paul-Motian-At-The-Deer-Head-Inn-The-Complete-Recordings"
+    },
+    {
+        "discogs_id": 8343465,
+        "discogs_type": "release",
+        "title": "Keith Jarrett",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": null,
+        "in_collection": 0,
+        "url": "/release/8343465-Keith-Jarrett-Keith-Jarrett"
+    },
+    {
+        "discogs_id": 5281813,
+        "discogs_type": "release",
+        "title": "Attack + Release (Keith Jarrett Special)",
+        "artist": "Keith Jarrett",
+        "artist_ids": "145273",
+        "year": null,
+        "in_collection": 0,
+        "url": "/release/5281813-Keith-Jarrett-Attack-Release-Keith-Jarrett-Special"
+    }
+]

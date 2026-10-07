@@ -1,0 +1,612 @@
+[
+    {
+        "discogs_id": 1349112,
+        "discogs_type": "release",
+        "title": "Meet The Beatles!",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1964,
+        "in_collection": 1,
+        "url": "/release/1349112-The-Beatles-Meet-The-Beatles"
+    },
+    {
+        "discogs_id": 3781724,
+        "discogs_type": "release",
+        "title": "Introducing...The Beatles",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1964,
+        "in_collection": 1,
+        "url": "/release/3781724-The-Beatles-IntroducingThe-Beatles"
+    },
+    {
+        "discogs_id": 3220469,
+        "discogs_type": "release",
+        "title": "The Beatles' Second Album",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1964,
+        "in_collection": 1,
+        "url": "/release/3220469-The-Beatles-The-Beatles-Second-Album"
+    },
+    {
+        "discogs_id": 851584,
+        "discogs_type": "release",
+        "title": "Something New",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1964,
+        "in_collection": 1,
+        "url": "/release/851584-The-Beatles-Something-New"
+    },
+    {
+        "discogs_id": 4893517,
+        "discogs_type": "release",
+        "title": "Beatles '65",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1964,
+        "in_collection": 1,
+        "url": "/release/4893517-The-Beatles-Beatles-65"
+    },
+    {
+        "discogs_id": 962004,
+        "discogs_type": "release",
+        "title": "The Beatles' Story",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1964,
+        "in_collection": 0,
+        "url": "/release/962004-The-Beatles-The-Beatles-Story"
+    },
+    {
+        "discogs_id": 1017762,
+        "discogs_type": "release",
+        "title": "A Hard Day's Night (Original Motion Picture Sound Track)",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1964,
+        "in_collection": 1,
+        "url": "/release/1017762-The-Beatles-A-Hard-Days-Night-Original-Motion-Picture-Sound-Track"
+    },
+    {
+        "discogs_id": 478424,
+        "discogs_type": "release",
+        "title": "Help! (Original Motion Picture Soundtrack)",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1965,
+        "in_collection": 0,
+        "url": "/release/478424-The-Beatles-Help-Original-Motion-Picture-Soundtrack"
+    },
+    {
+        "discogs_id": 611459,
+        "discogs_type": "release",
+        "title": "Beatles VI",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1965,
+        "in_collection": 1,
+        "url": "/release/611459-The-Beatles-Beatles-VI"
+    },
+    {
+        "discogs_id": 5875199,
+        "discogs_type": "release",
+        "title": "Rubber Soul",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1965,
+        "in_collection": 1,
+        "url": "/release/5875199-The-Beatles-Rubber-Soul"
+    },
+    {
+        "discogs_id": 1498484,
+        "discogs_type": "release",
+        "title": "Revolver",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1966,
+        "in_collection": 1,
+        "url": "/release/1498484-The-Beatles-Revolver"
+    },
+    {
+        "discogs_id": 464292,
+        "discogs_type": "release",
+        "title": "Magical Mystery Tour",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1967,
+        "in_collection": 2,
+        "url": "/release/464292-The-Beatles-Magical-Mystery-Tour"
+    },
+    {
+        "discogs_id": 8991748,
+        "discogs_type": "release",
+        "title": "Sgt. Pepper's Lonely Hearts Club Band",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1967,
+        "in_collection": 1,
+        "url": "/release/8991748-The-Beatles-Sgt-Peppers-Lonely-Hearts-Club-Band"
+    },
+    {
+        "discogs_id": 30954898,
+        "discogs_type": "release",
+        "title": "The Beatles",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1968,
+        "in_collection": 2,
+        "url": "/release/30954898-The-Beatles-The-Beatles"
+    },
+    {
+        "discogs_id": 33210030,
+        "discogs_type": "release",
+        "title": "Abbey Road",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1969,
+        "in_collection": 1,
+        "url": "/release/33210030-The-Beatles-Abbey-Road"
+    },
+    {
+        "discogs_id": 8470994,
+        "discogs_type": "release",
+        "title": "Yellow Submarine",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1969,
+        "in_collection": 1,
+        "url": "/release/8470994-The-Beatles-Yellow-Submarine"
+    },
+    {
+        "discogs_id": 14969261,
+        "discogs_type": "release",
+        "title": "Let It Be",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1970,
+        "in_collection": 1,
+        "url": "/release/14969261-The-Beatles-Let-It-Be"
+    },
+    {
+        "discogs_id": 13245280,
+        "discogs_type": "release",
+        "title": "The Beatles At The Hollywood Bowl",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1977,
+        "in_collection": 0,
+        "url": "/release/13245280-The-Beatles-The-Beatles-At-The-Hollywood-Bowl"
+    },
+    {
+        "discogs_id": 35618245,
+        "discogs_type": "release",
+        "title": "Live! At The Star-Club In Hamburg, Germany; 1962.",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1977,
+        "in_collection": 0,
+        "url": "/release/35618245-The-Beatles-Live-At-The-Star-Club-In-Hamburg-Germany-1962"
+    },
+    {
+        "discogs_id": 4538593,
+        "discogs_type": "release",
+        "title": "Recorded Live In Hamburg 1962 (Volume 1)",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1978,
+        "in_collection": 0,
+        "url": "/release/4538593-The-Beatles-Recorded-Live-In-Hamburg-1962-Volume-1"
+    },
+    {
+        "discogs_id": 4543414,
+        "discogs_type": "release",
+        "title": "Recorded Live In Hamburg 1962 (Volume 2)",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1978,
+        "in_collection": 0,
+        "url": "/release/4543414-The-Beatles-Recorded-Live-In-Hamburg-1962-Volume-2"
+    },
+    {
+        "discogs_id": 4543511,
+        "discogs_type": "release",
+        "title": "Recorded Live In Hamburg 1962 (Volume 3)",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1978,
+        "in_collection": 0,
+        "url": "/release/4543511-The-Beatles-Recorded-Live-In-Hamburg-1962-Volume-3"
+    },
+    {
+        "discogs_id": 8046930,
+        "discogs_type": "release",
+        "title": "Timeless",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1981,
+        "in_collection": 0,
+        "url": "/release/8046930-The-Beatles-Timeless"
+    },
+    {
+        "discogs_id": 4075979,
+        "discogs_type": "release",
+        "title": "The American Tour With Ed Rudy (INS Radio News: Documentary 2)",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1981,
+        "in_collection": 0,
+        "url": "/release/4075979-The-Beatles-The-American-Tour-With-Ed-Rudy-INS-Radio-News-Documentary-2"
+    },
+    {
+        "discogs_id": 3819063,
+        "discogs_type": "release",
+        "title": "East Coast Invasion!",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1985,
+        "in_collection": 0,
+        "url": "/release/3819063-The-Beatles-East-Coast-Invasion"
+    },
+    {
+        "discogs_id": 5411056,
+        "discogs_type": "release",
+        "title": "West Coast Invasion",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1985,
+        "in_collection": 0,
+        "url": "/release/5411056-The-Beatles-West-Coast-Invasion"
+    },
+    {
+        "discogs_id": 2751428,
+        "discogs_type": "release",
+        "title": "Help!",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1985,
+        "in_collection": 1,
+        "url": "/release/2751428-The-Beatles-Help"
+    },
+    {
+        "discogs_id": 3245808,
+        "discogs_type": "release",
+        "title": "Things We Said Today",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1986,
+        "in_collection": 0,
+        "url": "/release/3245808-The-Beatles-Things-We-Said-Today"
+    },
+    {
+        "discogs_id": 5495067,
+        "discogs_type": "release",
+        "title": "Not A Second Time",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1986,
+        "in_collection": 0,
+        "url": "/release/5495067-The-Beatles-Not-A-Second-Time"
+    },
+    {
+        "discogs_id": 3488758,
+        "discogs_type": "release",
+        "title": "'Round The World!",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1986,
+        "in_collection": 0,
+        "url": "/release/3488758-The-Beatles-Round-The-World"
+    },
+    {
+        "discogs_id": 3933152,
+        "discogs_type": "release",
+        "title": "All Our Loving",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1986,
+        "in_collection": 0,
+        "url": "/release/3933152-The-Beatles-All-Our-Loving"
+    },
+    {
+        "discogs_id": 4899785,
+        "discogs_type": "release",
+        "title": "From Britain... With Beat!",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1987,
+        "in_collection": 0,
+        "url": "/release/4899785-The-Beatles-From-Britain-With-Beat"
+    },
+    {
+        "discogs_id": 2832557,
+        "discogs_type": "release",
+        "title": "A Hard Day's Night",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1987,
+        "in_collection": 0,
+        "url": "/release/2832557-The-Beatles-A-Hard-Days-Night"
+    },
+    {
+        "discogs_id": 2551752,
+        "discogs_type": "release",
+        "title": "A Hard Day's Night",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1987,
+        "in_collection": 0,
+        "url": "/release/2551752-The-Beatles-A-Hard-Days-Night"
+    },
+    {
+        "discogs_id": 2646888,
+        "discogs_type": "release",
+        "title": "Beatles For Sale",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1987,
+        "in_collection": 0,
+        "url": "/release/2646888-The-Beatles-Beatles-For-Sale"
+    },
+    {
+        "discogs_id": 3839106,
+        "discogs_type": "release",
+        "title": "Moviemania!",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1987,
+        "in_collection": 0,
+        "url": "/release/3839106-The-Beatles-Moviemania"
+    },
+    {
+        "discogs_id": 5081306,
+        "discogs_type": "release",
+        "title": "Here There And Everywhere",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1988,
+        "in_collection": 0,
+        "url": "/release/5081306-The-Beatles-Here-There-And-Everywhere"
+    },
+    {
+        "discogs_id": 1801697,
+        "discogs_type": "release",
+        "title": "Live At The BBC",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1994,
+        "in_collection": 0,
+        "url": "/release/1801697-The-Beatles-Live-At-The-BBC"
+    },
+    {
+        "discogs_id": 2551976,
+        "discogs_type": "release",
+        "title": "Let It Be",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1995,
+        "in_collection": 0,
+        "url": "/release/2551976-The-Beatles-Let-It-Be"
+    },
+    {
+        "discogs_id": 1801677,
+        "discogs_type": "release",
+        "title": "Anthology 2",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1996,
+        "in_collection": 0,
+        "url": "/release/1801677-The-Beatles-Anthology-2"
+    },
+    {
+        "discogs_id": 1801690,
+        "discogs_type": "release",
+        "title": "Anthology 3",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1996,
+        "in_collection": 0,
+        "url": "/release/1801690-The-Beatles-Anthology-3"
+    },
+    {
+        "discogs_id": 1130456,
+        "discogs_type": "release",
+        "title": "The Early Beatles",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1965,
+        "in_collection": 1,
+        "url": "/release/1130456-The-Beatles-The-Early-Beatles"
+    },
+    {
+        "discogs_id": 9822053,
+        "discogs_type": "release",
+        "title": "Yesterday And Today",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1966,
+        "in_collection": 1,
+        "url": "/release/9822053-The-Beatles-Yesterday-And-Today"
+    },
+    {
+        "discogs_id": 2023725,
+        "discogs_type": "release",
+        "title": "In The Beginning (Circa 1960)",
+        "artist": "The Beatles / Tony Sheridan",
+        "artist_ids": "82730,261052",
+        "year": 1970,
+        "in_collection": 0,
+        "url": "/release/2023725-The-Beatles-Featuring-Tony-Sheridan-In-The-Beginning-Circa-1960"
+    },
+    {
+        "discogs_id": 1121737,
+        "discogs_type": "release",
+        "title": "The Beatles' Christmas Album",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1970,
+        "in_collection": 0,
+        "url": "/release/1121737-The-Beatles-The-Beatles-Christmas-Album"
+    },
+    {
+        "discogs_id": 5849410,
+        "discogs_type": "release",
+        "title": "Hey Jude (The Beatles Again)",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1970,
+        "in_collection": 1,
+        "url": "/release/5849410-The-Beatles-Hey-Jude-The-Beatles-Again"
+    },
+    {
+        "discogs_id": 7182801,
+        "discogs_type": "release",
+        "title": "1962-1966",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1973,
+        "in_collection": 0,
+        "url": "/release/7182801-The-Beatles-1962-1966"
+    },
+    {
+        "discogs_id": 18397747,
+        "discogs_type": "release",
+        "title": "1967-1970",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1973,
+        "in_collection": 0,
+        "url": "/release/18397747-The-Beatles-1967-1970"
+    },
+    {
+        "discogs_id": 618563,
+        "discogs_type": "release",
+        "title": "Rock 'N' Roll Music",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1976,
+        "in_collection": 0,
+        "url": "/release/618563-The-Beatles-Rock-N-Roll-Music"
+    },
+    {
+        "discogs_id": 7964234,
+        "discogs_type": "release",
+        "title": "Love Songs",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1977,
+        "in_collection": 1,
+        "url": "/release/7964234-The-Beatles-Love-Songs"
+    },
+    {
+        "discogs_id": 5896711,
+        "discogs_type": "release",
+        "title": "The Beatles Collection",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1978,
+        "in_collection": 0,
+        "url": "/release/5896711-The-Beatles-The-Beatles-Collection"
+    },
+    {
+        "discogs_id": 7094860,
+        "discogs_type": "release",
+        "title": "Rarities",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1979,
+        "in_collection": 0,
+        "url": "/release/7094860-The-Beatles-Rarities"
+    },
+    {
+        "discogs_id": 461996,
+        "discogs_type": "release",
+        "title": "Rarities",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1980,
+        "in_collection": 0,
+        "url": "/release/461996-The-Beatles-Rarities"
+    },
+    {
+        "discogs_id": 9898616,
+        "discogs_type": "release",
+        "title": "Rock 'N' Roll Music, Volume 1",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1980,
+        "in_collection": 0,
+        "url": "/release/9898616-The-Beatles-Rock-N-Roll-Music-Volume-1"
+    },
+    {
+        "discogs_id": 14059149,
+        "discogs_type": "release",
+        "title": "Rock 'N' Roll Music Vol. 2",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1980,
+        "in_collection": 1,
+        "url": "/release/14059149-The-Beatles-Rock-N-Roll-Music-Vol-2"
+    },
+    {
+        "discogs_id": 2914755,
+        "discogs_type": "release",
+        "title": "The Collection",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1982,
+        "in_collection": 0,
+        "url": "/release/2914755-The-Beatles-The-Collection"
+    },
+    {
+        "discogs_id": 4555800,
+        "discogs_type": "release",
+        "title": "The Beatles Box Set",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1988,
+        "in_collection": 0,
+        "url": "/release/4555800-The-Beatles-The-Beatles-Box-Set"
+    },
+    {
+        "discogs_id": 3313556,
+        "discogs_type": "release",
+        "title": "Past Masters - Volumes One & Two",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1988,
+        "in_collection": 0,
+        "url": "/release/3313556-The-Beatles-Past-Masters-Volumes-One-Two"
+    },
+    {
+        "discogs_id": 3688180,
+        "discogs_type": "release",
+        "title": "Anthology 2",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 1996,
+        "in_collection": 0,
+        "url": "/release/3688180-The-Beatles-Anthology-2"
+    },
+    {
+        "discogs_id": 4057575,
+        "discogs_type": "release",
+        "title": "The Beatles",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 2012,
+        "in_collection": 0,
+        "url": "/release/4057575-The-Beatles-The-Beatles"
+    },
+    {
+        "discogs_id": 14578598,
+        "discogs_type": "release",
+        "title": "1",
+        "artist": "The Beatles",
+        "artist_ids": "82730",
+        "year": 2018,
+        "in_collection": 0,
+        "url": "/release/14578598-The-Beatles-1"
+    }
+]
