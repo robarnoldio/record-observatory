@@ -3,7 +3,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { parse } from 'csv-parse/sync';
 
-
 // Build one static Astro route for every curated reference JSON file.
 //
 // For example:
@@ -25,7 +24,6 @@ export function getStaticPaths() {
     }));
 }
 
-
 // Get the artist slug supplied by the dynamic route.
 //
 // For:
@@ -34,7 +32,6 @@ export function getStaticPaths() {
 // Astro.params.artist is:
 //   "herbie-hancock"
 const { artist } = Astro.params;
-
 
 // Convert the URL slug to a temporary display name.
 //
@@ -50,7 +47,6 @@ const artistName = artist
   .map(word => word.charAt(0).toUpperCase() + word.slice(1))
   .join(' ');
 
-
 // Load the curated reference discography associated with this route.
 //
 // The reference file defines which records belong in this artist
@@ -61,7 +57,6 @@ const referencePath = path.resolve(`reference/${artist}.json`);
 const artistReference = JSON.parse(
   fs.readFileSync(referencePath, 'utf8')
 );
-
 
 // Find the most recent Discogs collection export.
 //
@@ -81,7 +76,6 @@ if (csvFiles.length === 0) {
 const csvFilename = csvFiles.at(-1);
 const csvPath = path.join(collectionDir, csvFilename);
 
-
 // Parse the Discogs CSV into an array of JavaScript objects.
 //
 // With columns: true, each CSV row becomes an object whose property
@@ -92,7 +86,6 @@ const collection = parse(csvText, {
   columns: true,
   skip_empty_lines: true,
 });
-
 
 // Restrict reconciliation candidates to LP records.
 //
@@ -108,19 +101,6 @@ const lpCollection = collection.filter(record =>
   record.Format?.split(',').some(x => /^\d*xLP$|^LP$/.test(x.trim()))
 );
 
-
-// Handy diagnostic probe. Change the search string and uncomment
-// console.log() when investigating a particular Discogs collection row.
-//
-// This is server-side Astro frontmatter, so console output appears in the
-// terminal running the Astro development server rather than the browser.
-const debugRecords = collection.filter(record =>
-  record.Title?.toLowerCase().includes('evening with')
-);
-
-// console.log(debugRecords);
-
-
 // Normalize titles for matching.
 //
 // Matching is deliberately conservative for now. Capitalization and
@@ -133,6 +113,26 @@ function normalizeTitle(title) {
     .trim();
 }
 
+// Determine whether a collection record satisfies a reference entry.http://localhost:4321/artists/weather-report
+//
+// Most records use a simple exact-title match.
+//
+// Records with Collection dedupe populated are known title-collision
+// cases and require both title and year to match.
+function matchesReference(record, reference) {
+  const titleMatch =
+    normalizeTitle(record.Title) === normalizeTitle(reference.title);
+
+  if (!titleMatch) {
+    return false;
+  }
+
+  if (record['Collection dedupe']) {
+    return Number(record.Released) === Number(reference.year);
+  }
+
+  return true;
+}
 
 // Reconcile every curated reference entry against all owned LPs.
 //
@@ -141,13 +141,15 @@ function normalizeTitle(title) {
 //   copies - all matching Discogs collection rows
 //
 // Known limitation:
-// Different conceptual albums having exactly the same title cannot yet be
-// distinguished. Examples discovered during testing include the multiple
-// "The Best Of Herbie Hancock" and "Weather Report" albums. These will
-// eventually require explicit matching metadata in the reference data.
+//
+// Title collisions can be resolved by populating Collection dedupe on the
+// relevant Discogs collection records, which switches matching from
+// title-only to title-plus-year.
+//
+// Remaining collisions require additional curation.
 const reconciliation = artistReference.map(reference => {
   const matches = lpCollection.filter(record =>
-    normalizeTitle(record.Title) === normalizeTitle(reference.title)
+    matchesReference(record, reference)
   );
 
   return {
@@ -157,10 +159,24 @@ const reconciliation = artistReference.map(reference => {
   };
 });
 
-
 // Produce simple completeness totals for the page.
 const ownedCount = reconciliation.filter(record => record.owned).length;
 const missingCount = reconciliation.length - ownedCount;
+// Album subset used for completion calculation
+const albums = reconciliation.filter(
+  row => row.section?.toLowerCase() === 'albums'
+);
+
+// Albums with at least one matching collection record
+const ownedAlbums = albums.filter(
+  row => row.copies?.length > 0
+).length;
+
+// Album-only completion percentage
+const completionPercent = albums.length
+  ? (100 * ownedAlbums) / albums.length
+  : 0;
+const copyFields = Object.keys( reconciliation.find(record => record.copies.length > 0)?.copies[0] ?? {} );
 ---
 
 <html lang="en">
@@ -168,7 +184,6 @@ const missingCount = reconciliation.length - ownedCount;
     <meta charset="utf-8" />
     <title>{artistName} Reconciliation Test</title>
   </head>
-
   <body>
     <h1>{artistName} Reconciliation Test</h1>
 
@@ -177,19 +192,87 @@ const missingCount = reconciliation.length - ownedCount;
     <h2>Input counts</h2>
 
     <ul>
-      <li>Reference records: {artistReference.length}</li>
-      <li>Total collection records: {collection.length}</li>
       <li>
-        Collection records containing "{artistName}": {lpCollection.length}
+        Reference records in {artistName} discography: {artistReference.length}
       </li>
+      <li>Total discogs export records: {collection.length}</li>
+      <li>Collection records of LP type: {lpCollection.length}</li>
     </ul>
 
-    <h2>Reconciliation</h2>
+    <h2>Completeness report</h2>
 
     <p>
-      Owned: {ownedCount} / {reconciliation.length}<br />
+      Owned: {ownedCount} / {albums.length}
+      <br />({completionPercent.toFixed(2)}% complete)
+      <br />
       Missing: {missingCount}
     </p>
+
+<h2>Matching Collection Records</h2>
+
+<table>
+  <thead>
+    <tr>
+      {copyFields.map(field => (
+        <th key={field}>{field}</th>
+      ))}
+    </tr>
+  </thead>
+
+  <tbody>
+    {reconciliation.flatMap((row, index) => {
+      if (!row.copies || row.copies.length === 0) {
+        return [];
+      }
+
+      const currentSection =
+        row.section || 'Miscellaneous';
+
+      const previousMatchedRow =
+        reconciliation
+          .slice(0, index)
+          .reverse()
+          .find(previousRow => previousRow.copies?.length > 0);
+
+      const previousSection =
+        previousMatchedRow
+          ? previousMatchedRow.section || 'Miscellaneous'
+          : null;
+
+      const dataRows = row.copies.map((copy, copyIndex) => (
+        <tr key={`record-${index}-${copyIndex}`}>
+          {copyFields.map(field => (
+            <td key={field}>
+              {copy[field]}
+            </td>
+          ))}
+        </tr>
+      ));
+
+      if (currentSection === previousSection) {
+        return dataRows;
+      }
+
+      const sectionRow = (
+        <tr
+          key={`section-${currentSection}-${index}`}
+          className="recon-section-row"
+        >
+          <th
+            colSpan={copyFields.length}
+            scope="colgroup"
+          >
+            {currentSection}
+          </th>
+        </tr>
+      );
+
+      return [sectionRow, ...dataRows];
+    })}
+  </tbody>
+</table>
+   
+    <h2>Reconciliation</h2>
 
     <table>
       <thead>
