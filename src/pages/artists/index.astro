@@ -35,7 +35,7 @@ const artists = fs
 <ul>
   {artists.map(artist => (
     <li>
-      {`/artists/${artist.slug}/`}
+      <a href={`/artists/${artist.slug}/`}>
         {artist.displayName}
       </a>
     </li>

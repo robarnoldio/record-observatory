@@ -1,0 +1,45 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+const referenceDir = path.resolve('reference');
+
+const artists = fs
+  .readdirSync(referenceDir)
+  .filter(name => name.endsWith('.json'))
+  .map(name => {
+    const slug = name.replace(/\.json$/, '');
+
+    const displayName = slug
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+
+    return {
+      slug,
+      displayName
+    };
+  })
+  .sort((a, b) => a.displayName.localeCompare(b.displayName));
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Artist Collections</title>
+  </head>
+
+  <body>
+    <h1>Artist Collections</h1>
+
+<ul>
+  {artists.map(artist => (
+    <li>
+      <a href={`/artists/${artist.slug}/`}>
+        {artist.displayName}
+      </a>
+    </li>
+  ))}
+</ul>
+  </body>
+</html>
