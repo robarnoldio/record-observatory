@@ -177,17 +177,60 @@ const completionPercent = albums.length
   ? (100 * ownedAlbums) / albums.length
   : 0;
 const copyFields = Object.keys( reconciliation.find(record => record.copies.length > 0)?.copies[0] ?? {} );
+
+// testing AlbumCard
+import AlbumCard from '../../components/albumcard.astro';
+const testAlbum = reconciliation.find(
+  row => row.title === 'The Beatles'
+);
+// end of test stuffs
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <title>{artistName} Reconciliation Test</title>
+    <style>
+  .album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+</style>
   </head>
   <body>
     <h1>{artistName} Reconciliation Test</h1>
 
     <p>Discogs export: {csvFilename}</p>
+
+{
+  Object.entries(
+    reconciliation.reduce((groups, album) => {
+      const section = album.section || 'Miscellaneous';
+
+      if (!groups[section]) {
+        groups[section] = [];
+      }
+
+      groups[section].push(album);
+
+      return groups;
+    }, {})
+  ).map(([section, albums]) => (
+    <>
+      <h2 class="album-section-header">
+        {section}
+      </h2>
+
+      <div class="album-grid">
+        {albums.map(album => (
+          <AlbumCard album={album} />
+        ))}
+      </div>
+    </>
+  ))
+}
 
     <h2>Input counts</h2>
 
