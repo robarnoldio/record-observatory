@@ -32,7 +32,7 @@
     {
         "title": "Led Zeppelin II",
         "year": 2026,
-        "section": "Albums",
+        "section": "_omit",
         "coverUrl": "https://i.discogs.com/HWA_y4dODjePm3uWh037ygIshxt62gYHWsqrBYJPZj8/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM3Nzk3/NTg1LTE3ODMyMjQ2/NzUtMjk4Mi5qcGVn.jpeg",
         "type": "master",
         "masterId": 4170,
@@ -47,7 +47,7 @@
     {
         "title": "Promotional LP For Record Department-In-Store-Play",
         "year": 1969,
-        "section": "Albums",
+        "section": "_omit",
         "coverUrl": "https://i.discogs.com/Q0vC2jf4P0yA0y0vpuLC9pgqQ-lT5GagXOmIzFOVxpI/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU1MDg1/MzItMTUzNzM5NjM1/Ni03NzEwLmpwZWc.jpeg",
         "type": "release",
         "masterId": 0,
@@ -92,7 +92,7 @@
     {
         "title": "Pop Special-1 & 2",
         "year": 1972,
-        "section": "Albums",
+        "section": "_omit",
         "coverUrl": "https://i.discogs.com/j9a0uSrE_U4FE2S3wYVID6awOgWpmURgbXhP_Ln4x1w/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExNDkw/MzgzLTE1MTc0MzA1/NTQtNDQwMy5qcGVn.jpeg",
         "type": "master",
         "masterId": 1306417,
@@ -122,7 +122,7 @@
     {
         "title": "Innerview",
         "year": 1975,
-        "section": "Albums",
+        "section": "_omit",
         "coverUrl": "https://i.discogs.com/mo1hv3jD--HGae6ivSyq6Ydqn3DF0dVc7GW3tYDCcCs/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ4NTY4/NzMtMTM3NzYzMjk5/OC0yNTYzLmpwZWc.jpeg",
         "type": "master",
         "masterId": 2574656,
@@ -212,7 +212,7 @@
     {
         "title": "In Concert-305",
         "year": 1983,
-        "section": "Albums",
+        "section": "_omit",
         "coverUrl": "https://i.discogs.com/H29Dk159lEmAiQ9iV3Xiw7Zll_Q_1x-irHvZgrsodyk/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwNzYw/ODI2LTE1MDM4Mzcw/NzYtNTgwNC5qcGVn.jpeg",
         "type": "release",
         "masterId": 0,
@@ -227,7 +227,7 @@
     {
         "title": "The Led Zeppelin Story",
         "year": 1989,
-        "section": "Albums",
+        "section": "_omit",
         "coverUrl": "https://i.discogs.com/qqeZrhbLsNlDsz_IEAjFQcEOON9aRkgxKpLHeE60508/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU3MjI2/OTYtMTQwMDkxNDMz/OC00MTIwLmpwZWc.jpeg",
         "type": "release",
         "masterId": 0,
@@ -242,7 +242,7 @@
     {
         "title": "BBC Sessions",
         "year": 1997,
-        "section": "Albums",
+        "section": "_omit",
         "coverUrl": "https://i.discogs.com/vcFh28_pDSrwQhOJk1MlEhHCOB7BMoV9GDWome3jeqY/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc4NjQ2/MjItMTc1NDkyNjUz/Ni04MDUzLmpwZWc.jpeg",
         "type": "master",
         "masterId": 4529,
@@ -257,7 +257,7 @@
     {
         "title": "Celebration Day",
         "year": 2012,
-        "section": "Albums",
+        "section": "_omit",
         "coverUrl": "https://i.discogs.com/9DF2BsFrbB8n7mXvpGOpEIpkzofCuPKRf8nHTpfvTZQ/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU4MTEy/OTktMTQyMjc5NDE0/OC05NTExLmpwZWc.jpeg",
         "type": "master",
         "masterId": 493246,
@@ -272,7 +272,7 @@
     {
         "title": "How The West Was Won",
         "year": 2018,
-        "section": "Albums",
+        "section": "_omit",
         "coverUrl": "https://i.discogs.com/vC1HvlHOQaQq-OZhiFpRhlOHC4gQedE3ZyoO1vOG6B0/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExNzQ5/OTYwLTE2NDQwNDY4/OTktMzQ4MC5qcGVn.jpeg",
         "type": "master",
         "masterId": 115931,
@@ -287,7 +287,7 @@
     {
         "title": "Untitled",
         "year": 1971,
-        "section": "Albums",
+        "section": "_omit",
         "coverUrl": "https://i.discogs.com/0A5ozcMb34km4WEDZW95NkIwnsI6ThPYs-WifrzwP6E/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTUxMzU4/ODQtMTM4OTcxMjQ3/Ny00ODA3LmpwZWc.jpeg",
         "type": "release",
         "masterId": 0,
@@ -467,7 +467,7 @@
     {
         "title": "Greatest Hits!",
         "year": null,
-        "section": "Compilations",
+        "section": "_omit",
         "coverUrl": "https://i.discogs.com/DeJMUFRk8OkNqWBay97hehezg8Y_x63CUtZMWJ0ocUs/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU3MTM1/MDMtMTQ2ODUxOTQz/NS0yNzE5LmpwZWc.jpeg",
         "type": "release",
         "masterId": 0,
