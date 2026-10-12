@@ -1,0 +1,64 @@
+---
+const { catalog } = Astro.props;
+
+//console.log('catalog rows:', catalog.length);
+
+const copyFields = Object.keys(
+  catalog.find(record => record.copies.length > 0)?.copies[0] ?? {}
+);
+---
+<table>
+  <thead>
+    <tr>
+      {copyFields.map(field => (
+        <th>{field}</th>
+      ))}
+    </tr>
+  </thead>
+
+  <tbody>
+    {catalog.flatMap((row, index) => {
+      if (!row.copies || row.copies.length === 0) {
+        return [];
+      }
+
+      const currentSection =
+        row.section || 'Miscellaneous';
+
+      const previousMatchedRow =
+        catalog
+          .slice(0, index)
+          .reverse()
+          .find(previousRow => previousRow.copies?.length > 0);
+
+      const previousSection =
+        previousMatchedRow
+          ? previousMatchedRow.section || 'Miscellaneous'
+          : null;
+
+      const dataRows = row.copies.map((copy, copyIndex) => (
+        <tr>
+          {copyFields.map(field => (
+            <td>
+              {copy[field]}
+            </td>
+          ))}
+        </tr>
+      ));
+
+      if (currentSection === previousSection) {
+        return dataRows;
+      }
+
+      const sectionRow = (
+        <tr class="recon-section-row">
+          <th colSpan={copyFields.length} scope="colgroup">
+            {currentSection}
+          </th>
+        </tr>
+      );
+
+      return [sectionRow, ...dataRows];
+    })}
+  </tbody>
+</table>
