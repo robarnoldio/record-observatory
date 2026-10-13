@@ -1,0 +1,19 @@
+---
+import { sortByCount } from '../lib/collection.js';
+
+const { collection } = Astro.props;
+
+const artistCounts = collection.reduce((counts, record) => {
+  const artist = record.Artist;
+
+  if (!artist) return counts;
+
+  counts[artist] = (counts[artist] || 0) + 1;
+
+  return counts;
+}, {});
+
+const topArtists = sortByCount(
+  Object.entries(artistCounts)
+).slice(0, 10);
+---

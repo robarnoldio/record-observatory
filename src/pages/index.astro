@@ -1,5 +1,16 @@
 ---
+import { loadLpCollection } from '../lib/collection.js';
 
+const {
+  csvFilename,
+  collection,
+  lpCollection,
+  exportDateString
+} = loadLpCollection();
+import CollectionDump from '../components/collectiondump.astro';
+import MonthlyAcquisitions from '../components/monthlyacquisitions.astro';
+import SourceSummary from '../components/sourcesummary.astro';
+import YearSummary from '../components/releaseyearsummary.astro';
 ---
 
 <html lang="en">
@@ -9,9 +20,17 @@
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Record collection observatory</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<h1>Some bozo collecting records</h1>
+		<p>Rob is the proud owner of {lpCollection.length} rekkids.</p>
+		<p>The latest collection dump available is from {exportDateString}.</p>
+
+		<MonthlyAcquisitions collection={lpCollection} />
+
+		<SourceSummary collection={lpCollection} />
+
+		<YearSummary collection={lpCollection} />
 	</body>
 </html>

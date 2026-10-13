@@ -1,0 +1,42 @@
+---
+import { sortByCount, sortByNumKey } from '../lib/collection.js'; 
+
+const { collection } = Astro.props;
+
+const yearCounts = collection.reduce((counts, record) => {
+  const yearReleased = record['Released'];
+
+  if (!yearReleased || Number(yearReleased) === 0) {
+    return counts;
+  }
+
+  counts[yearReleased] =
+    (counts[yearReleased] || 0) + 1;
+
+  return counts;
+}, {});
+
+
+const years = sortByNumKey(
+  Object.entries(yearCounts)
+);
+const yearsByCount = sortByCount(
+  Object.entries(yearCounts)
+);
+---
+
+  <h2>Release year breakdown</h2>
+  <pre>
+{
+  years.map(([year, count]) =>
+    `${year.padEnd(6)} ${'█'.repeat(count)} ${count}`
+  ).join('\n')
+}
+  </pre>
+  <pre>
+{
+  yearsByCount.map(([year, count]) =>
+    `${year.padEnd(6)} ${'█'.repeat(count)} ${count}`
+  ).join('\n')
+}
+</pre>

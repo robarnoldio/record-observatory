@@ -1,0 +1,47 @@
+---
+import { sortByDateKey } from '../lib/collection.js';
+
+const { collection } = Astro.props;
+
+const trackingStart = new Date('2024-01-01');
+
+const filteredCollection = collection.filter(record => {
+  const dateAdded = record['Date Added'];
+
+  return dateAdded &&
+    new Date(dateAdded) >= trackingStart;
+});
+
+const monthCounts = filteredCollection.reduce((counts, record) => {
+  const dateAdded = record['Date Added'];
+
+  if (!dateAdded) {
+    return counts;
+  }
+
+  const date = new Date(dateAdded);
+
+  const monthKey = date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short'
+  });
+
+  counts[monthKey] = (counts[monthKey] || 0) + 1;
+
+  return counts;
+}, {});
+
+const months = sortByDateKey(
+  Object.entries(monthCounts)
+);
+---
+
+<h2>Acquisitions by Month</h2>
+
+<pre>
+{
+  months.map(([month, count]) =>
+    `${month.padEnd(12)} ${'█'.repeat(count)} ${count}`
+  ).join('\n')
+}
+</pre>

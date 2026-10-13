@@ -1,0 +1,35 @@
+---
+const { collection } = Astro.props;
+
+const fields = Object.keys(collection[0] ?? {});
+const sample = collection[0];
+const recentRecords = collection.slice(-20).reverse();
+---
+
+<h2>Sample Record</h2>
+
+<pre>
+{JSON.stringify(sample, null, 2)}
+</pre>
+
+<h2>short stack</h2>
+
+<table>
+  <thead>
+    <tr>
+      {fields.map(field => (
+        <th>{field}</th>
+      ))}
+    </tr>
+  </thead>
+
+  <tbody>
+    {recentRecords.map(record => (
+      <tr>
+        {fields.map(field => (
+          <td>{record[field]}</td>
+        ))}
+      </tr>
+    ))}
+  </tbody>
+</table>

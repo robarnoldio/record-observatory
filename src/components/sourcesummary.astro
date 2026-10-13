@@ -1,0 +1,41 @@
+---
+const { collection } = Astro.props;
+const total = collection.length;
+const sourceCounts = collection.reduce((counts, record) => {
+  const source =
+    record['Collection Source']?.trim() || 'Unknown';
+
+  counts[source] = (counts[source] || 0) + 1;
+
+  return counts;
+}, {});
+
+const sources = Object.entries(sourceCounts)
+  .sort((a, b) => b[1] - a[1]);
+---
+
+
+<h2>Source breakdown</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Count</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  {sources.map(([source, count]) => {
+    const percent =
+      Math.round((count / total) * 100);
+
+    return (
+      <tr>
+        <td>{source}</td>
+        <td>{count}</td>
+        <td>({percent}%)</td>
+      </tr>
+    );
+  })}
+</tbody>
+</table>

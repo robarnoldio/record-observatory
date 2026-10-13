@@ -10,6 +10,15 @@ import AlbumCard from '../../components/albumcard.astro';
 import DebugTable from '../../components/debugtable.astro';
 import AlbumGrid from '../../components/albumgrid.astro';
 
+import { loadLpCollection } from '../../lib/collection.js';
+
+const {
+  csvFilename,
+  collection,
+  lpCollection,
+  exportDateString
+} = loadLpCollection();
+
 //
 // helper functions
 //
@@ -120,52 +129,6 @@ const artistReference = JSON.parse(
   fs.readFileSync(referencePath, 'utf8')
 );
 
-//
-// collection data
-//
-
-// Find the most recent Discogs collection export.
-//
-// Discogs export filenames contain sortable timestamps, so sorting the
-// matching filenames lets the final entry represent the newest export.
-const collectionDir = path.resolve('data/collection');
-
-const csvFiles = fs
-  .readdirSync(collectionDir)
-  .filter(name => /^Robarnold-collection-.*\.csv$/.test(name))
-  .sort();
-
-if (csvFiles.length === 0) {
-  throw new Error('No Discogs collection CSV found');
-}
-
-const csvFilename = csvFiles.at(-1);
-const csvPath = path.join(collectionDir, csvFilename);
-
-// Parse the Discogs CSV into an array of JavaScript objects.
-//
-// With columns: true, each CSV row becomes an object whose property
-// names come from the CSV header row.
-const csvText = fs.readFileSync(csvPath, 'utf8');
-
-const collection = parse(csvText, {
-  columns: true,
-  skip_empty_lines: true,
-});
-
-// Restrict catalog candidates to LP records.
-//
-// We deliberately DO NOT filter on the Discogs Artist field here.
-// Membership in an artist collection is defined by the curated reference
-// JSON rather than by Discogs artist attribution. This permits intentional
-// cases such as a sideman or collaboration album being included in another
-// artist's curated collection.
-//
-// Discogs expresses multi-disc LP sets as values such as "2xLP", so both
-// "LP" and multi-LP format tokens are accepted.
-const lpCollection = collection.filter(record =>
-  record.Format?.split(',').some(x => /^\d*xLP$|^LP$/.test(x.trim()))
-);
 
 //
 // reconciliation model
@@ -219,24 +182,6 @@ const ownedAlbums = albums.filter(
 const completionPercent = albums.length
   ? (100 * ownedAlbums) / albums.length
   : 0;
-
-// date of the export file for humans to enjoy
-const exportTimestamp =
-  csvFilename.match(/(\d{4})(\d{2})(\d{2})-(\d{2})(\d{2})/);
-
-const exportDate = exportTimestamp
-  ? new Date(
-      Number(exportTimestamp[1]),
-      Number(exportTimestamp[2]) - 1,
-      Number(exportTimestamp[3]),
-      Number(exportTimestamp[4]),
-      Number(exportTimestamp[5])
-    )
-  : null;
-
-const exportDateString = exportDate
-  ? exportDate.toLocaleString()
-  : 'Unknown';
 
 ---
 <html lang="en">
