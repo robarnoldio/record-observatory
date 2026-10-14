@@ -1,0 +1,82 @@
+---
+const { catalog } = Astro.props;
+import AlbumCard from './AlbumCard.astro';
+---
+<style>
+  .album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 150px);
+    gap: 0.2rem;
+    margin-top: 0.2rem;
+  }
+  .album-grid-container {
+    width: 80%;
+    margin: 0 auto;
+}
+.album-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #dbeafe;
+  color: #1e3a8a;
+  padding: 0.5rem 0.75rem;
+  margin: 2rem 0 0.75rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.album-section-stats {
+  font-weight: normal;
+}
+</style>
+<div class="album-grid-container">
+
+{
+  Object.entries(
+    catalog.reduce((groups, album) => {
+      const section = album.section || 'Miscellaneous';
+
+      if (!groups[section]) {
+        groups[section] = [];
+      }
+
+      groups[section].push(album);
+
+      return groups;
+    }, {})
+  )
+    // Sections beginning with "_" are private and
+    // should not be displayed in user-facing views.
+    .filter(([section]) => !section.startsWith('_'))
+    .map(([section, albums]) => {
+    const owned = albums.filter(
+      album => album.copies?.length > 0
+    ).length;
+
+    const total = albums.length;
+
+    const percent = total
+      ? Math.round((owned / total) * 100)
+      : 0;
+
+    return (
+      <>
+        <h2 class="album-section-header">
+          <span>{section}</span>
+
+          <span class="album-section-stats">
+            {owned} of {total} ({percent}%)
+          </span>
+        </h2>
+
+        <div class="album-grid">
+          {albums.map(album => (
+            <AlbumCard album={album} />
+          ))}
+        </div>
+      </>
+    );
+  })
+}
+
+</div>

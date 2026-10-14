@@ -1,82 +1,228 @@
 ---
-const { catalog } = Astro.props;
+const { catalog, views = [], defaultView = 'catalog' } = Astro.props;
 import AlbumCard from './AlbumCard.astro';
 ---
 <style>
+  .view-filter {
+    font-family: monospace;
+    margin-bottom: 1rem;
+    cursor: pointer;
+  }
+
+  .view-filter button {
+    font-family: inherit;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+  }
+
   .album-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, 150px);
     gap: 0.2rem;
     margin-top: 0.2rem;
   }
+
   .album-grid-container {
     width: 80%;
     margin: 0 auto;
-}
-.album-section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #dbeafe;
-  color: #1e3a8a;
-  padding: 0.5rem 0.75rem;
-  margin: 2rem 0 0.75rem 0;
-  font-size: 1rem;
-  font-weight: 600;
-}
+  }
 
-.album-section-stats {
-  font-weight: normal;
-}
+  .album-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #dbeafe;
+    color: #1e3a8a;
+    padding: 0.5rem 0.75rem;
+    margin: 2rem 0 0.75rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .album-section-stats {
+    font-weight: normal;
+  }
 </style>
+
 <div class="album-grid-container">
 
-{
-  Object.entries(
-    catalog.reduce((groups, album) => {
-      const section = album.section || 'Miscellaneous';
+  <div class="view-filter">
+    ::
+    <button data-view="catalog">[CATALOG]</button>
+    ::
+    <button data-view="owned">OWNED</button>
+    ::
+    <button data-view="wanted">WANTED</button>
+    ::
+  </div>
 
-      if (!groups[section]) {
-        groups[section] = [];
+  {
+    Object.entries(
+      catalog.reduce((groups, album) => {
+        const section = album.section || 'Miscellaneous';
+        if (!groups[section]) {
+          groups[section] = [];
+        }
+        groups[section].push(album);
+        return groups;
+      }, {})
+    )
+      .filter(([section]) => !section.startsWith('_'))
+      .map(([section, albums]) => {
+        const owned = albums.filter(
+          album => album.copies?.length > 0
+        ).length;
+
+        const total = albums.length;
+        const needed = total - owned;
+
+        const percent = total
+          ? Math.round((owned / total) * 100)
+          : 0;
+
+        return (
+          <div
+            class="album-section"
+            data-section={section}
+          >
+            <h2 class="album-section-header">
+              <span>{section}</span>
+              <span class="album-section-stats">
+              <span
+                class="catalog-stats"
+                data-owned={owned}
+                data-total={total}
+                data-needed={needed}
+              >
+                {owned} of {total} ({percent}%)
+              </span>
+
+              <span
+                class="wanted-stats"
+                data-needed={needed}
+                style="display:none;"
+              >
+                {needed} needed
+              </span>
+            </span>
+
+            </h2>
+
+            <div class="album-grid">
+              {albums.map(album => (
+                <div
+                  class="album-wrapper"
+                  data-owned={album.copies?.length > 0 ? 'true' : 'false'}
+                  data-section={section}
+                >
+                  <AlbumCard album={album} />
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })
+  }
+</div>
+
+<script>
+  let currentView = 'catalog';
+
+  const buttons = document.querySelectorAll('[data-view]');
+  const cards = document.querySelectorAll('.album-wrapper');
+
+  function applyView(view) {
+    currentView = view;
+
+    const sections = document.querySelectorAll('.album-section');
+
+    sections.forEach(section => {
+      const sectionName = section.dataset.section;
+      const header = section.querySelector('.album-section-header');
+
+      if (view === 'wanted') {
+        header.style.display =
+          sectionName === 'Albums'
+            ? ''
+            : 'none';
+      } else {
+        header.style.display = '';
+      }
+    });
+
+    document
+      .querySelectorAll('.catalog-stats')
+      .forEach(el => {
+        el.style.display =
+          view === 'wanted'
+            ? 'none'
+            : '';
+      });
+
+    document
+      .querySelectorAll('.wanted-stats')
+      .forEach(el => {
+        el.style.display =
+          view === 'wanted'
+            ? ''
+            : 'none';
+      });
+      
+    buttons.forEach(button => {
+      const label = button.dataset.view.toUpperCase();
+      button.textContent =
+        button.dataset.view === currentView
+          ? `[${label}]`
+          : label;
+    });
+
+    cards.forEach(card => {
+      const owned = card.dataset.owned === 'true';
+      const section = card.dataset.section;
+
+      let visible = true;
+
+      if (view === 'owned') {
+        visible = owned;
       }
 
-      groups[section].push(album);
+      if (view === 'wanted') {
+        visible = !owned && section === 'Albums';
+      }
 
-      return groups;
-    }, {})
-  )
-    // Sections beginning with "_" are private and
-    // should not be displayed in user-facing views.
-    .filter(([section]) => !section.startsWith('_'))
-    .map(([section, albums]) => {
-    const owned = albums.filter(
-      album => album.copies?.length > 0
-    ).length;
+      card.style.display = visible ? '' : 'none';
+    });
 
-    const total = albums.length;
+    sections.forEach(section => {
+      const sectionName = section.dataset.section;
 
-    const percent = total
-      ? Math.round((owned / total) * 100)
-      : 0;
+      const visibleCards = Array.from(
+        section.querySelectorAll('.album-wrapper')
+      ).filter(card => card.style.display !== 'none');
 
-    return (
-      <>
-        <h2 class="album-section-header">
-          <span>{section}</span>
+      if (
+        currentView === 'wanted' &&
+        sectionName === 'Albums'
+      ) {
+        section.style.display = '';
+        return;
+      }
 
-          <span class="album-section-stats">
-            {owned} of {total} ({percent}%)
-          </span>
-        </h2>
+      section.style.display =
+        visibleCards.length > 0
+          ? ''
+          : 'none';
+    });
+  }
 
-        <div class="album-grid">
-          {albums.map(album => (
-            <AlbumCard album={album} />
-          ))}
-        </div>
-      </>
-    );
-  })
-}
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      applyView(button.dataset.view);
+    });
+  });
 
-</div>
+  applyView(currentView);
+</script>

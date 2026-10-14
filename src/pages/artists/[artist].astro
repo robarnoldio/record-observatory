@@ -2,14 +2,12 @@
 //
 // imports
 //
-
 import fs from 'node:fs';
 import path from 'node:path';
 import { parse } from 'csv-parse/sync';
 import AlbumCard from '../../components/albumcard.astro';
 import DebugTable from '../../components/debugtable.astro';
 import AlbumGrid from '../../components/albumgrid.astro';
-
 import { loadLpCollection } from '../../lib/collection.js';
 
 const {
@@ -19,28 +17,12 @@ const {
   exportDateString
 } = loadLpCollection();
 
-//
-// helper functions
-//
-
-// Normalize titles for matching.
-//
-// Matching is deliberately conservative for now. Capitalization and
-// surrounding whitespace are ignored, but otherwise the titles must be
-// identical. We prefer fixing curatorial issues in the reference data
-// rather than hiding them behind increasingly permissive fuzzy matching.
 function normalizeTitle(title) {
   return title
     .toLowerCase()
     .trim();
 }
 
-// Determine whether a collection record satisfies a reference entry.
-//
-// Most records use a simple exact-title match.
-//
-// Records with Collection dedupe populated are known title-collision
-// cases and require both title and year to match.
 function matchesReference(record, reference) {
   const titleMatch =
     normalizeTitle(record.Title) === normalizeTitle(reference.title);
@@ -56,21 +38,6 @@ function matchesReference(record, reference) {
   return true;
 }
 
-//
-// static route generation
-//
-
-// Build one static Astro route for every curated reference JSON file.
-//
-// For example:
-//
-//   reference/herbie-hancock.json
-//
-// becomes:
-//
-//   /artists/herbie-hancock
-//
-// The reference filename therefore serves as the URL slug.
 export function getStaticPaths() {
   const referenceDir = path.resolve('reference');
 
@@ -84,71 +51,20 @@ export function getStaticPaths() {
     }));
 }
 
-//
-// route inputs
-//
-
-// Get the artist slug supplied by the dynamic route.
-//
-// For:
-//
-//   /artists/herbie-hancock
-//
-// Astro.params.artist is:
-//
-//   "herbie-hancock"
 const { artist } = Astro.params;
 
-// Convert the URL slug to a temporary display name.
-//
-// Examples:
-//
-//   herbie-hancock -> Herbie Hancock
-//   weather-report -> Weather Report
-//
-// This is intentionally temporary. The reference data will eventually
-// carry canonical artist metadata so names such as "Antônio Carlos Jobim"
-// do not need to be inferred from filenames.
 const artistName = artist
   .split('-')
   .map(word => word.charAt(0).toUpperCase() + word.slice(1))
   .join(' ');
 
-//
-// reference data
-//
-
-// Load the curated reference discography associated with this route.
-//
-// The reference file defines which records belong in this artist
-// collection. Its array order is also meaningful and is preserved
-// through catalog construction and display.
 const referencePath = path.resolve(`reference/${artist}.json`);
 
 const artistReference = JSON.parse(
   fs.readFileSync(referencePath, 'utf8')
 );
 
-
-//
-// reconciliation model
-//
-
-// Build one reconciliation row for every reference entry.
-//
-// Each reference entry is copied into a result object and supplemented with:
-//
-//   owned  - true when at least one matching physical LP is found
-//   copies - all matching Discogs collection rows
-//
-// Known limitation:
-//
-// Title collisions can be resolved by populating Collection dedupe on the
-// relevant Discogs collection records, which switches matching from
-// title-only to title-plus-year.
-//
-// Remaining collisions require additional curation.
-const catalog = artistReference.map(reference => { //// Build one catalog row for every reference entry.
+const catalog = artistReference.map(reference => {
   const matches = lpCollection.filter(record =>
     matchesReference(record, reference)
   );
@@ -160,46 +76,60 @@ const catalog = artistReference.map(reference => { //// Build one catalog row fo
   };
 });
 
-//
-// summary metrics
-//
+// AlbumGrid view modes.
+// Grid owns the state and filtering; the artist page simply advertises
+// which modes should be available.
+const gridViews = [
+  {
+    id: 'catalog',
+    label: 'CATALOG'
+  },
+  {
+    id: 'owned',
+    label: 'OWNED'
+  },
+  {
+    id: 'wanted',
+    label: 'WANTED'
+  }
+];
 
-// Collection coverage across the entire curated catalog.
 const ownedCount = catalog.filter(record => record.owned).length;
 const missingCount = catalog.length - ownedCount;
 
-// Album-only subset used for completion calculations.
 const albums = catalog.filter(
   row => row.section?.toLowerCase() === 'albums'
 );
 
-// Albums with at least one matching collection record.
 const ownedAlbums = albums.filter(
   row => row.copies?.length > 0
 ).length;
 
-// Album-only completion percentage.
 const completionPercent = albums.length
   ? (100 * ownedAlbums) / albums.length
   : 0;
-
 ---
+
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <title>{artistName} catalog</title>
   </head>
+
   <body>
     <h1>{artistName} Artist overview</h1>
 
     <p>Collection export: {exportDateString}</p>
 
-    <AlbumGrid catalog={catalog} />
+    <AlbumGrid
+      catalog={catalog}
+      views={gridViews}
+      defaultView="catalog"
+    />
 
-<!-- 
-<h2>Debug table please</h2>
-
-<DebugTable catalog={catalog} />
-  -->
-   </body>
+    <!--
+    <h2>Debug table please</h2>
+    <DebugTable catalog={catalog} />
+    -->
+  </body>
 </html>
