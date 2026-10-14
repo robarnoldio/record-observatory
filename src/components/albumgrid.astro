@@ -3,6 +3,13 @@ const { catalog, views = [], defaultView = 'catalog' } = Astro.props;
 import AlbumCard from './AlbumCard.astro';
 ---
 <style>
+:global(
+  .album-grid-container[data-view="catalog"]
+  .album-wrapper[data-owned="false"]
+  .cover-container
+) {
+  opacity: 0.45;
+}
   .view-filter {
     font-family: monospace;
     margin-bottom: 1rem;
@@ -170,6 +177,10 @@ import AlbumCard from './AlbumCard.astro';
             ? ''
             : 'none';
       });
+    
+    document
+      .querySelector('.album-grid-container')
+      .dataset.view = view;
       
     buttons.forEach(button => {
       const label = button.dataset.view.toUpperCase();
