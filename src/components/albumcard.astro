@@ -1,19 +1,30 @@
 ---
 const { album } = Astro.props;
-
-const imageUrl =
-  album.coverUrl.match(/https:\/\/[^"]+/)?.[0] ?? "";
-
+const imageUrl = album.coverUrl;
 const copyCount = album.copies?.length ?? 0;
 ---
 
 <article class="album-card">
-<div class="cover-container">
-  {copyCount > 0 && (
-    <div class="copy-badge">{copyCount}</div>
-  )}
+  <div class="cover-container">
+    {copyCount > 1 && (
+      <div class="copy-controls">
+        <div class="copy-badge">{copyCount}</div>
+        <div class="copy-flyout">
+          {album.copies.map(copy => (
+            <div class="copy-detail">
+              {Object.entries(copy).map(([key, value]) => (
+                <div>
+                  <strong>{key}:</strong> {value}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
 
-</div>
+    {imageUrl}
+  </div>
 
   <div class="album-meta">
     <h3>{album.title}</h3>
@@ -45,6 +56,9 @@ const copyCount = album.copies?.length ?? 0;
   }
 
   .copy-badge {
+    
+    border: 5px solid red !important;
+
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
@@ -65,6 +79,36 @@ const copyCount = album.copies?.length ?? 0;
 
     font-size: 0.875rem;
     font-weight: 700;
+  }
+
+.copy-controls {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+  .copy-flyout {
+    display: block !important;
+    background: red;
+    
+    position: absolute;
+    top: 100%;
+    right: 0;
+
+    z-index: 1000;
+
+    min-width: 300px;
+    padding: 12px;
+
+    background: #222;
+    border: 1px solid #555;
+    border-radius: 6px;
+
+    box-shadow: 0 4px 12px rgb(0 0 0 / 40%);
+  }
+
+  .copy-controls:hover .copy-flyout {
+    display: block;
   }
 
   .album-meta {

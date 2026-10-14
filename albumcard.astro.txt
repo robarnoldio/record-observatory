@@ -1,0 +1,142 @@
+---
+const { album } = Astro.props;
+
+const imageUrl =
+  album.coverUrl.match(/https:\/\/[^"]+/)?.[0] ?? "";
+
+const copyCount = album.copies?.length ?? 0;
+---
+
+<article class="album-card">
+  <div class="cover-container">
+    {copyCount > 1 && (
+      <div class="copy-controls">
+        <div class="copy-badge">{copyCount}</div>
+        <div class="copy-flyout">
+          {album.copies.map(copy => (
+            <div class="copy-detail">
+              {Object.entries(copy).map(([key, value]) => (
+                <div>
+                  <strong>{key}:</strong> {value}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {imageUrl}
+  </div>
+
+  <div class="album-meta">
+    <h3>{album.title}</h3>
+    <div class="year">{album.year}</div>
+  </div>
+</article>
+
+<style>
+  .album-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 150px;
+  }
+
+  .cover-container {
+    position: relative;
+  }
+
+  .cover-container img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+
+    border-radius: 6px;
+    box-shadow:
+      0 2px 8px rgb(0 0 0 / 0.15);
+  }
+
+  .copy-badge {
+    
+    border: 5px solid red !important;
+
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+
+    z-index: 1;
+
+    width: 2rem;
+    height: 2rem;
+
+    border-radius: 999px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #22c55e;
+    color: white;
+
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+
+.copy-controls {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+  .copy-flyout {
+    display: block !important;
+    background: red;
+    
+    position: absolute;
+    top: 100%;
+    right: 0;
+
+    z-index: 1000;
+
+    min-width: 300px;
+    padding: 12px;
+
+    background: #222;
+    border: 1px solid #555;
+    border-radius: 6px;
+
+    box-shadow: 0 4px 12px rgb(0 0 0 / 40%);
+  }
+
+  .copy-controls:hover .copy-flyout {
+    display: block;
+  }
+
+  .album-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .album-meta h3 {
+    margin: 0;
+
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .year {
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .section {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #999;
+  }
+</style>
