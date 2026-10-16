@@ -2,6 +2,34 @@
 const { album } = Astro.props;
 const imageUrl = album.coverUrl;
 const copyCount = album.copies?.length ?? 0;
+const formatMap = {
+  LP: '',
+  RE: 'Reissue',
+  RM: 'Remastered',
+  Rem: 'Remastered',
+  RP: 'Repress',
+  RSD: 'Record Store Day',
+  Ltd: 'Limited Edition',
+  Num: 'Numbered',
+  Promo: 'Promotional Copy',
+  Album: '',
+  180: '180 gram vinyl',
+
+  Gat: 'Gatefold',
+  Uni: 'Unipak',
+  Dig: 'Digipak',
+  Gol: 'Gold Vinyl',
+
+  Jac: 'Jacksonville Pressing',
+  Cap: 'Capitol Pressing',
+  Pit: 'Pitman Pressing',
+  San: 'Santa Maria Pressing',
+  Ter: 'Terre Haute Pressing',
+  Win: 'Winchester Pressing',
+};
+function expandFormatToken(token) {
+  return formatMap[token.trim()] ?? token.trim();
+}
 ---
 <article class="album-card">
   <div class="cover-container">
@@ -13,6 +41,7 @@ const copyCount = album.copies?.length ?? 0;
           onclick="event.stopPropagation(); document.querySelectorAll('.copy-controls.open').forEach(el => { if (el !== this.parentElement) el.classList.remove('open'); }); this.parentElement.classList.toggle('open')"
         >{copyCount}</button>
         <div class="copy-flyout">
+          {album.title}<br /><hr />
           {album.copies.map((copy, index) => (
             <div class="copy-detail">
               <div class="copy-header">
@@ -21,7 +50,7 @@ const copyCount = album.copies?.length ?? 0;
 
               <div class="copy-format">
                 {copy.Format?.split(',').map(part => (
-                  <div>{part.trim()}</div>
+                  <div>{expandFormatToken(part)}</div>
                 ))}
               </div>
 

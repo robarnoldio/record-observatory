@@ -18,9 +18,7 @@ const {
 } = loadLpCollection();
 
 function normalizeTitle(title) {
-  return title
-    .toLowerCase()
-    .trim();
+  return (title || "").toLowerCase().trim();
 }
 
 function matchesReference(record, reference) {

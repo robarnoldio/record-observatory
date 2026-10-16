@@ -12,6 +12,7 @@ import AlbumCard from './AlbumCard.astro';
 }
   .view-filter {
     font-family: monospace;
+    white-space: pre;
     margin-bottom: 1rem;
     cursor: pointer;
   }
@@ -187,7 +188,7 @@ import AlbumCard from './AlbumCard.astro';
       button.textContent =
         button.dataset.view === currentView
           ? `[${label}]`
-          : label;
+          : ` ${label} `;
     });
 
     cards.forEach(card => {
