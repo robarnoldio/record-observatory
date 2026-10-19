@@ -26,3 +26,4 @@ pnpm-debug.log*
 ## my customizations
 # Local Discogs collection export
 src/data/collection/*.csv
+cheat-sheet.txt
