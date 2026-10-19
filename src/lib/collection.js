@@ -47,12 +47,20 @@ const exportDateString = exportDate
   ? exportDate.toLocaleString()
   : 'Unknown';
 
+const exportDateShort = new Date(exportDateString)
+  .toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+  })
+  .toLowerCase();
+
 
   return {
     csvFilename,
     collection,
     lpCollection,
-    exportDateString
+    exportDateString,
+    exportDateShort
   };
 }
  // these helpers sort arrays 

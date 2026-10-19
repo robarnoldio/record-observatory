@@ -14,8 +14,12 @@ const {
   csvFilename,
   collection,
   lpCollection,
-  exportDateString
+  exportDateString,
+  exportDateShort
 } = loadLpCollection();
+
+
+
 
 function normalizeTitle(title) {
   return (title || "").toLowerCase().trim();
@@ -115,10 +119,9 @@ const completionPercent = albums.length
   </head>
 
   <body>
-    <pre>.:: <a href="/">OBSERVATORY</a> :: <a href="/artists/">ARTISTS</a> ::.</pre>
-    <h1>{artistName} Artist overview</h1>
-
-    <p>Collection export: {exportDateString}</p>
+    <pre>       ╔═════════════╗
+       ║ <a href="/">OBSERVATORY</a> ║[<a href="/artists/">ARTISTS</a>]
+                     ╚════════════[{artistName.toUpperCase()}]═════════ as of {exportDateShort} ══╗</pre>
 
     <AlbumGrid
       catalog={catalog}
