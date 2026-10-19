@@ -30,16 +30,12 @@ const artists = fs
   </head>
 
   <body>
+    <pre>.:: <a href="/">OBSERVATORY</a> ::.</pre>
     <h1>Artist Collections</h1>
 
-<ul>
-  {artists.map(artist => (
-    <li>
-      <a href={`/artists/${artist.slug}/`}>
-        {artist.displayName}
-      </a>
-    </li>
+<pre>{artists.map(artist => (
+      <a href={`/artists/${artist.slug}/`}>{artist.displayName}</a> <br />
   ))}
-</ul>
+</pre>
   </body>
 </html>
