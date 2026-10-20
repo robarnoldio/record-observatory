@@ -41,7 +41,7 @@ const condition =
 const location =
   record['Storage Location'] ||
   record.Location ||
-  'Unknown';
+  'Undisclosed';
 
 const displayDate = today.toLocaleDateString(
   'en-US',
@@ -115,7 +115,7 @@ const rows = [
   '',
   center(artist.toUpperCase()),
   '',
-  center(`══ ${title} ══`),
+  center(`═╬═ ${title} ═╬═`),
   '',
   center(`${year} · ${label}`),
   '',
@@ -132,11 +132,10 @@ const rows = [
     ''
   );
   }
-
 ---
 
 <div class="record-of-the-day-header">
-  ╔══ record of the day · {displayDate} ════════════════════════════════════════╗
+  ╔══ the record of the day · {displayDate} ════════════════════════════════════╗
 </div>
 
 <pre>{rows.join('\n')}</pre>
