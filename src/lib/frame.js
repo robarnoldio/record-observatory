@@ -39,8 +39,22 @@ export function fillTo(
   width,
   fill = '.'
 ) {
-  const available =
-    width - left.length - right.length;
+  let available =
+    width -
+    left.length -
+    right.length;
+
+  if (available <= 0) {
+    left = left.slice(
+      0,
+      width - right.length - 1
+    );
+
+    available =
+      width -
+      left.length -
+      right.length;
+  }
 
   const repeated = fill.repeat(
     Math.ceil(available / fill.length)

@@ -1,0 +1,151 @@
+---
+import { frameFooter } from '../lib/frame.js';
+
+const { collection } = Astro.props;
+
+const footer = frameFooter();
+
+const today = new Date();
+
+const dateKey =
+  `${today.getUTCFullYear()}-${
+    today.getUTCMonth() + 1
+  }-${today.getUTCDate()}`;
+
+let hash = 0;
+
+for (const char of dateKey) {
+  hash =
+    (hash * 31 + char.charCodeAt(0)) >>> 0;
+}
+
+const record =
+  collection[hash % collection.length];
+
+const artist =
+  record.Artist || 'Unknown Artist';
+
+const title =
+  record.Title || 'Unknown Title';
+
+const year =
+  record.Released || '?';
+
+const label =
+  record.Label || 'Unknown Label';
+
+const condition =
+  record['Collection Media Condition'] ||
+  'Unknown';
+
+const location =
+  record['Storage Location'] ||
+  record.Location ||
+  'Unknown';
+
+const displayDate = today.toLocaleDateString(
+  'en-US',
+  {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  }
+);
+
+const formatMap = {
+  LP: '',
+  RE: 'Reissue',
+  RM: 'Remastered',
+  Rem: 'Remastered',
+  RP: 'Repress',
+  Mono: "IN GLORIOUS MONO",
+  RSD: 'Record Store Day',
+  Ltd: 'Limited Edition',
+  Num: 'Numbered',
+  Promo: 'Promotional Copy',
+  Album: '',
+  180: '180 gram vinyl',
+  Red: 'RED VINYL',
+
+  Gat: 'Gatefold',
+  Uni: 'Unipak',
+  Dig: 'Digipak',
+  Gol: 'Gold Vinyl',
+  Box: 'BOX SET',
+
+  Jac: 'Jacksonville Pressing',
+  Cap: 'Capitol Pressing',
+  Pit: 'Pitman Pressing',
+  San: 'Santa Maria Pressing',
+  Ter: 'Terre Haute Pressing',
+  Win: 'Winchester Pressing',
+};
+function expandFormatToken(token) {
+  return formatMap[token.trim()] ?? token.trim();
+}
+const showcaseFormats = [
+  'IN GLORIOUS MONO',
+  'BOX SET',
+  'RED VINYL',
+  'BLUE VINYL',
+  'GOLD VINYL',
+  'CLEAR VINYL'
+];
+
+const rating =
+  record.Rating || '';
+
+ function stars(rating) {
+  return '★'.repeat(Number(rating));
+} 
+// centering text helpers
+const FRAME_WIDTH = 78;
+const INTERIOR_WIDTH = FRAME_WIDTH - 2;
+function center(text, width = INTERIOR_WIDTH) {
+  if (text.length >= width) {
+    return text;
+  }
+
+  const leftPad =
+    Math.floor((width - text.length) / 2);
+
+  return ' '.repeat(leftPad) + text;
+}
+const rows = [
+  '',
+  center(artist.toUpperCase()),
+  '',
+  center(`══ ${title} ══`),
+  '',
+  center(`${year} · ${label}`),
+  '',
+  center('location            condition'),
+  center(
+    `${location.padEnd(18)}${condition}`
+  ),
+    ''
+  ];
+  if (rating) {
+  rows.push(
+    center('experts agree this record is rated:'),
+    center(stars(rating)),
+    ''
+  );
+  }
+
+---
+
+<div class="record-of-the-day-header">
+  ╔══ record of the day · {displayDate} ════════════════════════════════════════╗
+</div>
+
+<pre>{rows.join('\n')}</pre>
+
+<pre>{footer}</pre>
+
+<style>
+  .record-of-the-day-header {
+    font-family: monospace;
+    white-space: pre;
+  }
+</style>

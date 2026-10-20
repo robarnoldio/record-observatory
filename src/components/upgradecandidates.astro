@@ -1,0 +1,168 @@
+---
+import { frameFooter, fillTo } from '../lib/frame.js';
+
+const { collection } = Astro.props;
+
+const footer = frameFooter();
+
+const conditionRank = {
+  'Fair (F)': 0,
+  'Good (G)': 1,
+  'Good Plus (G+)': 2,
+  'Very Good (VG)': 3
+};
+
+const upgradeCandidates = collection
+  .filter(record => {
+    const condition =
+      record['Collection Media Condition'];
+
+    return [
+      'Fair (F)',
+      'Good (G)',
+      'Good Plus (G+)',
+      'Very Good (VG)'
+    ].includes(condition);
+  })
+  .sort((a, b) => {
+    const aRank =
+      conditionRank[
+        a['Collection Media Condition']
+      ] ?? 999;
+
+    const bRank =
+      conditionRank[
+        b['Collection Media Condition']
+      ] ?? 999;
+
+    if (aRank !== bRank) {
+      return aRank - bRank;
+    }
+
+    return (
+      (a.Artist || '').localeCompare(
+        b.Artist || ''
+      )
+    );
+  });
+
+const topCandidates =
+  upgradeCandidates.slice(0, 10);
+
+const allRows = upgradeCandidates.flatMap(record => {
+  const condition =
+    record['Collection Media Condition'];
+
+  const year =
+    record.Released || '?';
+
+  const label =
+    record.Label || 'Unknown';
+
+  return [
+    `   ${fillTo(
+      `${record.Artist} - ${record.Title}`,
+      ` ${condition}`,
+      70,
+      '.·'
+    )}`,
+    `      ${year} · ${label}`
+  ];
+});
+
+const topRows = topCandidates.flatMap(record => {
+  const condition =
+    record['Collection Media Condition'];
+
+  const year =
+    record.Released || '?';
+
+  const label =
+    record.Label || 'Unknown';
+
+  return [
+    `   ${fillTo(
+      `${record.Artist} - ${record.Title}`,
+      ` ${condition}`,
+      70,
+      '.·'
+    )}`,
+    `      ${year} · ${label}`
+  ];
+});
+---
+
+<div class="upgrade-summary-header">
+  ╔══ {upgradeCandidates.length} upgrade candidates ══
+  <button data-view="ALL">[ALL]</button>
+  ═
+  <button data-view="TOP10"> TOP10 </button>
+  ════════════════════════════════════╗
+</div>
+
+<div class="upgrade-view" data-mode="ALL">
+  <pre>{allRows.join('\n')}</pre>
+</div>
+
+<div class="upgrade-view" data-mode="TOP10">
+  <pre>{topRows.join('\n')}</pre>
+</div>
+
+<pre>{footer}</pre>
+
+<script>
+  let currentView = 'ALL';
+
+  const buttons =
+    document.querySelectorAll(
+      '.upgrade-summary-header [data-view]'
+    );
+
+  const views =
+    document.querySelectorAll('.upgrade-view');
+
+  function applyView(view) {
+    currentView = view;
+
+    buttons.forEach(button => {
+      const label = button.dataset.view;
+
+      button.textContent =
+        label === currentView
+          ? `[${label}]`
+          : ` ${label} `;
+    });
+
+    views.forEach(viewEl => {
+      viewEl.style.display =
+        viewEl.dataset.mode === currentView
+          ? ''
+          : 'none';
+    });
+  }
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      applyView(button.dataset.view);
+    });
+  });
+
+  applyView(currentView);
+</script>
+
+<style>
+  .upgrade-summary-header {
+    font-family: monospace;
+    white-space: pre;
+  }
+
+  .upgrade-summary-header button {
+    font: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    cursor: pointer;
+  }
+</style>

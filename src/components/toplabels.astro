@@ -1,0 +1,170 @@
+---
+import { sortByCount } from '../lib/collection.js';
+import { frameFooter, fillTo } from '../lib/frame.js';
+
+const { collection } = Astro.props;
+
+const footer = frameFooter();
+
+const labelCounts = collection.reduce((counts, record) => {
+  const label = record.Label?.trim();
+
+  if (!label) return counts;
+
+  counts[label] = (counts[label] || 0) + 1;
+
+  return counts;
+}, {});
+
+const allLabels = Object.entries(labelCounts);
+
+const topLabels = sortByCount(
+  [...allLabels]
+).slice(0, 20);
+
+const labelRows = topLabels.map(
+  ([label, count]) =>
+    `   ${fillTo(
+      label,
+      ` ${count}`,
+      70,
+      '.·'
+    )}`
+);
+
+const [initialLabel, initialCount] =
+  allLabels[
+    Math.floor(
+      Math.random() * allLabels.length
+    )
+  ];
+
+const randomRow =
+  `   ${fillTo(
+    initialLabel,
+    ` ${initialCount}`,
+    70,
+    '.·'
+  )}`;
+---
+<div class="top-labels-header">
+  ╔══ {collection.length} records by label ══
+  <button data-view="TOP20">[TOP20]</button>
+  ═
+  <button data-view="RANDOM"> RANDOM </button>
+  ═════════════════════════════════╗
+</div>
+
+<div class="label-view" data-mode="TOP20">
+  <pre>{labelRows.join('\n')}</pre>
+</div>
+
+<div class="label-view" data-mode="RANDOM">
+  <pre id="random-label">{randomRow}</pre>
+</div>
+
+<pre>{footer}</pre>
+<script define:vars={{ allLabels }}>
+  let currentView = 'TOP20';
+
+const buttons =
+  document.querySelectorAll(
+    '.top-labels-header [data-view]'
+  );
+
+const views =
+  document.querySelectorAll('.label-view');
+
+function formatLabelRow(label, count) {
+  const fill = '.·';
+  const width = 70;
+
+  const available =
+    width -
+    label.length -
+    String(count).length;
+
+  const repeated = fill.repeat(
+    Math.ceil(
+      available / fill.length
+    )
+  );
+
+  return (
+    '   ' +
+    label +
+    repeated.slice(0, available) + 
+    ' ' + 
+    count
+  );
+}
+
+function chooseRandomLabel() {
+  const [label, count] =
+    allLabels[
+      Math.floor(
+        Math.random() * allLabels.length
+      )
+    ];
+
+  document.getElementById(
+    'random-label'
+  ).textContent =
+    formatLabelRow(label, count);
+}
+
+function applyView(view) {
+  currentView = view;
+
+  buttons.forEach(button => {
+    const label = button.dataset.view;
+
+    button.textContent =
+      label === currentView
+        ? `[${label}]`
+        : ` ${label} `;
+  });
+
+  views.forEach(viewEl => {
+    viewEl.style.display =
+      viewEl.dataset.mode === currentView
+        ? ''
+        : 'none';
+  });
+}
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    const view = button.dataset.view;
+
+    if (
+      view === 'RANDOM' &&
+      currentView === 'RANDOM'
+    ) {
+      chooseRandomLabel();
+      return;
+    }
+
+    applyView(view);
+  });
+});
+
+applyView(currentView);
+
+</script>
+<style>
+  .top-labels-header {
+  font-family: monospace;
+  white-space: pre;
+}
+
+.top-labels-header button {
+  font: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  cursor: pointer;
+}
+</style>

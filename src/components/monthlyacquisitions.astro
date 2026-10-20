@@ -1,5 +1,8 @@
 ---
 import { sortByDateKey } from '../lib/collection.js';
+import { frameFooter } from '../lib/frame.js';
+
+const footer = frameFooter();
 
 const { collection } = Astro.props;
 
@@ -34,14 +37,87 @@ const monthCounts = filteredCollection.reduce((counts, record) => {
 const months = sortByDateKey(
   Object.entries(monthCounts)
 );
+
+const topMonths = [...Object.entries(monthCounts)]
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 5);
 ---
-
-<h2>Acquisitions by Month</h2>
-
-<pre>
+<div class="monthly-acquisitions-header">
+  ╔══ {filteredCollection.length} acquisitions by month ══
+  <button data-filter="ALL">[ALL]</button>
+  ═
+  <button data-filter="TOP5"> TOP5 </button>
+  ═════════════════════════════════╗
+</div>
+<div class="acquisitions-view" data-mode="ALL">
+  <pre>
 {
   months.map(([month, count]) =>
-    `${month.padEnd(12)} ${'█'.repeat(count)} ${count}`
+    `   ${month.padEnd(9)} ${'█'.repeat(count)} ${count}`
   ).join('\n')
 }
-</pre>
+  </pre>
+</div>
+<div class="acquisitions-view" data-mode="TOP5">
+  <pre>
+{
+  topMonths.map(([month, count]) =>
+    `   ${month.padEnd(9)} ${'█'.repeat(count)} ${count}`
+  ).join('\n')
+}</pre>
+</div>
+<pre>{footer}</pre>
+
+<script>
+  let currentFilter = 'ALL';
+
+const buttons =
+  document.querySelectorAll('[data-filter]');
+
+const views =
+  document.querySelectorAll('.acquisitions-view');
+
+function applyFilter(filter) {
+  currentFilter = filter;
+
+  buttons.forEach(button => {
+    const label = button.dataset.filter;
+
+    button.textContent =
+      label === currentFilter
+        ? `[${label}]`
+        : ` ${label} `;
+  });
+
+  views.forEach(view => {
+    view.style.display =
+      view.dataset.mode === currentFilter
+        ? ''
+        : 'none';
+  });
+}
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    applyFilter(button.dataset.filter);
+  });
+});
+
+applyFilter(currentFilter);
+</script>
+<style>
+  .monthly-acquisitions-header {
+  font-family: monospace;
+  white-space: pre;
+}
+
+.monthly-acquisitions-header button {
+  font: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  cursor: pointer;
+}
+</style>

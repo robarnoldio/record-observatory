@@ -11,6 +11,10 @@ import CollectionDump from '../components/collectiondump.astro';
 import MonthlyAcquisitions from '../components/monthlyacquisitions.astro';
 import SourceSummary from '../components/sourcesummary.astro';
 import YearSummary from '../components/releaseyearsummary.astro';
+import Topartists from '../components/topartists.astro';
+import Toplabels from '../components/toplabels.astro';
+import UpgradeCandidates from '../components/upgradecandidates.astro';
+import ROTD from '../components/recordoftheday.astro'
 ---
 
 <html lang="en">
@@ -41,10 +45,18 @@ import YearSummary from '../components/releaseyearsummary.astro';
                                      |___/                                    
 </pre>
 
-		<MonthlyAcquisitions collection={lpCollection} />
+<ROTD collection={lpCollection} />
 
-		<SourceSummary collection={lpCollection} />
+<Topartists collection={lpCollection} />
 
-		<YearSummary collection={lpCollection} />
+<UpgradeCandidates collection={lpCollection} />
+
+<Toplabels collection={lpCollection} />
+
+<MonthlyAcquisitions collection={lpCollection} />
+
+<SourceSummary collection={lpCollection} />
+
+<YearSummary collection={lpCollection} />
 	</body>
 </html>

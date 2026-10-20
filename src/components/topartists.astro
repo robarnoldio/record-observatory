@@ -1,7 +1,10 @@
 ---
 import { sortByCount } from '../lib/collection.js';
+import { frameFooter, fillTo } from '../lib/frame.js';
 
 const { collection } = Astro.props;
+
+const footer = frameFooter();
 
 const artistCounts = collection.reduce((counts, record) => {
   const artist = record.Artist;
@@ -13,7 +16,148 @@ const artistCounts = collection.reduce((counts, record) => {
   return counts;
 }, {});
 
+const allArtists = Object.entries(artistCounts);
+
 const topArtists = sortByCount(
-  Object.entries(artistCounts)
+  [...allArtists]
 ).slice(0, 10);
+
+const artistRows = topArtists.map(
+  ([artist, count]) =>
+    `   ${fillTo(
+      artist,
+      ` ${count}`,
+      70,
+      '.·'
+    )}`
+);
+
+const [initialArtist, initialCount] =
+  allArtists[
+    Math.floor(
+      Math.random() * allArtists.length
+    )
+  ];
+
+const randomRow =
+  `   ${fillTo(
+    initialArtist,
+    `${initialCount}`,
+    70,
+    '.·'
+  )}`;
 ---
+
+<div class="top-artists-header">
+  ╔══ {collection.length} records by artist ══
+  <button data-view="TOP10">[TOP10]</button>
+  ═
+  <button data-view="RANDOM"> RANDOM </button>
+  ════════════════════════════════╗
+</div>
+
+<div class="artist-view" data-mode="TOP10">
+  <pre>{artistRows.join('\n')}</pre>
+</div>
+
+<div class="artist-view" data-mode="RANDOM">
+  <pre id="random-artist">{randomRow}</pre>
+</div>
+
+<pre>{footer}</pre>
+
+<script define:vars={{ allArtists }}>
+  let currentView = 'TOP10';
+
+  const buttons =
+    document.querySelectorAll('[data-view]');
+
+  const views =
+    document.querySelectorAll('.artist-view');
+
+  function randomRow([artist, count]) {
+    const fill = '.·';
+    const width = 60;
+
+    const available =
+      width - artist.length - String(count).length;
+
+    const repeated = fill.repeat(
+      Math.ceil(available / fill.length)
+    );
+
+    return (
+      '   ' +
+      artist +
+      repeated.slice(0, available) +
+      count
+    );
+  }
+
+  function chooseRandomArtist() {
+    const artist =
+      allArtists[
+        Math.floor(
+          Math.random() * allArtists.length
+        )
+      ];
+
+    document.getElementById('random-artist')
+      .textContent = randomRow(artist);
+  }
+
+  function applyView(view) {
+    currentView = view;
+
+    buttons.forEach(button => {
+      const label = button.dataset.view;
+
+      button.textContent =
+        label === currentView
+          ? `[${label}]`
+          : ` ${label} `;
+    });
+
+    views.forEach(viewEl => {
+      viewEl.style.display =
+        viewEl.dataset.mode === currentView
+          ? ''
+          : 'none';
+    });
+  }
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const view = button.dataset.view;
+
+      if (
+        view === 'RANDOM' &&
+        currentView === 'RANDOM'
+      ) {
+        chooseRandomArtist();
+        return;
+      }
+
+      applyView(view);
+    });
+  });
+
+  applyView(currentView);
+</script>
+
+<style>
+  .top-artists-header {
+    font-family: monospace;
+    white-space: pre;
+  }
+
+  .top-artists-header button {
+    font: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    cursor: pointer;
+  }
+</style>
