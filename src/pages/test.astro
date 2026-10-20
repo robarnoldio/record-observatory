@@ -1,0 +1,35 @@
+---
+import { loadLpCollection } from '../lib/collection.js';
+
+const {
+  csvFilename,
+  collection,
+  lpCollection,
+  exportDateString
+} = loadLpCollection();
+import CollectionDump from '../components/collectiondump.astro';
+import MonthlyAcquisitions from '../components/monthlyacquisitions.astro';
+import SourceSummary from '../components/sourcesummary.astro';
+import YearSummary from '../components/releaseyearsummary.astro';
+
+import {frameHeader,frameFooter} from '../lib/frame.js';
+
+const header = frameHeader("hello world", ["FOO", "BAR", "BAZ"]);
+const footer = frameFooter();
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Widget lab</title>
+	</head>
+	<body>
+		<pre>
+		<SourceSummary collection={lpCollection} />
+	</pre>
+	</body>
+</html>

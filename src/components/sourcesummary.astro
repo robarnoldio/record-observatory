@@ -1,4 +1,6 @@
 ---
+import {frameHeader,frameFooter,fillTo} from '../lib/frame.js';
+
 const { collection } = Astro.props;
 const total = collection.length;
 const sourceCounts = collection.reduce((counts, record) => {
@@ -12,30 +14,162 @@ const sourceCounts = collection.reduce((counts, record) => {
 
 const sources = Object.entries(sourceCounts)
   .sort((a, b) => b[1] - a[1]);
----
 
+const conditionCounts = collection.reduce((counts, record) => {
+  const condition =
+    record['Collection Media Condition']?.trim() || 'Unknown';
 
-<h2>Source breakdown</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Source</th>
-      <th>Count</th>
-    </tr>
-  </thead>
+  counts[condition] = (counts[condition] || 0) + 1;
 
-  <tbody>
-  {sources.map(([source, count]) => {
+  return counts;
+}, {});
+
+const conditions = Object.entries(conditionCounts)
+  .sort((a, b) => b[1] - a[1]);
+const locationCounts = collection.reduce((counts, record) => {
+  const condition =
+    record['CollectionFolder']?.trim() || 'Uncategorized';
+
+  counts[condition] = (counts[condition] || 0) + 1;
+
+  return counts;
+}, {});
+
+const locations = Object.entries(locationCounts)
+  .sort((a, b) => b[1] - a[1]);
+
+const sourceRows = sources.map(([source, count]) => {
+  const percent =
+    Math.round((count / total) * 100);
+
+  return '   '+fillTo(
+    source,
+    `${count} (${percent}%)`,
+    70,
+        '.·'
+    );
+});
+const conditionRows = conditions.map(
+  ([condition, count]) => {
     const percent =
       Math.round((count / total) * 100);
 
     return (
-      <tr>
-        <td>{source}</td>
-        <td>{count}</td>
-        <td>({percent}%)</td>
-      </tr>
+      '   ' +
+      fillTo(
+        condition,
+        `${count} (${percent}%)`,
+        70,
+        '.·'
+      )
     );
-  })}
-</tbody>
-</table>
+  }
+);
+const locationRows = locations.map(
+  ([location, count]) => {
+    const percent =
+      Math.round((count / total) * 100);
+
+    return (
+      '   ' +
+      fillTo(
+        location,
+        `${count} (${percent}%)`,
+        70,
+        '.·'
+      )
+    );
+  }
+);
+const header = frameHeader(
+  `${total} records by`,
+  ["SOURCE", "CONDITION", "LOCATION"]
+);
+
+const footer = frameFooter();
+
+const currentBreakdown = 'SOURCE';
+
+const options = [
+  'SOURCE',
+  'CONDITION',
+  'LOCATION'
+];
+---
+<div class="breakdown-header">
+  ╔══ {total} records by ══
+  <button data-breakdown="SOURCE">[SOURCE]</button>
+  ═
+  <button data-breakdown="CONDITION"> CONDITION </button>
+  ═
+  <button data-breakdown="LOCATION"> LOCATION </button>
+  ════════════════════════╗
+</div>
+
+<div class="breakdown-view" data-mode="SOURCE">
+  <pre>{sourceRows.join('\n')}</pre>
+</div>
+
+<div class="breakdown-view" data-mode="CONDITION">
+  <pre>{conditionRows.join('\n')}</pre>
+</div>
+
+<div class="breakdown-view" data-mode="LOCATION">
+  <pre>{locationRows.join('\n')}</pre>
+</div>
+
+<pre>{footer}</pre>
+<style>
+  .breakdown-header {
+  font-family: monospace;
+  white-space: pre;
+}
+
+.breakdown-header button {
+  font: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  cursor: pointer;
+}
+</style>
+
+<script>
+  let currentMode = 'SOURCE';
+
+  const buttons =
+    document.querySelectorAll('[data-breakdown]');
+
+  const views =
+    document.querySelectorAll('.breakdown-view');
+
+  function applyMode(mode) {
+    currentMode = mode;
+
+    buttons.forEach(button => {
+      const label = button.dataset.breakdown;
+
+      button.textContent =
+        label === currentMode
+          ? `[${label}]`
+          : ` ${label} `;
+    });
+
+    views.forEach(view => {
+      view.style.display =
+        view.dataset.mode === currentMode
+          ? ''
+          : 'none';
+    });
+  }
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      applyMode(button.dataset.breakdown);
+    });
+  });
+
+  applyMode(currentMode);
+</script>
