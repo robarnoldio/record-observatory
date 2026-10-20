@@ -1,6 +1,7 @@
 ---
 const { catalog, views = [], defaultView = 'catalog' } = Astro.props;
 import AlbumCard from './AlbumCard.astro';
+import { fillTo } from '../lib/frame';
 ---
 <style>
 :global(
@@ -36,18 +37,6 @@ import AlbumCard from './AlbumCard.astro';
   .album-grid-container {
     width: 80%;
     margin: 0 auto;
-  }
-
-  .album-section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #dbeafe;
-    color: #1e3a8a;
-    padding: 0.5rem 0.75rem;
-    margin: 2rem 0 0.75rem 0;
-    font-size: 1rem;
-    font-weight: 600;
   }
 
   .album-section-stats {
@@ -91,33 +80,46 @@ import AlbumCard from './AlbumCard.astro';
           ? Math.round((owned / total) * 100)
           : 0;
 
+        const headerTop = fillTo(
+          `╔═══ ${section.toLowerCase()} `,
+          '╗',
+          78,
+          '═'
+        );
+
+        const headerCatalog = fillTo(
+          '╚',
+          ` ${owned} of ${total} [${percent}%] ══╝`,
+          78,
+          '═'
+        );
+
+        const headerWanted = fillTo(
+          '╚',
+          ` ${needed} needed ══╝`,
+          78,
+          '═'
+        );
+
         return (
-          <div
-            class="album-section"
-            data-section={section}
-          >
-            <h2 class="album-section-header">
-              <span>{section}</span>
-              <span class="album-section-stats">
-              <span
-                class="catalog-stats"
-                data-owned={owned}
-                data-total={total}
-                data-needed={needed}
-              >
-                {owned} of {total} ({percent}%)
-              </span>
+<div
+  class="album-section"
+  data-section={section}
+>
 
-              <span
-                class="wanted-stats"
-                data-needed={needed}
-                style="display:none;"
-              >
-                {needed} needed
-              </span>
-            </span>
-
-            </h2>
+  <pre class="section-divider">
+{headerTop}
+<span
+  class="catalog-stats"
+  data-owned={owned}
+  data-total={total}
+  data-needed={needed}
+>{headerCatalog}</span><span
+  class="wanted-stats"
+  data-needed={needed}
+  style="display:none;"
+>{headerWanted}</span>
+  </pre>
 
             <div class="album-grid">
               {albums.map(album => (
@@ -134,7 +136,9 @@ import AlbumCard from './AlbumCard.astro';
         );
       })
   }
+
 </div>
+
 
 <script>
   let currentView = 'catalog';
@@ -149,7 +153,7 @@ import AlbumCard from './AlbumCard.astro';
 
     sections.forEach(section => {
       const sectionName = section.dataset.section;
-      const header = section.querySelector('.album-section-header');
+      const header = section.querySelector('.section-divider');
 
       if (view === 'wanted') {
         header.style.display =
