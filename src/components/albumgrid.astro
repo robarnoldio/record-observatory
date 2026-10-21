@@ -11,39 +11,45 @@ import { fillTo } from '../lib/frame';
 ) {
   opacity: 0.45;
 }
-  .view-filter {
-    margin-bottom: 1rem;
-  }
 
-  .view-filter button {
-    font: inherit;
-    border: 0;
-    background: none;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
-  }
+.view-filter {
+  font-family: monospace;
+  white-space: pre;
+  margin-bottom: 1rem;
+}
 
-  .album-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 150px);
-    gap: 0.2rem;
-    margin-top: 0.2rem;
-  }
+.view-filter button {
+  font: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  cursor: pointer;
+}
 
-  .album-grid-container {
-    /* width: 80%;
-    margin: 0 auto; */
-  }
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 150px);
+  gap: 0.2rem;
+  margin-top: 0.2rem;
+}
 
-  .album-section-stats {
-    font-weight: normal;
-  }
+.album-section-stats {
+  font-weight: normal;
+}
 </style>
 
 <div class="album-grid-container">
-
-  <pre class="view-filter">::<button data-view="catalog">[CATALOG]</button>::<button data-view="owned">OWNED</button>::<button data-view="wanted">WANTED</button>::</pre>
+  <div class="view-filter">
+    ══
+    <button data-view="catalog">[CATALOG]</button>
+    ═
+    <button data-view="owned"> OWNED </button>
+    ═
+    <button data-view="wanted"> WANTED </button>
+    ══
+  </div>
 
   {
     Object.entries(
@@ -91,12 +97,11 @@ import { fillTo } from '../lib/frame';
         );
 
         return (
-<div
-  class="album-section"
-  data-section={section}
->
-
-  <pre class="section-divider">
+          <div
+            class="album-section"
+            data-section={section}
+          >
+            <pre class="section-divider">
 {headerTop}
 <span
   class="catalog-stats"
@@ -108,7 +113,7 @@ import { fillTo } from '../lib/frame';
   data-needed={needed}
   style="display:none;"
 >{headerWanted}</span>
-  </pre>
+            </pre>
 
             <div class="album-grid">
               {albums.map(album => (
@@ -125,9 +130,7 @@ import { fillTo } from '../lib/frame';
         );
       })
   }
-
 </div>
-
 
 <script>
   let currentView = 'catalog';
@@ -171,11 +174,11 @@ import { fillTo } from '../lib/frame';
             ? ''
             : 'none';
       });
-    
+
     document
       .querySelector('.album-grid-container')
       .dataset.view = view;
-      
+
     buttons.forEach(button => {
       const label = button.dataset.view.toUpperCase();
       button.textContent =
