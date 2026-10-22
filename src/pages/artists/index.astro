@@ -33,9 +33,18 @@ const artists = fs
      <pre>       ╔═════════════╗
        ║ <a href="/">OBSERVATORY</a> ║[<a href="/artists/">ARTISTS</a>]</pre>
 
+<div class="artist-wrapper">
 <pre>{artists.map(artist => (
       <a href={`/artists/${artist.slug}/`}>{artist.displayName}</a> <br />
   ))}
 </pre>
+</div>
+
+<style>
+  .artist-wrapper {
+    margin-left: 4rem;
+    margin-right: 4rem;
+  }
+</style>
   </body>
 </html>
