@@ -34,9 +34,9 @@ const artists = fs
        ║ <a href="/">OBSERVATORY</a> ║[<a href="/artists/">ARTISTS</a>]</pre>
 
 <div class="artist-wrapper">
-<pre>╔════════════════════════
+<pre>
  {artists.map(artist => (
-╠  <a href={`/artists/${artist.slug}/`}>{artist.displayName}</a> <br />
+  <a href={`/artists/${artist.slug}/`}>{artist.displayName}</a> <br />
   ))}
 </pre>
 </div>
