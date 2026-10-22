@@ -19,6 +19,7 @@ const formatMap = {
   Uni: 'Unipak',
   Dig: 'Digipak',
   Gol: 'Gold Vinyl',
+  Cle: 'Clear Vinyl',
 
   Jac: 'Jacksonville Pressing',
   Cap: 'Capitol Pressing',
@@ -33,7 +34,7 @@ function expandFormatToken(token) {
 ---
 <article class="album-card">
   <div class="cover-container">
-    {copyCount > 1 && (
+    {copyCount > 0 && (
       <div class="copy-controls">
         <button
           type="button"
@@ -45,7 +46,7 @@ function expandFormatToken(token) {
           {album.copies.map((copy, index) => (
             <div class="copy-detail">
               <div class="copy-header">
-                {copy.Released} • {copy.Label}
+                {copy.Released} • {copy.Label}                
               </div>
 
               <div class="copy-format">
@@ -61,8 +62,9 @@ function expandFormatToken(token) {
               {copy['Collection Notes'] && (
                 <div class="copy-notes">
                   {copy['Collection Notes']}
-                </div>
+                </div>                
               )}
+              <br />
             </div>
           ))}
         </div>
@@ -72,7 +74,7 @@ function expandFormatToken(token) {
   </div>
 
   <div class="album-meta">
-    <h3>{album.title}</h3>
+    <div>{album.title}</div>
     <div class="year">{album.year}</div>
   </div>
 </article>
@@ -112,24 +114,31 @@ function expandFormatToken(token) {
   }
 
   .copy-flyout {
+    clip-path: polygon(
+  0 0,
+  calc(100% - 28px) 0,
+  100% 28px,
+  100% 100%,
+  0 100%
+    );
+    padding: 10px;
+    font-size: 0.85rem;
+    font-family: system-ui, sans-serif;
     display:none; position:absolute; top:100%; right:0; z-index:1000;
-    min-width:200px; padding:12px; background:#222; color:white;
-    border:1px solid #555; border-radius:6px;
-    box-shadow:0 4px 12px rgb(0 0 0 / 40%);
+    min-width:100px; background: #fff;
+    width: max-content;
+    max-width: 200px;
+    border: 1px solid black;
   }
 
-  .copy-detail + .copy-detail {
-    margin-top:0.75rem; padding-top:0.75rem; border-top:1px solid #444;
-  }
-  .copy-header { margin-bottom:0.5rem; color:#ddd; }
-  .copy-format { margin-bottom:0.5rem; }
-  .copy-condition { font-weight:600; }
-  .copy-notes { margin-top:0.5rem; color:#ccc; font-style:italic; }
+  .copy-detail + .copy-detail { }
+  .copy-header {  }
+  .copy-format { }
+  .copy-condition {  }
+  .copy-notes { }
 
   .copy-controls.open .copy-flyout { display:block; }
 
-  .album-meta { display:flex; flex-direction:column; gap:0.15rem; }
-  .album-meta h3 { margin:0; font-size:1rem; font-weight:600; line-height:1.2; }
-  .year { font-size:0.9rem; color:#666; }
-  .section { font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; color:#999; }
+  .album-meta {     font-family: system-ui, sans-serif; }
+  .year {  }
 </style>

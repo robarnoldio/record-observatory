@@ -1,6 +1,6 @@
 ---
 const { catalog, views = [], defaultView = 'catalog' } = Astro.props;
-import AlbumCard from './AlbumCard.astro';
+import AlbumCard from './albumcard.astro';
 import { fillTo } from '../lib/frame';
 ---
 <style>
@@ -28,9 +28,13 @@ import { fillTo } from '../lib/frame';
   cursor: pointer;
 }
 
+.album-grid-container {
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
 .album-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 150px);
+  grid-template-columns: repeat(4, 150px);
   gap: 0.2rem;
   margin-top: 0.2rem;
 }
@@ -42,13 +46,13 @@ import { fillTo } from '../lib/frame';
 
 <div class="album-grid-container">
   <div class="view-filter">
-    ══
+    .::
     <button data-view="catalog">[CATALOG]</button>
-    ═
+    ::
     <button data-view="owned"> OWNED </button>
-    ═
+    ::
     <button data-view="wanted"> WANTED </button>
-    ══
+    ::.
   </div>
 
   {
