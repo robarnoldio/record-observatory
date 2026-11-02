@@ -40,7 +40,7 @@ const condition =
 
 const location =
   record['Storage Location'] ||
-  record.Location ||
+  record['CollectionFolder'] ||
   'Undisclosed';
 
 const displayDate = today.toLocaleDateString(
@@ -119,9 +119,9 @@ const rows = [
   '',
   center(`${year} · ${label}`),
   '',
-  center('location            condition'),
+  center('location                            condition'),
   center(
-    `${location.padEnd(18)}${condition}`
+    `${location.padEnd(28)}${condition}`
   ),
     ''
   ];
