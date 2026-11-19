@@ -1,5 +1,7 @@
 ---
 import { loadLpCollection } from '../lib/collection.js';
+import Navigation from '../components/navigation.astro';
+import LatestAcquisitions from '../components/latestacquisitions.astro';
 
 const {
   csvFilename,
@@ -28,8 +30,7 @@ import ROTD from '../components/recordoftheday.astro'
 	</head>
 	<body>
 
-	         <pre>       ╔═════════════╗
-       ║[<a href="/">OBSERVATORY</a>]║ <a href="/artists/">ARTISTS</a> </pre>
+    <Navigation />
 
 		<pre> ____                         _                   
 / ___|  ___  _ __ ___   ___  | |__   ___ _______  
@@ -58,5 +59,7 @@ import ROTD from '../components/recordoftheday.astro'
 <SourceSummary collection={lpCollection} />
 
 <YearSummary collection={lpCollection} />
+
+<LatestAcquisitions />
 	</body>
 </html>

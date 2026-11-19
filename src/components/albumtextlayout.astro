@@ -1,0 +1,44 @@
+---
+import { loadAlbumPages } from '../lib/albums.js';
+import AlbumTextDivider from './albumtextdivider.astro';
+import Navigation from './navigation.astro';
+const { title } = Astro.props;
+const { albums, artistCount, copyCount, exportDateString } = loadAlbumPages();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title} | Record Observatory</title>
+  </head>
+  <body>
+    <Navigation />
+    <main>
+      <AlbumTextDivider level="div" title={`Library stats :: ${artistCount} Artists :: ${albums.length} Albums :: ${copyCount} LP copies`} stats={`as of ${exportDateString}`} />
+      <slot />
+    </main>
+  </body>
+</html>
+<style>
+  body { font-family: monospace; font-size: 1rem; line-height: 1.15; margin: 1.5rem; }
+  main { max-width: 90ch; margin-left: 4rem; }
+  main :global(h1) { font: inherit; margin: 1.5rem 0; }
+  main :global(section) { margin-bottom: 2rem; }
+  main :global(dl) { display: grid; grid-template-columns: 18ch minmax(0, 1fr); gap: 0.25rem 2ch; }
+  main :global(dt) { font-weight: normal; }
+  main :global(dd) { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+  main :global(.notes) { white-space: pre-wrap; overflow-wrap: anywhere; }
+  main :global(.album-links) { padding-left: 2ch; list-style: none; }
+  main :global(.album-links li) { display: grid; grid-template-columns: 7ch minmax(0, 1fr); gap: 1ch; margin-bottom: 0; overflow-wrap: anywhere; }
+  main :global(.album-heading) { text-align: center; margin: 3rem 0; }
+  main :global(.album-heading p) { overflow-wrap: anywhere; }
+  main :global(.album-heading h1) { overflow-wrap: anywhere; }
+  main :global(.format-indicators) { list-style: none; padding: 0; margin: 0; }
+  main :global(footer) { margin-top: 2rem; }
+  @media (max-width: 48rem) {
+    body { margin: 1rem; }
+    main { margin-left: 0; }
+    main :global(dl) { grid-template-columns: 15ch minmax(0, 1fr); gap: 0.25rem 1ch; }
+  }
+</style>

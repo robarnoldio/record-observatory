@@ -1,6 +1,7 @@
 ---
 import fs from 'node:fs';
 import path from 'node:path';
+import Navigation from '../../components/navigation.astro';
 
 const referenceDir = path.resolve('reference');
 
@@ -30,8 +31,7 @@ const artists = fs
   </head>
 
   <body>
-     <pre>       ╔═════════════╗
-       ║ <a href="/">OBSERVATORY</a> ║[<a href="/artists/">ARTISTS</a>]</pre>
+    <Navigation />
 
 <div class="artist-wrapper">
 <pre>{artists.map(artist => (

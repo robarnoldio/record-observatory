@@ -1,0 +1,48 @@
+---
+import { latestAcquisitions, loadAlbumPages } from '../lib/albums.js';
+import { fillTo, frameFooter, FRAME_WIDTH } from '../lib/frame.js';
+const { albums } = loadAlbumPages();
+const latest = latestAcquisitions(albums);
+const heading = '╔══latest albums acquired══';
+const controlsWidth = '[LAST 20]═ LAST 5 '.length;
+const headerEnd = fillTo('', '╗', FRAME_WIDTH - heading.length - controlsWidth, '═');
+---
+<section class="latest-acquisitions" data-latest-acquisitions aria-label="Latest albums acquired">
+  <div class="latest-header">{heading}<button type="button" data-limit="20" aria-pressed="true">[LAST 20]</button>{'═'}<button type="button" data-limit="5" aria-pressed="false"> LAST 5 </button>{headerEnd}</div>
+  <ol class="latest-list">
+    {latest.map(({ album, copy, copyIndex }) => (
+      <li><a href={`${album.href}#copy-${copyIndex + 1}`}>{copy.Title}</a></li>
+    ))}
+  </ol>
+  {!latest.length && <p>No dated LP acquisitions available.</p>}
+  <pre class="latest-footer">{frameFooter()}</pre>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-latest-acquisitions]').forEach(root => {
+    const buttons = root.querySelectorAll<HTMLButtonElement>('button[data-limit]');
+    const rows = root.querySelectorAll<HTMLLIElement>('.latest-list > li');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const limit = Number(button.dataset.limit);
+        rows.forEach((row, index) => { row.hidden = index >= limit; });
+        buttons.forEach(control => {
+          const selected = control === button;
+          const label = `LAST ${control.dataset.limit}`;
+          control.textContent = selected ? `[${label}]` : ` ${label} `;
+          control.setAttribute('aria-pressed', String(selected));
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  .latest-acquisitions { font-family: monospace; font-size: 1rem; line-height: 1.15; width: 78ch; max-width: 100%; margin-block: 1rem; }
+  .latest-header, .latest-footer { font: inherit; white-space: pre; overflow-x: auto; overflow-y: hidden; padding-block: 0.15em; }
+  .latest-header button { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; }
+  .latest-list { list-style: none; padding-left: 3ch; }
+  .latest-list li { margin-bottom: 0.35rem; overflow-wrap: anywhere; }
+  .latest-list li[hidden] { display: none; }
+  .latest-footer { margin: 0; }
+</style>

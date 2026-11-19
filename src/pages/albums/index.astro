@@ -1,0 +1,29 @@
+---
+import { loadAlbumPages } from '../../lib/albums.js';
+import AlbumTextLayout from '../../components/albumtextlayout.astro';
+import AlbumTextDivider from '../../components/albumtextdivider.astro';
+const { albums } = loadAlbumPages();
+const artists = new Map();
+for (const album of albums) {
+  if (!artists.has(album.artistKey)) artists.set(album.artistKey, []);
+  artists.get(album.artistKey).push(album);
+}
+---
+<AlbumTextLayout title="Owned LP albums">
+  <h1>owned LP albums</h1>
+  {Array.from(artists.values(), entries => (
+    <section>
+      <AlbumTextDivider
+        title={entries[0].artist}
+        stats={`${entries.length} ${entries.length === 1 ? 'album' : 'albums'} · ${entries.reduce((total, album) => total + album.copies.length, 0)} owned copies`}
+      >
+        <ul class="album-links">{entries.map(album => (
+          <li>
+            <span>{album.year ?? 'unknown'}</span>
+            <span><a href={album.href}>{album.title}</a>{album.copies.length > 1 && ` [${album.copies.length}]`}</span>
+          </li>
+        ))}</ul>
+      </AlbumTextDivider>
+    </section>
+  ))}
+</AlbumTextLayout>
