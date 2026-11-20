@@ -1,0 +1,40 @@
+---
+import { displayArtist, loadAlbumPages } from '../../../lib/albums.js';
+import { formatIndicators, valueOrUnknown } from '../../../lib/formats.js';
+import AlbumTextLayout from '../../../components/albumtextlayout.astro';
+import AlbumTextDivider from '../../../components/albumtextdivider.astro';
+
+export function getStaticPaths() {
+  const { albums, exportDateString } = loadAlbumPages();
+  return albums.map(album => ({
+    params: { artist: album.artistSlug, album: album.albumSlug },
+    props: { album, exportDateString },
+  }));
+}
+
+const { album, exportDateString } = Astro.props;
+---
+<AlbumTextLayout title={`${album.artist} — ${album.title}`} dashboardTypography>
+      <p class="album-heading">{album.artist} :: {album.title}</p>
+      {album.copies.map((copy, index) => (
+        <section aria-labelledby={`copy-${index + 1}`}>
+          <AlbumTextDivider id={`copy-${index + 1}`} title={`owned copy ${index + 1}`} stats={`${index + 1} of ${album.copies.length}`} />
+          <dl>
+            <dt>Artist credit</dt><dd>{displayArtist(copy.Artist)}</dd>
+            <dt>Title</dt><dd>{copy.Title}</dd>
+            <dt>Released</dt><dd>{copy.Released || 'Unknown'}</dd>
+            <dt>Label</dt><dd>{copy.Label || 'Unknown'}</dd>
+            {copy['Catalog#'] && <><dt>Catalog number</dt><dd>{copy['Catalog#']}</dd></>}
+            <dt>Format</dt><dd><ul class="format-indicators">{(formatIndicators(copy.Format).length ? formatIndicators(copy.Format) : ['unknown']).map(indicator => <li>{indicator}</li>)}</ul></dd>
+            <dt>Media condition</dt><dd>{valueOrUnknown(copy['Collection Media Condition'])}</dd>
+            <dt>Sleeve condition</dt><dd>{valueOrUnknown(copy['Collection Sleeve Condition'])}</dd>
+            <dt>Location</dt><dd>{valueOrUnknown(copy.CollectionFolder)}</dd>
+          </dl>
+          {copy['Collection Notes'] && <p class="notes">{copy['Collection Notes']}</p>}
+          {/^[1-9]\d*$/.test(copy.release_id ?? '') && (
+            <p><a href={`https://www.discogs.com/release/${copy.release_id}`}>View this release on Discogs</a></p>
+          )}
+        </section>
+      ))}
+      <footer>Collection export: {exportDateString}</footer>
+</AlbumTextLayout>

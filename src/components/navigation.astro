@@ -1,0 +1,15 @@
+---
+const pathname = Astro.url.pathname;
+const active = /^\/artists(?:\/|$)/.test(pathname) ? '/artists/'
+  : /^\/albums(?:\/|$)/.test(pathname) ? '/albums/' : '/';
+const label = (href, text) => href === active ? `[${text}]` : ` ${text} `;
+const current = href => href === active
+  ? (pathname.replace(/\/$/, '') === href.replace(/\/$/, '') ? 'page' : 'location')
+  : undefined;
+---
+<nav aria-label="Main navigation"><pre>       ╔═════════════╗         ╔═══════════╗
+       ║<a href="/" aria-current={current('/')}>{label('/', 'OBSERVATORY')}</a>║<a href="/artists/" aria-current={current('/artists/')}>{label('/artists/', 'ARTISTS')}</a>║<a href="/albums/" aria-current={current('/albums/')}>{label('/albums/', 'LP ALBUMS')}</a>║
+                     ╚═════════╝</pre></nav>
+<style>
+  pre { font-family: monospace; font-size: medium; line-height: normal; white-space: pre; overflow-x: auto; overflow-y: hidden; padding-block: 0.15em; }
+</style>
