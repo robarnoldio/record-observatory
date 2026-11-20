@@ -23,6 +23,14 @@ credit, with numeric Discogs disambiguators suppressed. Unknown credits or dupli
 does not create a curated artist page. Identical full titles within a group merge;
 case and punctuation differences remain separate albums.
 
+The initial grouping pass combines recurring classical composer credits across
+performers, solo artists with their named ensembles, and a few clearly equivalent
+collaboration credits. Mixed-composer records and most co-equal collaborations
+remain separate. These are explicit editorial assignments, not automatic matching;
+review or refine the exact member arrays in `data/artist-groups.json` as needed.
+The dev preview tracks this JSON as a module dependency, so saving grouping edits
+refreshes the album index and related pages without restarting the server.
+
 URLs normalize accents and punctuation to lowercase ASCII hyphenated slugs. Title
 slugs are capped at 40 characters after normalization. Empty normalized names use
 a deterministic hash fallback. Collisions get deterministic hash suffixes (within
@@ -41,7 +49,9 @@ owned release year, and albums sort chronologically within each artist (unknown
 years last, titles breaking ties). This year is derived from owned copies, not
 assumed to be the album's original release date. Copies remain together and keep
 their individual years on the detail page. Only multiple-copy albums show a count
-after the title. Detail headings center the artist and full album title.
+after the title. Album details use dashboard-sized monospace text, with a plain
+single-line `artist :: title` heading instead of an H1. Long headings scroll
+horizontally rather than wrapping.
 
 Each copy always shows media condition, sleeve condition, and
 location (`CollectionFolder`), using `unknown` for missing values. Formats expand

@@ -14,11 +14,8 @@ export function getStaticPaths() {
 
 const { album, exportDateString } = Astro.props;
 ---
-<AlbumTextLayout title={`${album.artist} — ${album.title}`}>
-      <header class="album-heading">
-        <p>{album.artist}</p>
-        <h1>{album.title}</h1>
-      </header>
+<AlbumTextLayout title={`${album.artist} — ${album.title}`} dashboardTypography>
+      <p class="album-heading">{album.artist} :: {album.title}</p>
       {album.copies.map((copy, index) => (
         <section aria-labelledby={`copy-${index + 1}`}>
           <AlbumTextDivider id={`copy-${index + 1}`} title={`owned copy ${index + 1}`} stats={`${index + 1} of ${album.copies.length}`} />

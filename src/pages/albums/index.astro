@@ -9,7 +9,7 @@ for (const album of albums) {
   artists.get(album.artistKey).push(album);
 }
 ---
-<AlbumTextLayout title="Owned LP albums">
+<AlbumTextLayout title="Owned LP albums" dashboardTypography>
   <h1>owned LP albums</h1>
   {Array.from(artists.values(), entries => (
     <section>

@@ -1,6 +1,5 @@
 import { createHash } from 'node:crypto';
-import fs from 'node:fs';
-import path from 'node:path';
+import groups from '../../data/artist-groups.json' with { type: 'json' };
 import { loadLpCollection } from './collection.js';
 
 function fingerprint(value) {
@@ -113,7 +112,6 @@ let collection;
 export function loadAlbumPages() {
   if (!collection) {
     const { lpCollection, exportDateString } = loadLpCollection();
-    const groups = JSON.parse(fs.readFileSync(path.resolve('data/artist-groups.json'), 'utf8'));
     const albums = buildAlbumPages(lpCollection, groups);
     collection = {
       albums, exportDateString,

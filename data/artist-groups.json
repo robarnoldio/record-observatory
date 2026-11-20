@@ -1,1 +1,433 @@
-{}
+{
+  "Ahmad Jamal": [
+    "Ahmad Jamal",
+    "Ahmad Jamal Trio"
+  ],
+  "Alexander Scriabin": [
+    "Alexander Scriabin",
+    "Alexander Scriabin - Evgeni Svetlanov • Russian State Symphony Orchestra",
+    "Alexander Scriabin - The Philadelphia Orchestra, Eugene Ormandy, Gilbert Johnson, Vladimir Sokoloff"
+  ],
+  "Antonín Dvořák": [
+    "Antonín Dvořák - The Philadelphia Orchestra, Eugene Ormandy",
+    "Antonín Dvořák, Jacqueline Du Pré, Daniel Barenboim, Chicago Symphony Orchestra",
+    "Antonín Dvořák, Rudolf Firkušný, Juilliard String Quartet"
+  ],
+  "Arnold Schoenberg": [
+    "Arnold Schoenberg - Jan DeGaetani, Contemporary Chamber Ensemble, Arthur Weisberg",
+    "Arnold Schoenberg Played By Kolisch Quartet",
+    "Arnold Schoenberg, Eduard Steuermann",
+    "Arnold Schoenberg, Pro Arte Quartet"
+  ],
+  "The Art Ensemble Of Chicago": [
+    "The Art Ensemble Of Chicago",
+    "The Art Ensemble Of Chicago With Fontella Bass"
+  ],
+  "Astrud Gilberto": [
+    "Astrud Gilberto",
+    "Astrud Gilberto With Stanley Turrentine"
+  ],
+  "Béla Bartók": [
+    "Béla Bartók, Boston Symphony Orchestra ∙ Rafael Kubelik",
+    "Béla Bartók, Fritz Reiner, Chicago Symphony Orchestra",
+    "Béla Bartók, Stephen Bishop (3), London Symphony Orchestra, Sir Colin Davis",
+    "Béla Bartók, Südwestfunkorchester Baden-Baden, Rolf Reinhardt",
+    "Leonard Bernstein, Béla Bartók, Arthur Gold And Robert Fizdale, New York Philharmonic"
+  ],
+  "Bill Evans": [
+    "Bill Evans",
+    "The Bill Evans Trio"
+  ],
+  "Bohuslav Martinů": [
+    "Bohuslav Martinů, The Czech Philharmonic Orchestra Conducted By Karel Ančerl",
+    "Bohuslav Martinů, The Czech Philharmonic Orchestra, Václav Neumann"
+  ],
+  "Camille Saint-Saëns": [
+    "Camille Saint-Saëns, Aldo Ciccolini, Orchestre De Paris, Serge Baudo, Groupe Instrumental de Paris, Jean Laforge",
+    "Camille Saint-Saëns, Jean Martinon, Orchestre National De France",
+    "Camille Saint-Saëns, Orchestre De La Société Des Concerts Du Conservatoire, Maurice Duruflé, Georges Prêtre"
+  ],
+  "Cannonball Adderley": [
+    "Cannonball Adderley",
+    "The Cannonball Adderley Quintet",
+    "The Cannonball Adderley Quintet Featuring Nat Adderley"
+  ],
+  "Carl Orff": [
+    "Carl Orff - The Philadelphia Orchestra, Eugene Ormandy, Janice Harsanyi / Rudolf Petrak / Harve Presnell, The Rutgers University Choir, F. Austin Walter",
+    "Carl Orff / Heinrich Hollreiser",
+    "Václav Smetáček, The Czech Philharmonic Orchestra, Czech Singers Chorus, Carl Orff"
+  ],
+  "Charles Ives": [
+    "Charles Ives - Juilliard String Quartet",
+    "Charles Ives, Leonard Bernstein / Eugene Ormandy / Leopold Stokowski / New York Philharmonic / The Philadelphia Orchestra / The American Symphony Orchestra",
+    "Charles Ives, Rafael Druian, John Simms (3)",
+    "Leopold Stokowski / The American Symphony Orchestra - Charles Ives"
+  ],
+  "Charles Lloyd": [
+    "Charles Lloyd",
+    "The Charles Lloyd Quartet"
+  ],
+  "Claude Debussy": [
+    "Claude Debussy, L'Orchestre De La Suisse Romande, Ataúlfo Argenta",
+    "Claude Debussy, Philippe Entremont",
+    "Claude Debussy, Walter Gieseking"
+  ],
+  "Claude Debussy & Maurice Ravel": [
+    "Claude Debussy / Maurice Ravel – Robert Casadesus With The Philadelphia Orchestra, Eugene Ormandy",
+    "Claude Debussy / Maurice Ravel : The Philadelphia Orchestra, Eugene Ormandy"
+  ],
+  "Count Basie": [
+    "Count Basie",
+    "Count Basie Orchestra"
+  ],
+  "Dave Brubeck": [
+    "Dave Brubeck",
+    "The Dave Brubeck Quartet"
+  ],
+  "David Hykes & The Harmonic Choir": [
+    "David Hykes & The Harmonic Choir",
+    "The Harmonic Choir / David Hykes"
+  ],
+  "Dizzy Gillespie": [
+    "Dizzy Gillespie",
+    "Dizzy Gillespie Quintet"
+  ],
+  "Dmitri Shostakovich": [
+    "Dmitri Shostakovich - Leopold Stokowski, Symphony Of The Air",
+    "Dmitri Shostakovich - Moscow Philharmonic Orchestra And Мужская Группа Государственной Республиканской Академической Русской Хоровой Капеллы / Conductor -  Kiril Kondrashin"
+  ],
+  "Donald Byrd": [
+    "Donald Byrd",
+    "Donald Byrd With Herbie Hancock"
+  ],
+  "Duke Ellington": [
+    "Duke Ellington",
+    "Duke Ellington And His Orchestra"
+  ],
+  "Eddie Harris & Les McCann": [
+    "Eddie Harris & Les McCann",
+    "Les McCann & Eddie Harris"
+  ],
+  "Edgard Varèse": [
+    "Edgard Varèse",
+    "Edgard Varèse / Konstantin Simonovitch / Ensemble Instrumental de Musique Contemporaine",
+    "Edgard Varèse, Robert Craft, Columbia Symphony Orchestra"
+  ],
+  "Enoch Light": [
+    "Enoch Light And His Orchestra",
+    "Enoch Light And The Light Brigade",
+    "Enoch Light, His Orchestra And Chorus"
+  ],
+  "Ernest Bloch": [
+    "Ernest Bloch | Roth String Quartet",
+    "Ernest Bloch, Leonard Bernstein Conducting New York Philharmonic, Robert Merrill"
+  ],
+  "Frank Sinatra": [
+    "Frank Sinatra",
+    "Frank Sinatra With Count Basie Orchestra Arranged & Conducted By Quincy Jones"
+  ],
+  "Frank Zappa": [
+    "Frank Zappa",
+    "Frank Zappa / Captain Beefheart / The Mothers",
+    "Frank Zappa / London Symphony Orchestra Conducted By Kent Nagano",
+    "Frank Zappa / The Mothers",
+    "Frank Zappa And The Mothers",
+    "Frank Zappa Conducts The Abnuceals Emuukha Electric Orchestra",
+    "The Mothers"
+  ],
+  "Franz Liszt": [
+    "Franz Liszt - Bernard Haitink, London Philharmonic Orchestra",
+    "Franz Liszt - Radio-Symphonie-Orchester Berlin, Artur Rother / Berliner Philharmoniker, Fritz Zaun"
+  ],
+  "Franz Schubert": [
+    "Franz Schubert - Sheila Armstrong · Hanna Schaer · Alejandro Ramirez · Philippe Huttenlocher · Ensemble Vocal De Lausanne · Orchestre De Chambre De Lausanne · Michel Corboz",
+    "Franz Schubert / Amadeus-Quartett",
+    "Franz Schubert, Juilliard String Quartet With Bernard Greenhouse"
+  ],
+  "Gary Burton": [
+    "Gary Burton",
+    "Gary Burton Quintet"
+  ],
+  "George Benson": [
+    "George Benson",
+    "George Benson Guest Hubert Laws",
+    "The George Benson Quartet Featuring Lonnie Smith"
+  ],
+  "George Gershwin": [
+    "George Gershwin :  Lawrence Winters • Camilla Williams • Inez Matthews, Warren Coleman • Avon Long, Lehman Engel Conducting Lehman Engel And His Orchestra And The J. Rosamond Johnson Choir",
+    "George Gershwin, Ira Gershwin, DuBose Heyward, Various"
+  ],
+  "George Shearing": [
+    "George Shearing",
+    "The George Shearing Quintet",
+    "The George Shearing Quintet With Nancy Wilson",
+    "George Shearing Trio"
+  ],
+  "Gustav Holst": [
+    "Gustav Holst - Bernard Herrmann, London Philharmonic Orchestra",
+    "Gustav Holst - Boston Symphony Orchestra, Seiji Ozawa",
+    "Gustav Holst - Herbert von Karajan, Wiener Philharmoniker",
+    "Gustav Holst, Georg Solti, London Philharmonic Orchestra",
+    "Gustav Holst, Royal Scottish National Orchestra, Alexander Gibson"
+  ],
+  "Hector Berlioz": [
+    "Hector Berlioz / Charles Munch  •  Boston Symphony Orchestra",
+    "Hector Berlioz / Leonard Bernstein / New York Philharmonic, Charles Munch / Eugene Ormandy / The Philadelphia Orchestra"
+  ],
+  "Henry Mancini": [
+    "Henry Mancini",
+    "Henry Mancini And His Orchestra",
+    "Henry Mancini And His Orchestra And Chorus"
+  ],
+  "Herbie Hancock": [
+    "Herbie Hancock",
+    "Herbie Hancock = Herbie Hancock",
+    "Herbie Hancock Trio"
+  ],
+  "Herbie Hancock & Chick Corea": [
+    "Chick Corea / Herbie Hancock",
+    "Herbie Hancock & Chick Corea"
+  ],
+  "The Hi-Lo's": [
+    "The Hi-Lo's",
+    "The Hi-Lo's with Frank Comstock And His Orchestra",
+    "The Hi-Lo's, The Marty Paich Dek-Tette"
+  ],
+  "Igor Stravinsky": [
+    "Igor Stravinsky",
+    "Igor Stravinsky / Grand Choeur Universitaire De Lausanne, Michel Corboz, Charles Dutoit",
+    "Igor Stravinsky  /  Los Angeles Philharmonic Orchestra  /  Zubin Mehta",
+    "Igor Stravinsky / The Philadelphia Orchestra / Riccardo Muti",
+    "Igor Stravinsky Conducts CBC Symphony Orchestra, Festival Singers Of Toronto, Elmer Iseler",
+    "Igor Stravinsky, Cho-Liang Lin, Andre-Michel Schub",
+    "Igor Stravinsky, Ernest Ansermet, L'Orchestre De La Suisse Romande",
+    "Igor Stravinsky, Wielka Orkiestra Symfoniczna Polskiego Radia, Bohdan Wodiczko"
+  ],
+  "James Taylor": [
+    "James Taylor (2)",
+    "James Taylor (2) & The Flying Machine (2)",
+    "James Taylor (2) And The Flying Machine (2)"
+  ],
+  "Jean Sibelius": [
+    "Anthony Collins (2) Conducting  London Symphony Orchestra, Jean Sibelius",
+    "Jean Sibelius - Morton Gould And His Orchestra",
+    "Jean Sibelius / The Philadelphia Orchestra, Eugene Ormandy",
+    "Jean Sibelius, London Symphony Orchestra Conducted By Anthony Collins (2)",
+    "Leopold Stokowski Conducts Jean Sibelius, National Philharmonic Orchestra"
+  ],
+  "Joe Farrell": [
+    "Joe Farrell",
+    "Joe Farrell Quartet"
+  ],
+  "Johann Sebastian Bach": [
+    "Glenn Gould / Johann Sebastian Bach",
+    "Johann Sebastian Bach - Rosalyn Tureck",
+    "Johann Sebastian Bach, Glenn Gould"
+  ],
+  "Johannes Brahms": [
+    "Johannes Brahms — Amadeus-Quartett, Christoph Eschenbach",
+    "Johannes Brahms, Janos Starker",
+    "Johannes Brahms, London Symphony Orchestra, Antal Dorati"
+  ],
+  "John Coltrane": [
+    "John Coltrane",
+    "The John Coltrane Quartet",
+    "John Coltrane With Eric Dolphy"
+  ],
+  "John McLaughlin": [
+    "John McLaughlin",
+    "John McLaughlin With The One Truth Band"
+  ],
+  "Joni Mitchell": [
+    "Joni Mitchell",
+    "Joni Mitchell And The L.A. Express"
+  ],
+  "Keith Jarrett": [
+    "Keith Jarrett",
+    "Keith Jarrett, Gary Peacock, Jack DeJohnette"
+  ],
+  "Ken Nordine": [
+    "Ken Nordine",
+    "Ken Nordine Featuring The Fred Katz Group"
+  ],
+  "Krzysztof Penderecki": [
+    "Krzysztof Penderecki",
+    "Krzysztof Penderecki - Stefania Woytowicz • Andrzej Hiolski, Bernard Ładysz • Rudolf Jürgen Bartsch, Tölzer Knabenchor • Kölner Rundfunkchor And Kölner Rundfunk-Sinfonie-Orchester, Henryk Czyż"
+  ],
+  "Les Baxter": [
+    "Les Baxter",
+    "Les Baxter, His Chorus And Orchestra"
+  ],
+  "Les Elgart": [
+    "Les Elgart",
+    "Les Elgart And His Orchestra"
+  ],
+  "Les McCann": [
+    "Les McCann",
+    "Les McCann Ltd."
+  ],
+  "Linda Ronstadt & Nelson Riddle": [
+    "Linda Ronstadt & Nelson Riddle And His Orchestra",
+    "Linda Ronstadt With Nelson Riddle And His Orchestra"
+  ],
+  "Lonnie Liston Smith": [
+    "Lonnie Liston Smith",
+    "Lonnie Liston Smith And The Cosmic Echoes"
+  ],
+  "Louis Armstrong": [
+    "Louis Armstrong",
+    "Louis Armstrong And His All-Stars"
+  ],
+  "Ludwig van Beethoven": [
+    "Ludwig van Beethoven - Singverein Der Gesellschaft Der Musikfreunde - Vienna Pro Musica Orchestra Conducted By Jascha Horenstein",
+    "Ludwig van Beethoven, Riccardo Muti, The Philadelphia Orchestra",
+    "Ludwig van Beethoven, Wilhelm Furtwängler, Berliner Philharmoniker"
+  ],
+  "Mahavishnu Orchestra": [
+    "Mahavishnu Orchestra",
+    "Mahavishnu Orchestra With John McLaughlin"
+  ],
+  "Maurice Ravel": [
+    "Leonard Bernstein, Orchestre National De France - Maurice Ravel",
+    "Maurice Ravel",
+    "Maurice Ravel - Thérèse Dussaut",
+    "Maurice Ravel / Minnesota Orchestra, Stanislaw Skrowaczewski",
+    "Maurice Ravel, Pierre Dervaux (2) ~ L'Orchestre De L'Association Des Concerts Colonne",
+    "Maurice Ravel, Samson François, Orchestre De La Société Des Concerts Du Conservatoire, André Cluytens"
+  ],
+  "Maynard Ferguson": [
+    "Maynard Ferguson",
+    "Maynard Ferguson & His Orchestra"
+  ],
+  "Miles Davis": [
+    "Miles Davis",
+    "Miles Davis And His Orchestra",
+    "The Miles Davis Quintet",
+    "Miles Davis Septet",
+    "The Miles Davis Sextet",
+    "The Miles Davis Sextet / The Miles Davis Quintet"
+  ],
+  "Modest Mussorgsky": [
+    "Modest Mussorgsky - Martti Talvela, Leonard Mróz, Nicolai Gedda, Bożena Kinasz, Andrzej Hiolski, Aage Haugland, Halina Lukomska, Chór Polskiego Radia, Chór Chłopięcy Filharmonii Im. Karola Szymanowskiego W Krakowie, Wielka Orkiestra Symfoniczna Polskiego ",
+    "Modest Mussorgsky - Maurice Ravel Conducted By Alfred Wallenstein, Virtuoso Symphony Of London",
+    "Modest Mussorgsky : Leonard Bernstein, New York Philharmonic"
+  ],
+  "Nat King Cole": [
+    "Nat King Cole",
+    "Nat King Cole, Gordon Jenkins And His Orchestra"
+  ],
+  "Nikolai Rimsky-Korsakov": [
+    "Nikolai Rimsky-Korsakov - Sviatoslav Richter, Большой Симфонический Оркестр Всесоюзного Радио, Alexander Gauk, Kiril Kondrashin",
+    "Nikolai Rimsky-Korsakov - The Philadelphia Orchestra, Eugene Ormandy",
+    "Nikolai Rimsky-Korsakov - Tutti Camarata Conducting The The Kingsway Symphony Orchestra & The Kingsway Chorus"
+  ],
+  "Oliver Nelson": [
+    "Oliver Nelson",
+    "Oliver Nelson With Eric Dolphy"
+  ],
+  "Ottorino Respighi": [
+    "Ottorino Respighi : Eugene Ormandy - The Philadelphia Orchestra",
+    "Ottorino Respighi, The Academy Of St. Martin-in-the-Fields, Sir Neville Marriner"
+  ],
+  "P.D.Q. Bach": [
+    "P.D.Q. Bach",
+    "P.D.Q. Bach With Peter Schickele",
+    "P.D.Q. Bach, The New York Pick-Up Ensemble, John Ferrante",
+    "The Royal P.D.Q. Bach Festival Orchestra, The Okay Chorale"
+  ],
+  "Pat Metheny": [
+    "Pat Metheny",
+    "Pat Metheny Group"
+  ],
+  "Quincy Jones": [
+    "Quincy Jones",
+    "Quincy Jones And His Orchestra"
+  ],
+  "Ralph Towner & Gary Burton": [
+    "Ralph Towner / Gary Burton",
+    "Ralph Towner, Gary Burton"
+  ],
+  "Ramsey Lewis": [
+    "Ramsey Lewis",
+    "The Ramsey Lewis Trio"
+  ],
+  "Ray Charles": [
+    "Ray Charles",
+    "Ray Charles And His Orchestra"
+  ],
+  "Richard Strauss": [
+    "Fritz Reiner / Chicago Symphony Orchestra / Antonio Janigro / Richard Strauss",
+    "Fritz Reiner / Chicago Symphony Orchestra / Richard Strauss",
+    "George Szell, The Cleveland Orchestra, Richard Strauss",
+    "Richard Strauss - Artur Rodzinski Conducting The Cleveland Orchestra",
+    "Richard Strauss - Fritz Reiner / Chicago Symphony Orchestra",
+    "Richard Strauss - Nederlands Blazers Ensemble, Edo de Waart",
+    "Richard Strauss - The Philadelphia Orchestra, Eugene Ormandy",
+    "Richard Strauss - The Philadelphia Orchestra, Eugene Ormandy, Lorne Munroe, Carlton Cooley",
+    "Richard Strauss / Herbert von Karajan, Berliner Philharmoniker, Michel Schwalbé",
+    "Richard Strauss, Berliner Philharmoniker · Herbert von Karajan",
+    "Richard Strauss, Boston Symphony Orchestra, Erich Leinsdorf",
+    "Richard Strauss, Chicago Symphony Orchestra, Georg Solti",
+    "Richard Strauss, Fritz Reiner, Chicago Symphony Orchestra",
+    "Richard Strauss, Fritz Reiner, Wiener Philharmoniker",
+    "Richard Strauss, George Szell, The Cleveland Orchestra",
+    "Richard Strauss, Otmar Suitner",
+    "Richard Strauss, The Philadelphia Orchestra, Eugene Ormandy",
+    "Rudolf Kempe, Royal Philharmonic Orchestra, Richard Strauss",
+    "Zubin Mehta, Richard Strauss, Los Angeles Philharmonic Orchestra, David Frisina"
+  ],
+  "Richard Wagner": [
+    "Karl Böhm, Richard Wagner",
+    "Richard Wagner - Leonard Bernstein, New York Philharmonic",
+    "Richard Wagner, Berliner Philharmoniker, Herbert von Karajan",
+    "Richard Wagner, Franz Konwitschny, Bayerisches Staatsorchester"
+  ],
+  "Rufus & Chaka Khan": [
+    "Rufus & Chaka Khan",
+    "Rufus Featuring Chaka Khan"
+  ],
+  "Sérgio Mendes": [
+    "Sérgio Mendes & Brasil '66",
+    "Sérgio Mendes & The New Brasil '77",
+    "The Sérgio Mendes Trio"
+  ],
+  "Si Zentner": [
+    "Si Zentner",
+    "Si Zentner And His Orchestra"
+  ],
+  "Spike Jones": [
+    "Spike Jones",
+    "Spike Jones And His City Slickers",
+    "Spike Jones New Band"
+  ],
+  "Stan Kenton": [
+    "Stan Kenton",
+    "Stan Kenton And His Orchestra"
+  ],
+  "Sun Ra": [
+    "Sun Ra",
+    "The Sun Ra Arkestra"
+  ],
+  "Thelonious Monk": [
+    "Thelonious Monk",
+    "The Thelonious Monk Quartet"
+  ],
+  "Tony Williams": [
+    "Anthony Williams",
+    "The New Tony Williams Lifetime",
+    "The Tony Williams Lifetime"
+  ],
+  "Vince Guaraldi": [
+    "Vince Guaraldi",
+    "Vince Guaraldi Trio"
+  ],
+  "Walter Wanderley": [
+    "Walter Wanderley",
+    "Walter Wanderley Set"
+  ],
+  "Woody Herman": [
+    "Woody Herman",
+    "Woody Herman ,Guest Artists Charlie Byrd, Tito Puente",
+    "Woody Herman And The Swingin' Herd"
+  ]
+}

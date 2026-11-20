@@ -1,8 +1,9 @@
 # Backlog
 
-Deferred requests — not implemented:
+Follow-up requests (completed items checked):
 
 - [ ] Add album-page links to each relevant dashboard component (beyond the latest-acquisitions links already present).
 - [ ] Add an alphabet picker for easier navigation on the all-albums index.
-- [ ] Investigate and resolve text-size differences between new pages/widgets and older pages, including latest acquisitions. The new widget explicitly uses `1rem`, while older dashboard widgets inherit the browser's smaller `<pre>` font size, so even 78-character rules have different physical widths.
+- [x] Match new widget and page text sizes to the existing dashboard. Latest acquisitions, shared navigation, album index, and album details now use browser-default monospace sizing and normal line spacing.
 - [ ] Enlarge the font for iPhone viewing.
+- [ ] Avoid horizontal scrollbars for long artist/title headings and framed rules; truncating displayed fields is acceptable if needed. Revisit after curating artist groups, which may shorten long credits. Leave current behavior unchanged for now.
