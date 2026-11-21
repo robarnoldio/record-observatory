@@ -1,18 +1,21 @@
 ---
-import { loadAlbumPages } from '../../lib/albums.js';
+import { artistInitial, loadAlbumPages } from '../../lib/albums.js';
 import AlbumTextLayout from '../../components/albumtextlayout.astro';
 import AlbumTextDivider from '../../components/albumtextdivider.astro';
+import AlphabetPicker from '../../components/alphabetpicker.astro';
 const { albums } = loadAlbumPages();
 const artists = new Map();
 for (const album of albums) {
   if (!artists.has(album.artistKey)) artists.set(album.artistKey, []);
   artists.get(album.artistKey).push(album);
 }
+const initials = [...artists.values()].map(entries => artistInitial(entries[0].artist));
 ---
 <AlbumTextLayout title="Owned LP albums" dashboardTypography>
   <h1>owned LP albums</h1>
-  {Array.from(artists.values(), entries => (
-    <section>
+  <AlphabetPicker available={initials} />
+  {Array.from(artists.values(), (entries, index) => (
+    <section data-letter={initials[index]}>
       <AlbumTextDivider
         title={entries[0].artist}
         stats={`${entries.length} ${entries.length === 1 ? 'album' : 'albums'} · ${entries.reduce((total, album) => total + album.copies.length, 0)} owned copies`}

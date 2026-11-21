@@ -21,6 +21,12 @@ function artistSortKey(artist) {
   return artist.replace(/^the\s+/i, '');
 }
 
+// A-Z initial used by the album index letter picker; anything else groups under '#'.
+export function artistInitial(artist) {
+  const first = artistSortKey(artist).normalize('NFKD').replace(/\p{M}/gu, '').trim()[0]?.toUpperCase();
+  return /^[A-Z]$/.test(first ?? '') ? first : '#';
+}
+
 export function buildAlbumPages(records, groups = {}) {
   const assignments = new Map();
   const credits = new Set(records.map(record => record.Artist));

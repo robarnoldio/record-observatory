@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { buildAlbumPages, displayArtist, latestAcquisitions, loadAlbumPages } from './albums.js';
+import { artistInitial, buildAlbumPages, displayArtist, latestAcquisitions, loadAlbumPages } from './albums.js';
 import { copyFlags, fitFlags, formatIndicators, isMono, validateSpecialFlags, valueOrUnknown } from './formats.js';
 import { loadLpCollection } from './collection.js';
 import { statsFieldRows } from './frame.js';
@@ -179,4 +179,12 @@ test('every LP record has an album copy link', () => {
   const { lpCollection } = loadLpCollection();
   assert.equal(hrefs.size, lpCollection.length);
   assert.ok(lpCollection.every(record => /^\/albums\/.+\/#copy-[1-9]\d*$/.test(hrefs.get(record))));
+});
+
+test('artistInitial ignores a leading The and accents, and buckets non-letters', () => {
+  assert.equal(artistInitial('The Beatles'), 'B');
+  assert.equal(artistInitial('Édith Piaf'), 'E');
+  assert.equal(artistInitial('miles davis'), 'M');
+  assert.equal(artistInitial('10cc'), '#');
+  assert.equal(artistInitial(''), '#');
 });

@@ -55,6 +55,13 @@ after the title. Album details use dashboard-sized monospace text, with a plain
 single-line `artist :: title` heading instead of an H1. Long headings scroll
 horizontally rather than wrapping.
 
+The album index has a QWERTY-shaped letter picker under the heading. The selected
+letter is bracketed and none is selected by default; clicking it again clears the
+filter. Selecting a letter hides every artist group whose display name (ignoring a
+leading "The" and accents) starts with another letter. Names that don't start with
+A-Z are grouped under `#` and show only when no letter is selected. Vertical
+spacing on the album pages is deliberately tight; keep new blocks compact.
+
 Each copy always shows media condition, sleeve condition, and
 location (`CollectionFolder`), using `unknown` for missing values. Formats expand
 common Discogs abbreviations, multiple-LP counts, and comma/plus-separated tokens;
