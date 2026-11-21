@@ -1,8 +1,7 @@
 ---
-import '../styles/base.css';
 import { loadAlbumPages } from '../lib/albums.js';
 import AlbumStatsField from './albumstatsfield.astro';
-import Navigation from './navigation.astro';
+import Shell from '../layouts/Shell.astro';
 const { title, dashboardTypography = false } = Astro.props;
 const { albums, artistCount, copyCount, exportDateString } = loadAlbumPages();
 const exportDate = new Date(exportDateString);
@@ -14,21 +13,12 @@ const statLines = [
   `as of ${asOf}`,
 ];
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{title} | Record Observatory</title>
-  </head>
-  <body>
-    <Navigation />
+<Shell title={`${title} | Record Observatory`}>
     <main class:list={{ 'dashboard-typography': dashboardTypography }}>
       <AlbumStatsField lines={statLines} />
       <slot />
     </main>
-  </body>
-</html>
+</Shell>
 <style>
   body { font-family: monospace; font-size: 1rem; line-height: 1.15; margin: 8px; }
   main { max-width: 90ch; margin-left: 4rem; }

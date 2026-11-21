@@ -1,8 +1,7 @@
 ---
-import '../../styles/base.css';
 import fs from 'node:fs';
 import path from 'node:path';
-import Navigation from '../../components/navigation.astro';
+import Shell from '../../layouts/Shell.astro';
 
 const referenceDir = path.resolve('reference');
 
@@ -25,14 +24,7 @@ const artists = fs
   .sort((a, b) => a.displayName.localeCompare(b.displayName));
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Artist Collections</title>
-  </head>
-
-  <body>
-    <Navigation />
+<Shell title="Artist Collections">
 
 <div class="artist-wrapper">
 <pre>{artists.map(artist => (
@@ -47,5 +39,4 @@ const artists = fs
     margin-right: 4rem;
   }
 </style>
-  </body>
-</html>
+</Shell>

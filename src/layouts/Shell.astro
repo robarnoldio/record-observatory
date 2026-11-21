@@ -1,0 +1,28 @@
+---
+// The shared page shell for every page that shows the main navigation. Keeping the head,
+// viewport and body margin in one place makes the nav render in exactly the same spot on
+// each page, so only the [brackets] appear to change as you move between sections.
+import '../styles/base.css';
+import Navigation from '../components/navigation.astro';
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    {/* initial-scale=1 stops iOS Safari zooming a page out to fit its widest content, which
+        would scale the nav differently from page to page. */}
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Navigation />
+    <slot />
+  </body>
+</html>
+<style is:global>
+  body { margin: 8px; }
+</style>

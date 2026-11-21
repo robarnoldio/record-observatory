@@ -1,7 +1,6 @@
 ---
-import '../styles/base.css';
+import Shell from '../layouts/Shell.astro';
 import { loadLpCollection } from '../lib/collection.js';
-import Navigation from '../components/navigation.astro';
 import LatestAcquisitions from '../components/latestacquisitions.astro';
 
 const {
@@ -20,20 +19,9 @@ import UpgradeCandidates from '../components/upgradecandidates.astro';
 import ROTD from '../components/recordoftheday.astro'
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Record collection observatory</title>
-	</head>
-	<body>
+<Shell title="Record collection observatory">
 
-    <Navigation />
-
-		<pre> ____                         _                   
+<pre> ____                         _                   
 / ___|  ___  _ __ ___   ___  | |__   ___ _______  
 \___ \ / _ \| '_ ` _ \ / _ \ | '_ \ / _ \_  / _ \ 
  ___) | (_) | | | | | |  __/ | |_) | (_) / / (_) |
@@ -62,5 +50,4 @@ import ROTD from '../components/recordoftheday.astro'
 <YearSummary collection={lpCollection} />
 
 <LatestAcquisitions />
-	</body>
-</html>
+</Shell>
