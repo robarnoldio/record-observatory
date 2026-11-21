@@ -32,17 +32,18 @@ const statLines = [
   body { font-family: monospace; font-size: 1rem; line-height: 1.15; margin: 8px; }
   main { max-width: 90ch; margin-left: 4rem; }
   .dashboard-typography { font-size: medium; line-height: normal; }
-  main :global(h1) { font: inherit; margin: 1.5rem 0; }
-  main :global(section) { margin-bottom: 2rem; }
+  main :global(h1) { font: inherit; margin: 0.5rem 0; }
+  main :global(section) { margin-bottom: 0.5rem; }
+  main :global(p) { margin: 0.5em 0; }
   main :global(dl) { display: grid; grid-template-columns: 18ch minmax(0, 1fr); gap: 0.25rem 2ch; }
   main :global(dt) { font-weight: normal; }
   main :global(dd) { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
   main :global(.notes) { white-space: pre-wrap; overflow-wrap: anywhere; }
-  main :global(.album-links) { padding-left: 2ch; list-style: none; }
+  main :global(.album-links) { padding-left: 2ch; margin: 0; list-style: none; }
   main :global(.album-links li) { display: grid; grid-template-columns: 7ch minmax(0, 1fr); gap: 1ch; margin-bottom: 0; overflow-wrap: anywhere; }
-  main :global(.album-heading) { font: inherit; white-space: pre; overflow-x: auto; overflow-y: hidden; padding-block: 0.15em; margin: 2em 0; }
+  main :global(.album-heading) { font: inherit; white-space: pre; overflow-x: auto; overflow-y: hidden; padding-block: 0.15em; margin: 1em 0; }
   main :global(.format-indicators) { list-style: none; padding: 0; margin: 0; }
-  main :global(footer) { margin-top: 2rem; }
+  main :global(footer) { margin-top: 1rem; }
   @media (max-width: 48rem) {
     main { margin-left: 0; }
     main :global(dl) { grid-template-columns: 15ch minmax(0, 1fr); gap: 0.25rem 1ch; }
