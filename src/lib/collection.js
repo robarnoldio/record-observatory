@@ -2,7 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { parse } from 'csv-parse/sync';
 
+let cached;
 export function loadLpCollection() {
+  // Cached so every consumer sees the same record objects (album links match by identity).
+  return (cached ??= readLpCollection());
+}
+
+function readLpCollection() {
   const collectionDir = path.resolve('data/collection');
 
   const csvFiles = fs

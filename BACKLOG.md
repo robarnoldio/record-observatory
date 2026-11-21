@@ -2,7 +2,8 @@
 
 Follow-up requests (completed items checked):
 
-- [ ] Add album-page links to each relevant dashboard component (beyond the latest-acquisitions links already present).
+- [x] Add album-page links to record-level dashboard components. Record of the day and Upgrade candidates now link to the owned copy's album page (`#copy-N`), like latest acquisitions.
+- [ ] Decide whether aggregate dashboard widgets (labels, months, years, source/condition, top artists) should link anywhere, e.g. a filtered album index.
 - [ ] Add an alphabet picker for easier navigation on the all-albums index.
 - [x] Match new widget and page text sizes to the existing dashboard. Latest acquisitions, shared navigation, album index, and album details now use browser-default monospace sizing and normal line spacing.
 - [ ] Enlarge the font for iPhone viewing.

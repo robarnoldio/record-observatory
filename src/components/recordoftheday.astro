@@ -1,5 +1,6 @@
 ---
 import { frameFooter } from '../lib/frame.js';
+import { copyHrefs, loadAlbumPages } from '../lib/albums.js';
 
 const { collection } = Astro.props;
 
@@ -21,6 +22,8 @@ for (const char of dateKey) {
 
 const record =
   collection[hash % collection.length];
+
+const href = copyHrefs(loadAlbumPages().albums).get(record);
 
 const artist =
   record.Artist || 'Unknown Artist';
@@ -125,6 +128,7 @@ const rows = [
   ),
     ''
   ];
+  const titleRowIndex = 3;
   if (rating) {
   rows.push(
     center('experts agree this record is rated:'),
@@ -138,7 +142,7 @@ const rows = [
   ╔══ the record of the day · {displayDate} ════════════════════════════════════╗
 </div>
 
-<pre>{rows.join('\n')}</pre>
+<pre>{rows.map((row, index) => <Fragment>{index === titleRowIndex && href ? <Fragment>{row.slice(0, row.length - row.trimStart().length)}<a href={href}>{row.trimStart()}</a></Fragment> : row}{'\n'}</Fragment>)}</pre>
 
 <pre>{footer}</pre>
 

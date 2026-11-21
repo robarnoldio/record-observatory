@@ -108,6 +108,15 @@ export function latestAcquisitions(albums, limit = 20) {
     .slice(0, limit);
 }
 
+// Map each LP record (by object identity) to its album-page URL, anchored at the owned copy.
+export function copyHrefs(albums) {
+  const hrefs = new Map();
+  for (const album of albums) {
+    album.copies.forEach((copy, index) => hrefs.set(copy, `${album.href}#copy-${index + 1}`));
+  }
+  return hrefs;
+}
+
 let collection;
 export function loadAlbumPages() {
   if (!collection) {

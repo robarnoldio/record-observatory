@@ -1,9 +1,11 @@
 ---
 import { frameFooter, fillTo } from '../lib/frame.js';
+import { copyHrefs, loadAlbumPages } from '../lib/albums.js';
 
 const { collection } = Astro.props;
 
 const footer = frameFooter();
+const hrefs = copyHrefs(loadAlbumPages().albums);
 
 const conditionRank = {
   'Fair (F)': 0,
@@ -49,47 +51,35 @@ const upgradeCandidates = collection
 const topCandidates =
   upgradeCandidates.slice(0, 10);
 
-const allRows = upgradeCandidates.flatMap(record => {
-  const condition =
-    record['Collection Media Condition'];
+function rowsFor(records) {
+  return records.flatMap(record => {
+    const condition =
+      record['Collection Media Condition'];
 
-  const year =
-    record.Released || '?';
+    const year =
+      record.Released || '?';
 
-  const label =
-    record.Label || 'Unknown';
+    const label =
+      record.Label || 'Unknown';
 
-  return [
-    `   ${fillTo(
-      `${record.Artist} - ${record.Title}`,
-      ` ${condition}`,
-      70,
-      '.·'
-    )}`,
-    `      ${year} · ${label}`
-  ];
-});
+    return [
+      {
+        indent: '   ',
+        text: fillTo(
+          `${record.Artist} - ${record.Title}`,
+          ` ${condition}`,
+          70,
+          '.·'
+        ),
+        href: hrefs.get(record)
+      },
+      { indent: '      ', text: `${year} · ${label}` }
+    ];
+  });
+}
 
-const topRows = topCandidates.flatMap(record => {
-  const condition =
-    record['Collection Media Condition'];
-
-  const year =
-    record.Released || '?';
-
-  const label =
-    record.Label || 'Unknown';
-
-  return [
-    `   ${fillTo(
-      `${record.Artist} - ${record.Title}`,
-      ` ${condition}`,
-      70,
-      '.·'
-    )}`,
-    `      ${year} · ${label}`
-  ];
-});
+const allRows = rowsFor(upgradeCandidates);
+const topRows = rowsFor(topCandidates);
 ---
 
 <div class="upgrade-summary-header">
@@ -101,11 +91,11 @@ const topRows = topCandidates.flatMap(record => {
 </div>
 
 <div class="upgrade-view" data-mode="ALL">
-  <pre>{allRows.join('\n')}</pre>
+  <pre>{allRows.map(row => <Fragment>{row.indent}{row.href ? <a href={row.href}>{row.text}</a> : row.text}{'\n'}</Fragment>)}</pre>
 </div>
 
 <div class="upgrade-view" data-mode="TOP10">
-  <pre>{topRows.join('\n')}</pre>
+  <pre>{topRows.map(row => <Fragment>{row.indent}{row.href ? <a href={row.href}>{row.text}</a> : row.text}{'\n'}</Fragment>)}</pre>
 </div>
 
 <pre>{footer}</pre>
