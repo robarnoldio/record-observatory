@@ -77,6 +77,19 @@ export function fitFlags(flags, width, indent = 7) {
   return { shown, text: shown.length ? text(shown) : '' };
 }
 
+// The copy that sets an album's year (its oldest), falling back to the first copy.
+export function yearCopy(album) {
+  return album.copies.find(copy => Number(copy.Released) === album.year) ?? album.copies[0];
+}
+
+// The second line of a year-view row: year and label. Discogs often lists a label
+// twice ("Columbia, Columbia"), so repeated labels collapse.
+export function albumMeta(album) {
+  const copy = yearCopy(album);
+  const label = [...new Set((copy.Label ?? '').split(', ').map(part => part.trim()).filter(Boolean))].join(', ');
+  return [album.year, label].filter(Boolean).join(' · ');
+}
+
 // Like artist groups, hand-written flags fail loudly instead of silently doing nothing.
 export function validateSpecialFlags(records, special = specialFlags) {
   const ids = new Set(records.map(record => record.release_id));

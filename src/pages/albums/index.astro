@@ -2,7 +2,8 @@
 import { artistInitial, loadAlbumPages } from '../../lib/albums.js';
 import AlbumTextLayout from '../../components/albumtextlayout.astro';
 import AlbumTextDivider from '../../components/albumtextdivider.astro';
-import { SLOT, headingLine, shortenUnique } from '../../lib/text.js';
+import { SLOT, headingLine, leaderGap, shorten, shortenUnique } from '../../lib/text.js';
+import { albumMeta } from '../../lib/formats.js';
 import { groupByYear, yearCounts } from '../../lib/years.js';
 import AlphabetPicker from '../../components/alphabetpicker.astro';
 import YearPicker from '../../components/yearpicker.astro';
@@ -53,8 +54,15 @@ const initials = [...artists.values()].map(entries => artistInitial(entries[0].a
       >
         <ul class="album-links year-rows">{group.albums.map(album => {
           const suffix = album.copies.length > 1 ? ` [${album.copies.length}]` : '';
+          // Line 1: artist on the left, title (the only link) on the right, a dot leader between.
+          // The separator budget in headingLine (4) is exactly the minimum gap. Line 2: year and label.
           const line = headingLine(album.artist, album.title, titlesByArtist.get(album.artistKey), SLOT - suffix.length);
-          return <li><a href={album.href} aria-label={line.full} tabindex="0">{line.text}</a>{suffix}</li>;
+          const gap = leaderGap(line.artistText.length + line.titleText.length + suffix.length);
+          const meta = albumMeta(album);
+          return <li>
+            <span class="line">{line.artistText}{gap}<a href={album.href} aria-label={line.full} tabindex="0">{line.titleText}</a>{suffix}</span>
+            {meta && <span class="line meta">{'   '}{shorten(meta, SLOT - 3)}</span>}
+          </li>;
         })}</ul>
       </AlbumTextDivider>
     </section>

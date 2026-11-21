@@ -66,7 +66,9 @@ Links are the browser's link blue with no underline and no visited color (`src/s
 A two-tier year picker sits to the right of the letter picker (the decade row `? 50s … 20s`,
 and, once a decade is chosen, a second row of its two-digit years). Choosing a decade or year
 regroups the index by year (oldest owned copy's year, undated albums under `?`), filtered to it,
-with rows shown as `artist :: title` in artist order; choosing again clears. The two pickers are
+with two-line rows in artist order (line 1: the artist at the left and the title, the only link,
+right-justified, joined by a dot leader; line 2: year and label); choosing again clears. Years are taken
+from the Discogs export as-is: a reissue's year is its pressing year, which is accepted noise. The two pickers are
 mutually exclusive: using one clears the other. The year list is rendered at build time (hidden
 until used) from `groupByYear()` in `src/lib/years.js`.
 

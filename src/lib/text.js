@@ -38,9 +38,17 @@ export function shortenUnique(title, siblings, max) {
 // it differs from the full line.
 export function headingLine(artist, title, siblingTitles = [], max = SLOT) {
   const full = `${artist} :: ${title}`;
-  if (full.length <= max) return { text: full, full, shortened: false };
+  if (full.length <= max) return { text: full, full, shortened: false, artistText: artist, titleText: title };
   const artistText = shorten(artist, max - 4 - 12);
   const titleText = shortenUnique(title, siblingTitles, max - artistText.length - 4);
   const text = `${artistText} :: ${titleText}`;
-  return { text, full, shortened: text !== full };
+  return { text, full, shortened: text !== full, artistText, titleText };
+}
+
+// The gap between a left-justified and a right-justified piece on one line: a dot leader with a
+// space at each end (" .·.·.· "), sized so the two pieces plus the gap fill `width`. The gap is at
+// least 4 columns, so a line that is already too full simply runs a little past `width`.
+export function leaderGap(used, width = SLOT) {
+  const size = Math.max(4, width - used);
+  return ` ${'.·'.repeat(Math.ceil((size - 2) / 2)).slice(0, size - 2)} `;
 }

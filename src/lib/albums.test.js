@@ -1,10 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { artistInitial, buildAlbumPages, displayArtist, latestAcquisitions, loadAlbumPages } from './albums.js';
-import { copyFlags, fitFlags, formatIndicators, isMono, validateSpecialFlags, valueOrUnknown } from './formats.js';
+import { albumMeta, copyFlags, fitFlags, formatIndicators, isMono, validateSpecialFlags, valueOrUnknown } from './formats.js';
 import { loadLpCollection } from './collection.js';
 import { statsFieldRows } from './frame.js';
-import { headingLine, shorten, shortenUnique } from './text.js';
+import { headingLine, leaderGap, shorten, shortenUnique } from './text.js';
 import { decadeOf, groupByYear, yearCounts } from './years.js';
 import { albumCompletion, artistOrders, buildCatalog, completionBar } from './catalog.js';
 
@@ -245,7 +245,7 @@ test('shorten cuts a long name at the first comma, slash or paren, else hard at 
 
 test('headingLine shortens the title first, then the artist, within 74 columns', () => {
   const fits = headingLine('Keith Jarrett', 'Sun Bear Concerts');
-  assert.deepEqual(fits, { text: 'Keith Jarrett :: Sun Bear Concerts', full: 'Keith Jarrett :: Sun Bear Concerts', shortened: false });
+  assert.deepEqual(fits, { text: 'Keith Jarrett :: Sun Bear Concerts', full: 'Keith Jarrett :: Sun Bear Concerts', shortened: false, artistText: 'Keith Jarrett', titleText: 'Sun Bear Concerts' });
   const longTitle = headingLine('Herbie Hancock', 'V.S.O.P - Special Pressing For Radio Edited Selections From The Album');
   assert.ok(longTitle.shortened && longTitle.text.length <= 74 && longTitle.text.startsWith('Herbie Hancock :: V.S.O.P'));
   const longArtist = headingLine('A'.repeat(40) + ', ' + 'B'.repeat(60), 'Some Album Title Here');
@@ -289,4 +289,17 @@ test('every album in the real index lands in exactly one year group', () => {
   const groups = groupByYear(albums);
   assert.equal(groups.reduce((total, g) => total + g.albums.length, 0), albums.length);
   assert.ok(groups.at(-1).key === 'unknown' && groups.slice(0, -1).every(g => /^\d{4}$/.test(g.key)));
+});
+
+test('year-view rows: a leader gap justifies the title right, and line 2 is year and label', () => {
+  const gap = leaderGap(40);
+  assert.equal(40 + gap.length, 74);
+  assert.ok(gap.startsWith(' .') && gap.endsWith(' '));
+  assert.equal(leaderGap(70).length, 4); // never less than 4 columns
+  assert.equal(leaderGap(80), ' .· '); // already too full: runs past the slot
+  const album = { year: 1991, copies: [{ Released: '1991', Label: 'Westbound', 'Catalog#': 'WD 1', Format: 'LP, RE' }] };
+  assert.equal(albumMeta(album), '1991 · Westbound');
+  assert.equal(albumMeta({ year: 1980, copies: [{ Released: '1980', Label: 'Deutsche Grammophon, Deutsche Grammophon', Format: 'LP' }] }), '1980 · Deutsche Grammophon');
+  assert.equal(albumMeta({ year: null, copies: [{ Label: 'Blue Note' }] }), 'Blue Note');
+  assert.equal(albumMeta({ year: 1970, copies: [{ Released: '1970', Format: 'LP' }] }), '1970');
 });
