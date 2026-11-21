@@ -2,8 +2,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import Shell from '../../layouts/Shell.astro';
+import { loadLpCollection } from '../../lib/collection.js';
+import { albumCompletion, buildCatalog, completionBar } from '../../lib/catalog.js';
 
 const referenceDir = path.resolve('reference');
+const { lpCollection } = loadLpCollection();
 
 const artists = fs
   .readdirSync(referenceDir)
@@ -16,9 +19,13 @@ const artists = fs
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
 
+    const reference = JSON.parse(fs.readFileSync(path.join(referenceDir, name), 'utf8'));
+    const completion = albumCompletion(buildCatalog(reference, lpCollection));
+
     return {
       slug,
-      displayName
+      displayName,
+      completion
     };
   })
   .sort((a, b) => a.displayName.localeCompare(b.displayName));
@@ -27,13 +34,17 @@ const artists = fs
 <Shell title="Artist Collections">
 
 <div class="artist-wrapper">
-<pre>{artists.map(artist => (
-  <a href={`/artists/${artist.slug}/`}>{artist.displayName}</a> <br />
-  ))}
-</pre>
+<pre>{artists.map((artist, row) => {
+  const bar = completionBar(artist.completion, undefined, row);
+  return <Fragment>{row % 2 === 1 && '  '}<span aria-hidden="true" title={`${artist.completion.owned} of ${artist.completion.total} albums`}>[<span class="inverse">{bar.inverse}</span>{bar.dots}]</span> <a href={`/artists/${artist.slug}/`}>{artist.displayName}</a><span class="visually-hidden"> {artist.completion.percent}% of albums owned</span>{'\n'}</Fragment>;
+})}</pre>
 </div>
 
 <style>
+  /* Inverse video: swap the page's text and background colors. */
+  .inverse { background: CanvasText; color: Canvas; }
+  .artist-wrapper pre { line-height: 1.3; }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .artist-wrapper {
     margin-left: 4rem;
     margin-right: 4rem;

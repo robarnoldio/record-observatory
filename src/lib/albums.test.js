@@ -4,6 +4,7 @@ import { artistInitial, buildAlbumPages, displayArtist, latestAcquisitions, load
 import { copyFlags, fitFlags, formatIndicators, isMono, validateSpecialFlags, valueOrUnknown } from './formats.js';
 import { loadLpCollection } from './collection.js';
 import { statsFieldRows } from './frame.js';
+import { albumCompletion, buildCatalog, completionBar } from './catalog.js';
 
 const copy = (Artist, Title, extra = {}) => ({ Artist, Title, release_id: '123', ...extra });
 
@@ -187,4 +188,31 @@ test('artistInitial ignores a leading The and accents, and buckets non-letters',
   assert.equal(artistInitial('miles davis'), 'M');
   assert.equal(artistInitial('10cc'), '#');
   assert.equal(artistInitial(''), '#');
+});
+
+test('albumCompletion counts owned reference albums and completionBar draws them', () => {
+  const reference = [
+    { title: 'One', year: 1970, section: 'Albums' }, { title: 'Two', year: 1971, section: 'Albums' },
+    { title: 'Live', year: 1972, section: 'Live' }, { title: 'Out', year: 1973, section: '_omit' },
+  ];
+  const catalog = buildCatalog(reference, [{ Title: 'one' }, { Title: 'Live' }]);
+  assert.deepEqual(albumCompletion(catalog), { owned: 1, total: 2, percent: 50 });
+  assert.deepEqual(albumCompletion([]), { owned: 0, total: 0, percent: 0 });
+  const bar = (owned, total, percent, row) => completionBar({ owned, total, percent }, 10, row);
+  assert.deepEqual(bar(4, 10, 40, 0), { inverse: '  40', dots: '·.·.·.' }); // row 0 ends with .
+  assert.deepEqual(bar(4, 10, 40, 1), { inverse: '  40', dots: '.·.·.·' }); // row 1 ends with ·
+  assert.deepEqual(bar(10, 10, 100, 0), { inverse: '       100', dots: '' });
+  assert.deepEqual(bar(15, 18, 83, 0), { inverse: '      83', dots: '·.' }); // 8 cells
+  assert.deepEqual(bar(12, 98, 12, 0), { inverse: '12', dots: '·.·.·.·.' }); // widened to fit the number
+  assert.deepEqual(bar(1, 100, 1, 0), { inverse: '1', dots: '.·.·.·.·.' }); // owning any shows a cell
+  assert.equal(bar(99, 100, 99, 0).inverse.length, 9); // only complete fills the bar
+  assert.deepEqual(bar(0, 5, 0, 0), { inverse: '0', dots: '.·.·.·.·.' });
+});
+
+test('completionBar defaults to 20 cells', () => {
+  const { inverse, dots } = completionBar({ owned: 8, total: 16, percent: 50 });
+  assert.equal(inverse.length + dots.length, 20);
+  assert.equal(inverse.length, 10);
+  assert.equal(completionBar({ owned: 19, total: 19, percent: 100 }).inverse.length, 20);
+  assert.equal(completionBar({ owned: 12, total: 98, percent: 12 }).inverse.length, 2); // 12% rounds to 2 cells
 });

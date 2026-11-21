@@ -10,6 +10,7 @@ import AlbumCard from '../../components/albumcard.astro';
 import DebugTable from '../../components/debugtable.astro';
 import AlbumGrid from '../../components/albumgrid.astro';
 import { loadLpCollection } from '../../lib/collection.js';
+import { buildCatalog } from '../../lib/catalog.js';
 
 const {
   csvFilename,
@@ -21,25 +22,6 @@ const {
 
 
 
-
-function normalizeTitle(title) {
-  return (title || "").toLowerCase().trim();
-}
-
-function matchesReference(record, reference) {
-  const titleMatch =
-    normalizeTitle(record.Title) === normalizeTitle(reference.title);
-
-  if (!titleMatch) {
-    return false;
-  }
-
-  if (record['Collection dedupe']) {
-    return Number(record.Released) === Number(reference.year);
-  }
-
-  return true;
-}
 
 export function getStaticPaths() {
   const referenceDir = path.resolve('reference');
@@ -67,17 +49,7 @@ const artistReference = JSON.parse(
   fs.readFileSync(referencePath, 'utf8')
 );
 
-const catalog = artistReference.map(reference => {
-  const matches = lpCollection.filter(record =>
-    matchesReference(record, reference)
-  );
-
-  return {
-    ...reference,
-    owned: matches.length > 0,
-    copies: matches
-  };
-});
+const catalog = buildCatalog(artistReference, lpCollection);
 
 // AlbumGrid view modes.
 // Grid owns the state and filtering; the artist page simply advertises
@@ -96,21 +68,6 @@ const gridViews = [
     label: 'WANTED'
   }
 ];
-
-const ownedCount = catalog.filter(record => record.owned).length;
-const missingCount = catalog.length - ownedCount;
-
-const albums = catalog.filter(
-  row => row.section?.toLowerCase() === 'albums'
-);
-
-const ownedAlbums = albums.filter(
-  row => row.copies?.length > 0
-).length;
-
-const completionPercent = albums.length
-  ? (100 * ownedAlbums) / albums.length
-  : 0;
 ---
 
 <html lang="en">
