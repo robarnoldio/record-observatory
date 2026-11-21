@@ -1,3 +1,1 @@
-## Development
-
-refer to BACKLOG.md
+@AGENTS.md
