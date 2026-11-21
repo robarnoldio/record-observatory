@@ -12,7 +12,7 @@ for (const album of albums) {
 const initials = [...artists.values()].map(entries => artistInitial(entries[0].artist));
 ---
 <AlbumTextLayout title="Owned LP albums" dashboardTypography>
-  <h1>owned LP albums</h1>
+  <h1 class="visually-hidden">Owned LP albums</h1>
   <AlphabetPicker available={initials} />
   {Array.from(artists.values(), (entries, index) => (
     <section data-letter={initials[index]}>
