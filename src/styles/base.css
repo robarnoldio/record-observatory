@@ -1,0 +1,6 @@
+/* iOS Safari inflates "small" text on its own and does it differently after rotating,
+   which makes the wide monospace frames scale inconsistently. Keep text at the set size. */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
