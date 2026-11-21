@@ -4,3 +4,10 @@ html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
+
+/* Frames are 78 monospace columns (about 47em wide) between 8px body margins. On narrow
+   screens shrink the root font so they fit instead of being clipped or scrolling; on wide
+   screens this stays at the browser's default size. Everything sized in rem scales with it. */
+html {
+  font-size: min(100%, calc((100vw - 16px) / 48));
+}
