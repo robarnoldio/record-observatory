@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import groups from '../../data/artist-groups.json' with { type: 'json' };
 import { loadLpCollection } from './collection.js';
+import { validateSpecialFlags } from './formats.js';
 
 function fingerprint(value) {
   return createHash('sha256').update(value).digest('hex').slice(0, 10);
@@ -121,6 +122,7 @@ let collection;
 export function loadAlbumPages() {
   if (!collection) {
     const { lpCollection, exportDateString } = loadLpCollection();
+    validateSpecialFlags(lpCollection);
     const albums = buildAlbumPages(lpCollection, groups);
     collection = {
       albums, exportDateString,

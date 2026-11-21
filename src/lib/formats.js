@@ -68,3 +68,14 @@ export function copyFlags(copy, special = specialFlags) {
   if (has(LIMITED_TOKENS)) flags.push('LIMITED EDITION');
   return flags;
 }
+
+// Like artist groups, hand-written flags fail loudly instead of silently doing nothing.
+export function validateSpecialFlags(records, special = specialFlags) {
+  const ids = new Set(records.map(record => record.release_id));
+  for (const [id, flags] of Object.entries(special)) {
+    if (!ids.has(id)) throw new Error(`Unknown release_id in special-flags.json: ${id}`);
+    if (!Array.isArray(flags) || !flags.length || flags.some(flag => typeof flag !== 'string' || !flag.trim())) {
+      throw new Error(`Invalid flags for release_id ${id} in special-flags.json`);
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { buildAlbumPages, displayArtist, latestAcquisitions, loadAlbumPages } from './albums.js';
-import { copyFlags, formatIndicators, isMono, valueOrUnknown } from './formats.js';
+import { copyFlags, formatIndicators, isMono, validateSpecialFlags, valueOrUnknown } from './formats.js';
 import { loadLpCollection } from './collection.js';
 
 const copy = (Artist, Title, extra = {}) => ({ Artist, Title, release_id: '123', ...extra });
@@ -141,4 +141,14 @@ test('copyFlags lists notable traits in priority order', () => {
   assert.deepEqual(copyFlags({ Format: '2xLP, Album' }), []);
   assert.deepEqual(copyFlags({ release_id: '1', Format: 'LP, Comp + Box' }, { 1: ['85 LPS + BOOK'] }), ['85 LPS + BOOK', 'BOX SET']);
   assert.deepEqual(copyFlags({}), []);
+});
+
+test('special flags must name real releases and hold non-empty text', () => {
+  const records = [{ release_id: '1' }];
+  validateSpecialFlags(records, { 1: ['BIG'] });
+  assert.throws(() => validateSpecialFlags(records, { 2: ['BIG'] }), /Unknown release_id/);
+  assert.throws(() => validateSpecialFlags(records, { 1: [] }), /Invalid flags/);
+  assert.throws(() => validateSpecialFlags(records, { 1: [' '] }), /Invalid flags/);
+  assert.throws(() => validateSpecialFlags(records, { 1: 'BIG' }), /Invalid flags/);
+  validateSpecialFlags(loadLpCollection().lpCollection); // the real file matches the real export
 });
