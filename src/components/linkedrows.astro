@@ -1,0 +1,5 @@
+---
+// Monospace rows where a row with an href is rendered as a link.
+const { rows } = Astro.props;
+---
+<pre>{rows.map(row => <Fragment>{row.indent}{row.href ? <a href={row.href}>{row.text}</a> : row.text}{'\n'}</Fragment>)}</pre>

@@ -125,7 +125,7 @@ export function loadAlbumPages() {
     validateSpecialFlags(lpCollection);
     const albums = buildAlbumPages(lpCollection, groups);
     collection = {
-      albums, exportDateString,
+      albums, exportDateString, hrefs: copyHrefs(albums),
       artistCount: new Set(albums.map(album => album.artistKey)).size,
       copyCount: lpCollection.length,
     };

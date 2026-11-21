@@ -1,19 +1,16 @@
 ---
 import { fillTo, FRAME_WIDTH } from '../lib/frame.js';
-const { title, stats, flags = [], level = 'h2', id } = Astro.props;
-const Heading = level;
+import { fitFlags } from '../lib/formats.js';
+const { title, stats, flags = [], id } = Astro.props;
 const width = Math.max(FRAME_WIDTH, title.length + 8, stats.length + 8);
 const top = fillTo(`╔═══ ${title} `, '╗', width, '═');
 const bottom = fillTo('╚', ` ${stats} ══╝`, width, '═');
-// Flags go on their own framed line, in priority order; drop the lowest priority ones that don't fit.
-const flagIndent = ' '.repeat(7);
-const flagText = list => `${flagIndent}${list.join(' · ')}`;
-let shown = flags;
-while (shown.length && flagText(shown).length > width - 2) shown = shown.slice(0, -1);
-const flagLine = shown.length ? `\n${fillTo(`║${flagText(shown)}`, '║', width, ' ')}` : '';
+// Flags go on their own framed line; the lowest priority ones are dropped if they don't fit.
+const { text: flagText } = fitFlags(flags, width - 2);
+const flagLine = flagText ? `\n${fillTo(`║${flagText}`, '║', width, ' ')}` : '';
 const hasContent = Astro.slots.has('default');
 ---
-<Heading id={id} class="section-divider">{top}{!hasContent && `${flagLine}\n${bottom}`}</Heading>
+<h2 id={id} class="section-divider">{top}{!hasContent && `${flagLine}\n${bottom}`}</h2>
 {hasContent && <><slot /><pre class="section-divider group-bottom">{bottom}</pre></>}
 <style>
   .section-divider { font: inherit; white-space: pre; overflow-x: auto; overflow-y: hidden; padding-block: 0.15em; margin: 1.5rem 0 1rem; }

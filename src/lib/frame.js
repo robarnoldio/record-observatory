@@ -66,3 +66,21 @@ export function fillTo(
     right
   );
 }
+
+// Rows for a stats block: text lines float in a sparse `·` lattice, each indented two
+// columns more than the last. Dots fill the top, bottom and middle rows only.
+export function statsFieldRows(lines, frameWidth = FRAME_WIDTH, firstStart = 11, indent = 2) {
+  const width = Math.max(frameWidth, ...lines.map((text, i) => firstStart + indent * i + text.length + 4));
+  const lattice = offset => Array.from({ length: width }, (_, col) => (col % 4 === offset ? '·' : ' '));
+  const dotRow = lattice(3).join('').trimEnd();
+  const middle = Math.floor(lines.length / 2);
+  const rows = lines.map((text, i) => {
+    const start = firstStart + indent * i;
+    const end = start + text.length;
+    const cells = lattice(1);
+    if (i !== middle) cells.fill(' ');
+    cells.fill(' ', start - 1, end + 1); // a clear space on both sides of the text
+    return { text, lead: cells.slice(0, start).join(''), trail: cells.slice(end).join('').trimEnd() };
+  });
+  return { dotRow, rows };
+}

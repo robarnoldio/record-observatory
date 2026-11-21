@@ -69,6 +69,14 @@ export function copyFlags(copy, special = specialFlags) {
   return flags;
 }
 
+// Keep as many flags (in priority order) as fit in `width` columns once indented.
+export function fitFlags(flags, width, indent = 7) {
+  const text = list => ' '.repeat(indent) + list.join(' · ');
+  let shown = flags;
+  while (shown.length && text(shown).length > width) shown = shown.slice(0, -1);
+  return { shown, text: shown.length ? text(shown) : '' };
+}
+
 // Like artist groups, hand-written flags fail loudly instead of silently doing nothing.
 export function validateSpecialFlags(records, special = specialFlags) {
   const ids = new Set(records.map(record => record.release_id));

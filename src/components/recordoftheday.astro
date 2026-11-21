@@ -1,6 +1,6 @@
 ---
 import { frameFooter } from '../lib/frame.js';
-import { copyHrefs, loadAlbumPages } from '../lib/albums.js';
+import { loadAlbumPages } from '../lib/albums.js';
 
 const { collection } = Astro.props;
 
@@ -23,7 +23,7 @@ for (const char of dateKey) {
 const record =
   collection[hash % collection.length];
 
-const href = copyHrefs(loadAlbumPages().albums).get(record);
+const href = loadAlbumPages().hrefs.get(record);
 
 const artist =
   record.Artist || 'Unknown Artist';
@@ -117,7 +117,10 @@ function center(text, width = INTERIOR_WIDTH) {
 const rows = [
   '',
   center(artist.toUpperCase()),
-  '',
+  ''
+];
+const titleRowIndex = rows.length;
+rows.push(
   center(`═╬═ ${title} ═╬═`),
   '',
   center(`${year} · ${label}`),
@@ -127,8 +130,7 @@ const rows = [
     `${location.padEnd(28)}${condition}`
   ),
     ''
-  ];
-  const titleRowIndex = 3;
+  );
   if (rating) {
   rows.push(
     center('experts agree this record is rated:'),

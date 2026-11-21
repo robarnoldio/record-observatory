@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { buildAlbumPages, displayArtist, latestAcquisitions, loadAlbumPages } from './albums.js';
-import { copyFlags, formatIndicators, isMono, validateSpecialFlags, valueOrUnknown } from './formats.js';
+import { copyFlags, fitFlags, formatIndicators, isMono, validateSpecialFlags, valueOrUnknown } from './formats.js';
 import { loadLpCollection } from './collection.js';
+import { statsFieldRows } from './frame.js';
 
 const copy = (Artist, Title, extra = {}) => ({ Artist, Title, release_id: '123', ...extra });
 
@@ -151,4 +152,31 @@ test('special flags must name real releases and hold non-empty text', () => {
   assert.throws(() => validateSpecialFlags(records, { 1: [' '] }), /Invalid flags/);
   assert.throws(() => validateSpecialFlags(records, { 1: 'BIG' }), /Invalid flags/);
   validateSpecialFlags(loadLpCollection().lpCollection); // the real file matches the real export
+});
+
+test('fitFlags drops the lowest priority flags that overflow', () => {
+  const flags = ['UPGRADE CANDIDATE', 'RED VINYL', 'LIMITED EDITION'];
+  assert.deepEqual(fitFlags(flags, 76).shown, flags);
+  assert.equal(fitFlags(flags, 76).text, `${' '.repeat(7)}UPGRADE CANDIDATE · RED VINYL · LIMITED EDITION`);
+  assert.deepEqual(fitFlags(flags, 30).shown, ['UPGRADE CANDIDATE']);
+  assert.deepEqual(fitFlags(flags, 10), { shown: [], text: '' });
+  assert.deepEqual(fitFlags([], 76), { shown: [], text: '' });
+});
+
+test('statsFieldRows indents text lines and keeps dots on the outer and middle rows', () => {
+  const { dotRow, rows } = statsFieldRows(['one', 'two', 'three']);
+  assert.match(dotRow, /^ {3}·( {3}·)+$/);
+  assert.deepEqual(rows.map(row => row.lead.length), [11, 13, 15]);
+  assert.equal(rows[0].lead.trim(), '');
+  assert.equal(rows[2].lead.trim(), '');
+  assert.match(rows[1].lead, /·/);
+  assert.match(rows[1].trail, /·/);
+  assert.ok(dotRow.length <= 78 && rows.every(row => (row.lead + row.text + row.trail).length <= 78));
+});
+
+test('every LP record has an album copy link', () => {
+  const { hrefs } = loadAlbumPages();
+  const { lpCollection } = loadLpCollection();
+  assert.equal(hrefs.size, lpCollection.length);
+  assert.ok(lpCollection.every(record => /^\/albums\/.+\/#copy-[1-9]\d*$/.test(hrefs.get(record))));
 });

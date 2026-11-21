@@ -1,19 +1,18 @@
 ---
 import { frameFooter, fillTo } from '../lib/frame.js';
-import { isUpgradeCandidate } from '../lib/collection.js';
-import { copyHrefs, loadAlbumPages } from '../lib/albums.js';
+import { isUpgradeCandidate, UPGRADE_CONDITIONS } from '../lib/collection.js';
+import { loadAlbumPages } from '../lib/albums.js';
+import LinkedRows from './linkedrows.astro';
 
 const { collection } = Astro.props;
 
 const footer = frameFooter();
-const hrefs = copyHrefs(loadAlbumPages().albums);
+const { hrefs } = loadAlbumPages();
 
-const conditionRank = {
-  'Fair (F)': 0,
-  'Good (G)': 1,
-  'Good Plus (G+)': 2,
-  'Very Good (VG)': 3
-};
+// Worse condition first.
+const conditionRank = Object.fromEntries(
+  UPGRADE_CONDITIONS.map((condition, rank) => [condition, rank])
+);
 
 const upgradeCandidates = collection
   .filter(isUpgradeCandidate)
@@ -82,11 +81,11 @@ const topRows = rowsFor(topCandidates);
 </div>
 
 <div class="upgrade-view" data-mode="ALL">
-  <pre>{allRows.map(row => <Fragment>{row.indent}{row.href ? <a href={row.href}>{row.text}</a> : row.text}{'\n'}</Fragment>)}</pre>
+  <LinkedRows rows={allRows} />
 </div>
 
 <div class="upgrade-view" data-mode="TOP10">
-  <pre>{topRows.map(row => <Fragment>{row.indent}{row.href ? <a href={row.href}>{row.text}</a> : row.text}{'\n'}</Fragment>)}</pre>
+  <LinkedRows rows={topRows} />
 </div>
 
 <pre>{footer}</pre>
