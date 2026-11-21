@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { buildAlbumPages, displayArtist, latestAcquisitions, loadAlbumPages } from './albums.js';
-import { formatIndicators, valueOrUnknown } from './formats.js';
+import { copyFlags, formatIndicators, valueOrUnknown } from './formats.js';
 import { loadLpCollection } from './collection.js';
 
 const copy = (Artist, Title, extra = {}) => ({ Artist, Title, release_id: '123', ...extra });
@@ -126,4 +126,14 @@ test('latest export gives every LP row exactly one place and unique reachable UR
   assert.deepEqual(new Set(actual.map(row => JSON.stringify(row))), new Set(lpCollection.map(row => JSON.stringify(row))));
   assert.equal(new Set(albums.map(album => album.href)).size, albums.length);
   assert.ok(albums.some(album => album.copies.length > 1));
+});
+
+test('copyFlags lists notable traits in priority order', () => {
+  assert.deepEqual(copyFlags({ Format: 'LP, Album' }), []);
+  assert.deepEqual(
+    copyFlags({ Format: 'LP, Red, 180, Ltd, Mono', 'Collection Media Condition': 'Good (G)' }),
+    ['UPGRADE CANDIDATE', 'RED VINYL', 'AUDIOPHILE PRESSING', 'LIMITED EDITION']);
+  assert.equal(copyFlags({ Format: 'LP, Mono' }).includes('MONO'), false);
+  assert.deepEqual(copyFlags({ Format: 'LP, RSD, Num' }), ['LIMITED EDITION']);
+  assert.deepEqual(copyFlags({}), []);
 });

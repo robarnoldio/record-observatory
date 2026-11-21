@@ -1,13 +1,19 @@
 ---
 import { fillTo, FRAME_WIDTH } from '../lib/frame.js';
-const { title, stats, level = 'h2', id } = Astro.props;
+const { title, stats, flags = [], level = 'h2', id } = Astro.props;
 const Heading = level;
 const width = Math.max(FRAME_WIDTH, title.length + 8, stats.length + 8);
 const top = fillTo(`╔═══ ${title} `, '╗', width, '═');
 const bottom = fillTo('╚', ` ${stats} ══╝`, width, '═');
+// Flags go on their own framed line, in priority order; drop the lowest priority ones that don't fit.
+const flagIndent = ' '.repeat(7);
+const flagText = list => `${flagIndent}${list.join(' · ')}`;
+let shown = flags;
+while (shown.length && flagText(shown).length > width - 2) shown = shown.slice(0, -1);
+const flagLine = shown.length ? `\n${fillTo(`║${flagText(shown)}`, '║', width, ' ')}` : '';
 const hasContent = Astro.slots.has('default');
 ---
-<Heading id={id} class="section-divider">{top}{!hasContent && `\n${bottom}`}</Heading>
+<Heading id={id} class="section-divider">{top}{!hasContent && `${flagLine}\n${bottom}`}</Heading>
 {hasContent && <><slot /><pre class="section-divider group-bottom">{bottom}</pre></>}
 <style>
   .section-divider { font: inherit; white-space: pre; overflow-x: auto; overflow-y: hidden; padding-block: 0.15em; margin: 1.5rem 0 1rem; }

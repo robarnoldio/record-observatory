@@ -1,3 +1,5 @@
+import { isUpgradeCandidate } from './collection.js';
+
 const formatNames = {
   LP: 'LP record', Album: 'Album', Comp: 'Compilation', Box: 'Box set',
   RE: 'Reissue', RM: 'Remastered', Rem: 'Remastered', RP: 'Repress',
@@ -34,4 +36,22 @@ export function formatIndicators(format) {
 
 export function valueOrUnknown(value) {
   return value?.trim() || 'unknown';
+}
+
+const COLOR_TOKENS = ['Red', 'Yel', 'Pin', 'Blu', 'Gol', 'Cle', 'Gre', 'Ora', 'Vio', 'Whi', 'Sil', 'Opa'];
+const AUDIOPHILE_TOKENS = ['180', 'Quad', 'DMM'];
+const LIMITED_TOKENS = ['Ltd', 'Num', 'RSD'];
+
+// Short uppercase flags for the album-page divider, most important first.
+export function copyFlags(copy) {
+  const tokens = (copy.Format ?? '').split(/[,+]/).map(token => token.trim());
+  const has = list => list.some(token => tokens.includes(token));
+  const flags = [];
+  if (isUpgradeCandidate(copy)) flags.push('UPGRADE CANDIDATE');
+  for (const token of COLOR_TOKENS) {
+    if (tokens.includes(token)) flags.push(formatNames[token].toUpperCase());
+  }
+  if (has(AUDIOPHILE_TOKENS)) flags.push('AUDIOPHILE PRESSING');
+  if (has(LIMITED_TOKENS)) flags.push('LIMITED EDITION');
+  return flags;
 }

@@ -84,3 +84,15 @@ export function sortByDateKey(entries) {
   );
 
 }
+
+// Media conditions at or below VG are flagged for replacement.
+export const UPGRADE_CONDITIONS = [
+  'Fair (F)',
+  'Good (G)',
+  'Good Plus (G+)',
+  'Very Good (VG)'
+];
+
+export function isUpgradeCandidate(record) {
+  return UPGRADE_CONDITIONS.includes(record['Collection Media Condition']);
+}

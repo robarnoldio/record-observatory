@@ -1,6 +1,6 @@
 ---
 import { displayArtist, loadAlbumPages } from '../../../lib/albums.js';
-import { formatIndicators, valueOrUnknown } from '../../../lib/formats.js';
+import { copyFlags, formatIndicators, valueOrUnknown } from '../../../lib/formats.js';
 import AlbumTextLayout from '../../../components/albumtextlayout.astro';
 import AlbumTextDivider from '../../../components/albumtextdivider.astro';
 
@@ -18,7 +18,7 @@ const { album, exportDateString } = Astro.props;
       <p class="album-heading">{album.artist} :: {album.title}</p>
       {album.copies.map((copy, index) => (
         <section aria-labelledby={`copy-${index + 1}`}>
-          <AlbumTextDivider id={`copy-${index + 1}`} title={`owned copy ${index + 1}`} stats={`${index + 1} of ${album.copies.length}`} />
+          <AlbumTextDivider id={`copy-${index + 1}`} title={`owned copy ${index + 1}`} stats={`${index + 1} of ${album.copies.length}`} flags={copyFlags(copy)} />
           <dl>
             <dt>Artist credit</dt><dd>{displayArtist(copy.Artist)}</dd>
             <dt>Title</dt><dd>{copy.Title}</dd>
@@ -28,6 +28,7 @@ const { album, exportDateString } = Astro.props;
             <dt>Format</dt><dd><ul class="format-indicators">{(formatIndicators(copy.Format).length ? formatIndicators(copy.Format) : ['unknown']).map(indicator => <li>{indicator}</li>)}</ul></dd>
             <dt>Media condition</dt><dd>{valueOrUnknown(copy['Collection Media Condition'])}</dd>
             <dt>Sleeve condition</dt><dd>{valueOrUnknown(copy['Collection Sleeve Condition'])}</dd>
+            {copy['Collection Source']?.trim() && <><dt>Source</dt><dd>{copy['Collection Source'].trim()}</dd></>}
             <dt>Location</dt><dd>{valueOrUnknown(copy.CollectionFolder)}</dd>
           </dl>
           {copy['Collection Notes'] && <p class="notes">{copy['Collection Notes']}</p>}

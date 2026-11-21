@@ -1,5 +1,6 @@
 ---
 import { frameFooter, fillTo } from '../lib/frame.js';
+import { isUpgradeCandidate } from '../lib/collection.js';
 import { copyHrefs, loadAlbumPages } from '../lib/albums.js';
 
 const { collection } = Astro.props;
@@ -15,17 +16,7 @@ const conditionRank = {
 };
 
 const upgradeCandidates = collection
-  .filter(record => {
-    const condition =
-      record['Collection Media Condition'];
-
-    return [
-      'Fair (F)',
-      'Good (G)',
-      'Good Plus (G+)',
-      'Very Good (VG)'
-    ].includes(condition);
-  })
+  .filter(isUpgradeCandidate)
   .sort((a, b) => {
     const aRank =
       conditionRank[
