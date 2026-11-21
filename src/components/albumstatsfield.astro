@@ -1,0 +1,26 @@
+---
+import { FRAME_WIDTH } from '../lib/frame.js';
+// Text lines are indented two more columns each; dots fill the top, bottom and middle rows.
+// The dots are decoration only, so they are hidden from assistive tech.
+const { lines } = Astro.props;
+const FIRST_START = 11;
+const INDENT = 2;
+const width = Math.max(
+  FRAME_WIDTH,
+  ...lines.map((text, i) => FIRST_START + INDENT * i + text.length + 4));
+const lattice = offset => Array.from({ length: width }, (_, col) => (col % 4 === offset ? '·' : ' '));
+const dotRow = lattice(3).join('').trimEnd();
+const textRows = lines.map((text, i) => {
+  const start = FIRST_START + INDENT * i;
+  const end = start + text.length;
+  // Only the middle line sits in the lattice; the rows between it and the dot rows stay plain.
+  const cells = lattice(1);
+  if (i !== Math.floor(lines.length / 2)) cells.fill(' ');
+  cells.fill(' ', start - 1, end + 1); // a clear space on both sides of the text
+  return { text, lead: cells.slice(0, start).join(''), trail: cells.slice(end).join('').trimEnd() };
+});
+---
+<pre class="stats-field"><span aria-hidden="true">{dotRow}</span>{'\n'}{textRows.map(({ text, lead, trail }) => <Fragment><span aria-hidden="true">{lead}</span>{text}<span aria-hidden="true">{trail}</span>{'\n'}</Fragment>)}<span aria-hidden="true">{dotRow}</span></pre>
+<style>
+  .stats-field { font: inherit; white-space: pre; overflow-x: auto; overflow-y: hidden; padding-block: 0.15em; margin: 1.5rem 0 1rem; }
+</style>

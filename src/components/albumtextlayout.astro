@@ -1,9 +1,17 @@
 ---
 import { loadAlbumPages } from '../lib/albums.js';
-import AlbumTextDivider from './albumtextdivider.astro';
+import AlbumStatsField from './albumstatsfield.astro';
 import Navigation from './navigation.astro';
 const { title, dashboardTypography = false } = Astro.props;
 const { albums, artistCount, copyCount, exportDateString } = loadAlbumPages();
+const exportDate = new Date(exportDateString);
+const asOf = Number.isNaN(exportDate.getTime()) ? exportDateString
+  : exportDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+const statLines = [
+  `Stats :: ${artistCount} artists`,
+  `${albums.length} albums :: ${copyCount} LP copies`,
+  `as of ${asOf}`,
+];
 ---
 <!doctype html>
 <html lang="en">
@@ -15,7 +23,7 @@ const { albums, artistCount, copyCount, exportDateString } = loadAlbumPages();
   <body>
     <Navigation />
     <main class:list={{ 'dashboard-typography': dashboardTypography }}>
-      <AlbumTextDivider level="div" title={`Library stats :: ${artistCount} Artists :: ${albums.length} Albums :: ${copyCount} LP copies`} stats={`as of ${exportDateString}`} />
+      <AlbumStatsField lines={statLines} />
       <slot />
     </main>
   </body>
