@@ -1,0 +1,32 @@
+---
+// A row of mutually exclusive states: the selected one is bracketed and the first is the default.
+// Choosing a state shows the [data-state-view="<id>"] element with that id and hides the other
+// views, so each state can be an independently rendered block of the page.
+// `open`, `join` and `close` are the decoration around and between the states.
+const { label = '', states, open = '.:: ', join = '::', close = '::.' } = Astro.props;
+---
+<div class="state-picker" data-state-picker><pre>{open}{label}{states.map((state, index) => <Fragment>{index > 0 && join}<button type="button" data-state={state.id} data-label={state.label} aria-pressed={String(index === 0)}>{index === 0 ? `[${state.label}]` : ` ${state.label} `}</button></Fragment>)}{close}</pre></div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-state-picker]').forEach(picker => {
+    const buttons = picker.querySelectorAll<HTMLButtonElement>('button[data-state]');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const selected = button.dataset.state!;
+        buttons.forEach(other => {
+          const on = other === button;
+          other.textContent = on ? `[${other.dataset.label}]` : ` ${other.dataset.label} `;
+          other.setAttribute('aria-pressed', String(on));
+        });
+        document.querySelectorAll<HTMLElement>('[data-state-view]').forEach(view => {
+          view.hidden = view.dataset.stateView !== selected;
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  .state-picker pre { margin: 0 0 0.5rem; font-family: monospace; font-size: 1rem; line-height: normal; white-space: pre; }
+  .state-picker button { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; }
+</style>

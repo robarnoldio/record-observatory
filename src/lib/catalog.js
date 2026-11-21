@@ -39,3 +39,18 @@ export function completionBar({ owned, total, percent }, width = 20, row = 0) {
   const dots = Array.from({ length: width - filled }, (_, i) => ((filled + i + row) % 2 === 0 ? '·' : '.')).join('');
   return { inverse: number.padStart(filled), dots };
 }
+
+// Orderings offered by the artist index picker; the first is the default. Add an entry (an id,
+// a label and a comparator) to add a state.
+export const artistOrders = [
+  { id: 'az', label: 'A-Z', compare: (a, b) => a.displayName.localeCompare(b.displayName) },
+  {
+    id: 'complete-desc', label: '100-0',
+    compare: (a, b) => b.completion.percent - a.completion.percent || a.displayName.localeCompare(b.displayName),
+  },
+  {
+    id: 'complete-asc', label: '0-100',
+    compare: (a, b) => a.completion.percent - b.completion.percent || a.displayName.localeCompare(b.displayName),
+  },
+  { id: 'za', label: 'Z-A', compare: (a, b) => b.displayName.localeCompare(a.displayName) },
+];

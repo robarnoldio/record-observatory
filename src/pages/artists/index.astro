@@ -3,7 +3,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import Shell from '../../layouts/Shell.astro';
 import { loadLpCollection } from '../../lib/collection.js';
-import { albumCompletion, buildCatalog, completionBar } from '../../lib/catalog.js';
+import StatePicker from '../../components/statepicker.astro';
+import { albumCompletion, artistOrders, buildCatalog, completionBar } from '../../lib/catalog.js';
 
 const referenceDir = path.resolve('reference');
 const { lpCollection } = loadLpCollection();
@@ -27,17 +28,22 @@ const artists = fs
       displayName,
       completion
     };
-  })
-  .sort((a, b) => a.displayName.localeCompare(b.displayName));
+  });
+
+// One independently rendered list per ordering (dots and indents depend on the row position).
+const views = artistOrders.map(order => ({ ...order, list: [...artists].sort(order.compare) }));
 ---
 
 <Shell title="Artist Collections">
 
 <div class="artist-wrapper">
-<pre>{artists.map((artist, row) => {
+<StatePicker label="sort by " states={artistOrders} />
+{views.map((view, index) => (
+<pre data-state-view={view.id} hidden={index !== 0}>{view.list.map((artist, row) => {
   const bar = completionBar(artist.completion, undefined, row);
   return <Fragment>{row % 2 === 1 && '  '}<span aria-hidden="true" title={`${artist.completion.owned} of ${artist.completion.total} albums`}>[<span class="inverse">{bar.inverse}</span>{bar.dots}]</span> <a href={`/artists/${artist.slug}/`}>{artist.displayName}</a><span class="visually-hidden"> {artist.completion.percent}% of albums owned</span>{'\n'}</Fragment>;
 })}</pre>
+))}
 </div>
 
 <style>

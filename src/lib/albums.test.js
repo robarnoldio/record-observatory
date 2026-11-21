@@ -4,7 +4,7 @@ import { artistInitial, buildAlbumPages, displayArtist, latestAcquisitions, load
 import { copyFlags, fitFlags, formatIndicators, isMono, validateSpecialFlags, valueOrUnknown } from './formats.js';
 import { loadLpCollection } from './collection.js';
 import { statsFieldRows } from './frame.js';
-import { albumCompletion, buildCatalog, completionBar } from './catalog.js';
+import { albumCompletion, artistOrders, buildCatalog, completionBar } from './catalog.js';
 
 const copy = (Artist, Title, extra = {}) => ({ Artist, Title, release_id: '123', ...extra });
 
@@ -215,4 +215,17 @@ test('completionBar defaults to 20 cells', () => {
   assert.equal(inverse.length, 10);
   assert.equal(completionBar({ owned: 19, total: 19, percent: 100 }).inverse.length, 20);
   assert.equal(completionBar({ owned: 12, total: 98, percent: 12 }).inverse.length, 2); // 12% rounds to 2 cells
+});
+
+test('artist orders: names both ways, completion both ways with name ties', () => {
+  const artists = [
+    { displayName: 'Cee', completion: { percent: 50 } }, { displayName: 'Aye', completion: { percent: 20 } },
+    { displayName: 'Bee', completion: { percent: 50 } }, { displayName: 'Dee', completion: { percent: 100 } },
+  ];
+  const order = id => [...artists].sort(artistOrders.find(o => o.id === id).compare).map(a => a.displayName);
+  assert.deepEqual(artistOrders.map(o => o.label), ['A-Z', '100-0', '0-100', 'Z-A']);
+  assert.deepEqual(order('az'), ['Aye', 'Bee', 'Cee', 'Dee']);
+  assert.deepEqual(order('za'), ['Dee', 'Cee', 'Bee', 'Aye']);
+  assert.deepEqual(order('complete-desc'), ['Dee', 'Bee', 'Cee', 'Aye']);
+  assert.deepEqual(order('complete-asc'), ['Aye', 'Bee', 'Cee', 'Dee']);
 });
