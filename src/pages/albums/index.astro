@@ -2,6 +2,7 @@
 import { artistInitial, loadAlbumPages } from '../../lib/albums.js';
 import AlbumTextLayout from '../../components/albumtextlayout.astro';
 import AlbumTextDivider from '../../components/albumtextdivider.astro';
+import { SLOT, shortenUnique } from '../../lib/text.js';
 import AlphabetPicker from '../../components/alphabetpicker.astro';
 const { albums } = loadAlbumPages();
 const artists = new Map();
@@ -9,6 +10,8 @@ for (const album of albums) {
   if (!artists.has(album.artistKey)) artists.set(album.artistKey, []);
   artists.get(album.artistKey).push(album);
 }
+// A row is a 2-column indent, a 7-column year, a 1-column gap, then the title.
+const ROW_TITLE_MAX = SLOT - 7 - 1;
 const initials = [...artists.values()].map(entries => artistInitial(entries[0].artist));
 ---
 <AlbumTextLayout title="Owned LP albums" dashboardTypography>
@@ -17,13 +20,14 @@ const initials = [...artists.values()].map(entries => artistInitial(entries[0].a
   {Array.from(artists.values(), (entries, index) => (
     <section data-letter={initials[index]}>
       <AlbumTextDivider
-        title={entries[0].artist}
+        title={shortenUnique(entries[0].artist, [], 70)}
+        fullTitle={entries[0].artist}
         stats={`${entries.length} ${entries.length === 1 ? 'album' : 'albums'} · ${entries.reduce((total, album) => total + album.copies.length, 0)} owned copies`}
       >
         <ul class="album-links">{entries.map(album => (
           <li>
             <span>{album.year ?? 'unknown'}</span>
-            <span><a href={album.href}>{album.title}</a>{album.copies.length > 1 && ` [${album.copies.length}]`}</span>
+            <span><a href={album.href} aria-label={album.title}>{shortenUnique(album.title, entries.map(other => other.title), ROW_TITLE_MAX - (album.copies.length > 1 ? ` [${album.copies.length}]`.length : 0))}</a>{album.copies.length > 1 && ` [${album.copies.length}]`}</span>
           </li>
         ))}</ul>
       </AlbumTextDivider>

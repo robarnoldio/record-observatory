@@ -1,7 +1,7 @@
 ---
 import { fillTo, FRAME_WIDTH } from '../lib/frame.js';
 import { fitFlags } from '../lib/formats.js';
-const { title, stats, flags = [], id } = Astro.props;
+const { title, fullTitle, stats, flags = [], id } = Astro.props;
 const width = Math.max(FRAME_WIDTH, title.length + 8, stats.length + 8);
 const top = fillTo(`╔═══ ${title} `, '╗', width, '═');
 const bottom = fillTo('╚', ` ${stats} ══╝`, width, '═');
@@ -10,7 +10,7 @@ const { text: flagText } = fitFlags(flags, width - 2);
 const flagLine = flagText ? `\n${fillTo(`║${flagText}`, '║', width, ' ')}` : '';
 const hasContent = Astro.slots.has('default');
 ---
-<h2 id={id} class="section-divider">{top}{!hasContent && `${flagLine}\n${bottom}`}</h2>
+<h2 id={id} class="section-divider" aria-label={fullTitle && fullTitle !== title ? fullTitle : undefined}>{top}{!hasContent && `${flagLine}\n${bottom}`}</h2>
 {hasContent && <><slot /><pre class="section-divider group-bottom">{bottom}</pre></>}
 <style>
   .section-divider { font: inherit; white-space: pre; overflow-x: auto; overflow-y: hidden; padding-block: 0.15em; margin: 0.75rem 0 0.25rem; }

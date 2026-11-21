@@ -18,7 +18,7 @@ The existing curated artist catalogs are unchanged.
 ```
 
 Leave it `{}` to use original artist credits. A group of one can shorten a long
-credit; a group of many combines related credits. Each copy shows its own artist
+credit (the 46 credits over 70 characters each have one, named so related records sort together); a group of many combines related credits. Each copy shows its own artist
 credit, with numeric Discogs disambiguators suppressed. Unknown credits or duplicate assignments fail the build. Grouping
 does not create a curated artist page. Identical full titles within a group merge;
 case and punctuation differences remain separate albums.
@@ -60,6 +60,18 @@ letter is bracketed and none is selected by default; clicking it again clears th
 filter. Selecting a letter hides every artist group whose display name (ignoring a
 leading "The" and accents) starts with another letter. The `*` key after M selects names that don't start with A-Z (like "Weird Al" Yankovic). Vertical
 spacing on the album pages is deliberately tight; keep new blocks compact.
+
+Names are fitted to the 78-column frame (74 usable columns, indented 2 on each side).
+`shorten()` in `src/lib/text.js` cuts a too-long title or artist at its first comma,
+slash or paren (leaving at least 8 characters) and adds `…`; with no such marker it
+cuts hard at the limit. The album-page heading is `artist :: title` in 74 columns,
+shortening the title first and the artist only if the title would get under 12
+columns. Album-index rows allow 66 columns for the title (after the year column) and
+divider names allow 70. The width is a preference, not a hard rule: if shortening would
+make two of an artist's albums read the same, `shortenUnique()` cuts at the first
+marker that tells them apart even past the limit, and keeps the whole title when
+only the ending does (Volume I vs Volume II). The full text stays available: the copy's `Title` row, a
+link's accessible name, and hidden text next to a shortened heading.
 
 Each copy always shows media condition, sleeve condition, and
 location (`CollectionFolder`), using `unknown` for missing values. Formats expand

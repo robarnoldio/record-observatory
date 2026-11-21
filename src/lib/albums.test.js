@@ -4,6 +4,7 @@ import { artistInitial, buildAlbumPages, displayArtist, latestAcquisitions, load
 import { copyFlags, fitFlags, formatIndicators, isMono, validateSpecialFlags, valueOrUnknown } from './formats.js';
 import { loadLpCollection } from './collection.js';
 import { statsFieldRows } from './frame.js';
+import { headingLine, shorten, shortenUnique } from './text.js';
 import { albumCompletion, artistOrders, buildCatalog, completionBar } from './catalog.js';
 
 const copy = (Artist, Title, extra = {}) => ({ Artist, Title, release_id: '123', ...extra });
@@ -228,4 +229,43 @@ test('artist orders: names both ways, completion both ways with name ties', () =
   assert.deepEqual(order('za'), ['Dee', 'Cee', 'Bee', 'Aye']);
   assert.deepEqual(order('complete-desc'), ['Dee', 'Bee', 'Cee', 'Aye']);
   assert.deepEqual(order('complete-asc'), ['Aye', 'Bee', 'Cee', 'Dee']);
+});
+
+test('shorten cuts a long name at the first comma, slash or paren, else hard at the limit', () => {
+  assert.equal(shorten('Short', 20), 'Short');
+  assert.equal(shorten('Symphony No. 5, In C Minor, Op. 67 - Berlin', 30), 'Symphony No. 5…');
+  assert.equal(shorten('Piano Concerto (Live At The Concertgebouw In Amsterdam)', 30), 'Piano Concerto…');
+  assert.equal(shorten('Part One / Part Two / Part Three / Part Four', 20), 'Part One…');
+  assert.equal(shorten('A, B, and a very long continuation here', 25), 'A, B, and a very long co…'); // early markers leave too little, so hard cut
+  assert.equal(shorten('No markers at all in this long title', 16), 'No markers at a…');
+  assert.equal(shorten('Ends exactly here', 17), 'Ends exactly here');
+  assert.ok(shorten('x'.repeat(100) + ', tail', 40).length <= 40);
+});
+
+test('headingLine shortens the title first, then the artist, within 74 columns', () => {
+  const fits = headingLine('Keith Jarrett', 'Sun Bear Concerts');
+  assert.deepEqual(fits, { text: 'Keith Jarrett :: Sun Bear Concerts', full: 'Keith Jarrett :: Sun Bear Concerts', shortened: false });
+  const longTitle = headingLine('Herbie Hancock', 'V.S.O.P - Special Pressing For Radio Edited Selections From The Album');
+  assert.ok(longTitle.shortened && longTitle.text.length <= 74 && longTitle.text.startsWith('Herbie Hancock :: V.S.O.P'));
+  const longArtist = headingLine('A'.repeat(40) + ', ' + 'B'.repeat(60), 'Some Album Title Here');
+  assert.ok(longArtist.shortened && longArtist.text.length <= 74);
+  assert.ok(longArtist.text.startsWith('A'.repeat(40) + '…'));
+});
+
+test('a title that would clash with a sibling after shortening is kept whole', () => {
+  const vol1 = 'In Person, Friday Night At The Blackhawk, San Francisco, Volume I';
+  const vol2 = 'In Person, Saturday Night At The Blackhawk, San Francisco, Volume II';
+  const vol2b = 'In Person, Saturday Night At The Blackhawk, San Francisco, Volume 2';
+  const all = [vol1, vol2, vol2b];
+  assert.equal(shortenUnique(vol1, all, 66), vol1); // fits anyway
+  assert.equal(shortenUnique(vol2, all, 66), vol2); // would read 'In Person…' like vol2b: keep whole
+  assert.equal(shortenUnique(vol2b, all, 66), vol2b);
+  assert.equal(shortenUnique(vol2, [vol1], 66), 'In Person…'); // no clash: shorten as usual
+  const donA = 'Don Juan, Op. 20 / Death And Transfiguration, Op. 24 / Till Eulenspiegel, Op. 28';
+  const donB = 'Don Juan / Till Eulenspiegel / Death And Transfiguration';
+  assert.equal(shortenUnique(donA, [donB], 40), 'Don Juan, Op. 20…'); // first cut that tells them apart
+  assert.equal(shortenUnique(donB, [donA], 40), 'Don Juan / Till Eulenspiegel…');
+  const heading = (t, sibs) => headingLine('Miles Davis', t, sibs).text;
+  assert.equal(heading(vol2, all), `Miles Davis :: ${vol2}`);
+  assert.equal(heading(vol2, ['Kind Of Blue']), 'Miles Davis :: In Person…');
 });
