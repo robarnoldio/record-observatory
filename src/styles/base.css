@@ -11,3 +11,17 @@ html {
 html {
   font-size: min(100%, calc((100vw - 16px) / 48));
 }
+
+/* Links are the browser's link blue with no underline, and they keep that color once visited
+   (LinkText follows light, dark and forced-color modes). Keyboard focus is an inverse-video
+   cursor, like a terminal; scroll-margin keeps the focused link clear of the screen edges. */
+a, a:link, a:visited {
+  color: LinkText;
+  text-decoration: none;
+}
+a:focus-visible {
+  background: CanvasText;
+  color: Canvas;
+  outline: none;
+  scroll-margin-block: 4rem;
+}

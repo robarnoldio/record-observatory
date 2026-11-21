@@ -61,8 +61,10 @@ filter. Selecting a letter hides every artist group whose display name (ignoring
 leading "The" and accents) starts with another letter. The `*` key after M selects names that don't start with A-Z (like "Weird Al" Yankovic). Vertical
 spacing on the album pages is deliberately tight; keep new blocks compact.
 
+Links are the browser's link blue with no underline and no visited color (`src/styles/base.css`).
+
 Keyboard: Tab and Shift-Tab step through nav, the letter picker and every album link in order.
-The focused element is an inverse-video cursor (`:focus-visible`), album links carry an
+The focused element is an inverse-video cursor (`:focus-visible`, global), album links carry an
 explicit `tabindex="0"` so Safari includes them, and the picker is one tab stop (roving
 tabindex): the arrow keys, Home and End move between keys and Space or Enter selects.
 

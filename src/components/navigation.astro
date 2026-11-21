@@ -3,17 +3,15 @@ const pathname = Astro.url.pathname;
 const active = /^\/artists(?:\/|$)/.test(pathname) ? '/artists/'
   : /^\/albums(?:\/|$)/.test(pathname) ? '/albums/' : '/';
 const tabs = [['/', 'OBSERVATORY'], ['/artists/', 'ARTISTS'], ['/albums/', 'LP ALBUMS']];
-// The selected tab is bracketed; the others are padded with spaces. Both stay clickable but are not underlined.
+// The selected tab is bracketed; the others are padded with spaces. Both are part of the link.
 const edges = href => (href === active ? ['[', ']'] : [' ', ' ']);
 const current = href => href === active
   ? (pathname.replace(/\/$/, '') === href.replace(/\/$/, '') ? 'page' : 'location')
   : undefined;
 ---
 <nav aria-label="Main navigation"><pre>       ╔═════════════╗         ╔═══════════╗
-       ║{tabs.map(([href, text]) => <Fragment><a href={href} aria-current={current(href)}><span>{edges(href)[0]}</span><span class="tab-text">{text}</span><span>{edges(href)[1]}</span></a>║</Fragment>)}
+       ║{tabs.map(([href, text]) => <Fragment><a href={href} aria-current={current(href)}><span>{edges(href)[0]}</span><span>{text}</span><span>{edges(href)[1]}</span></a>║</Fragment>)}
                      ╚═════════╝</pre></nav>
 <style>
-  a { text-decoration: none; }
-  .tab-text { text-decoration: underline; }
   pre { font-family: monospace; font-size: 1rem; line-height: normal; white-space: pre; overflow-x: auto; overflow-y: hidden; padding-block: 0.15em; }
 </style>
