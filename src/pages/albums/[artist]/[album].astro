@@ -7,19 +7,22 @@ import AlbumTextDivider from '../../../components/albumtextdivider.astro';
 
 export function getStaticPaths() {
   const { albums, exportDateString } = loadAlbumPages();
-  return albums.map(album => ({
+  // The record bin is the index order: each album knows the one before and after it.
+  const neighbor = other => other && { href: other.href, title: other.title };
+  return albums.map((album, index) => ({
     params: { artist: album.artistSlug, album: album.albumSlug },
-    props: { album, exportDateString },
+    props: { album, exportDateString, prev: neighbor(albums[index - 1]), next: neighbor(albums[index + 1]) },
   }));
 }
 
-const { album, exportDateString } = Astro.props;
+const { album, exportDateString, prev, next } = Astro.props;
+const indexHref = `/albums/#artist-${album.artistSlug}`;
 const siblingTitles = loadAlbumPages().albums
   .filter(other => other.artistKey === album.artistKey && other !== album)
   .map(other => other.title);
 const heading = headingLine(album.artist, album.title, siblingTitles);
 ---
-<AlbumTextLayout title={`${album.artist} — ${album.title}`} dashboardTypography>
+<AlbumTextLayout title={`${album.artist} — ${album.title}`} dashboardTypography navTabbable={false}>
       <p class="album-heading">{heading.shortened
         ? <><span aria-hidden="true">{heading.text}</span><span class="visually-hidden">{heading.full}</span></>
         : heading.text}</p>
@@ -41,9 +44,18 @@ const heading = headingLine(album.artist, album.title, siblingTitles);
           {isMono(copy.Format) && <p class="mono-note">++ in glorious mono ++</p>}
           {copy['Collection Notes'] && <p class="notes">{copy['Collection Notes']}</p>}
           {/^[1-9]\d*$/.test(copy.release_id ?? '') && (
-            <p><a href={`https://www.discogs.com/release/${copy.release_id}`}>View this release on Discogs</a></p>
+            <p><a href={`https://www.discogs.com/release/${copy.release_id}`} target="_blank" rel="noopener noreferrer" tabindex="0">View this release on Discogs ↗<span class="visually-hidden"> (opens in a new tab)</span></a></p>
           )}
         </section>
       ))}
+      <nav class="record-bin" aria-label="Flip through the record bin">{prev
+        ? <a href={prev.href} title={prev.title} aria-label={`Previous album: ${prev.title}`} tabindex="0">‹ prev</a>
+        : <span class="dim">‹ prev</span>}{'   '}<a href={indexHref} tabindex="0">return to index</a>{'   '}{next
+        ? <a href={next.href} title={next.title} aria-label={`Next album: ${next.title}`} tabindex="0">next ›</a>
+        : <span class="dim">next ›</span>}</nav>
       <footer>Collection export: {exportDateString}</footer>
 </AlbumTextLayout>
+<style>
+  .record-bin { white-space: pre; margin: 1.25rem 0 0; }
+  .record-bin .dim { color: GrayText; }
+</style>

@@ -1,4 +1,7 @@
 ---
+// `tabbable={false}` takes the tabs out of the keyboard tab order (they stay clickable). An
+// explicit tabindex="0" otherwise, because some browsers (Safari, Vivaldi) skip plain links on Tab.
+const { tabbable = true } = Astro.props;
 const pathname = Astro.url.pathname;
 const active = /^\/artists(?:\/|$)/.test(pathname) ? '/artists/'
   : /^\/albums(?:\/|$)/.test(pathname) ? '/albums/' : '/';
@@ -10,7 +13,7 @@ const current = href => href === active
   : undefined;
 ---
 <nav aria-label="Main navigation"><pre>       ╔═════════════╗         ╔═══════════╗
-       ║{tabs.map(([href, text]) => <Fragment><a href={href} aria-current={current(href)}><span>{edges(href)[0]}</span><span>{text}</span><span>{edges(href)[1]}</span></a>║</Fragment>)}
+       ║{tabs.map(([href, text]) => <Fragment><a href={href} aria-current={current(href)} tabindex={tabbable ? 0 : -1}><span>{edges(href)[0]}</span><span>{text}</span><span>{edges(href)[1]}</span></a>║</Fragment>)}
                      ╚═════════╝</pre></nav>
 <style>
   pre { font-family: monospace; font-size: 1rem; line-height: normal; white-space: pre; overflow-x: auto; overflow-y: hidden; padding-block: 0.15em; }

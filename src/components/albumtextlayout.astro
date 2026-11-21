@@ -2,7 +2,7 @@
 import { loadAlbumPages } from '../lib/albums.js';
 import AlbumStatsField from './albumstatsfield.astro';
 import Shell from '../layouts/Shell.astro';
-const { title, dashboardTypography = false } = Astro.props;
+const { title, dashboardTypography = false, navTabbable = true } = Astro.props;
 const { albums, artistCount, copyCount, exportDateString } = loadAlbumPages();
 const exportDate = new Date(exportDateString);
 const asOf = Number.isNaN(exportDate.getTime()) ? exportDateString
@@ -13,7 +13,7 @@ const statLines = [
   `as of ${asOf}`,
 ];
 ---
-<Shell title={`${title} | Record Observatory`}>
+<Shell title={`${title} | Record Observatory`} navTabbable={navTabbable}>
     <main class:list={{ 'dashboard-typography': dashboardTypography }}>
       <AlbumStatsField lines={statLines} />
       <slot />

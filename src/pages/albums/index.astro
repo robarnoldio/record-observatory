@@ -18,7 +18,7 @@ const initials = [...artists.values()].map(entries => artistInitial(entries[0].a
   <h1 class="visually-hidden">Owned LP albums</h1>
   <AlphabetPicker available={initials} />
   {Array.from(artists.values(), (entries, index) => (
-    <section data-letter={initials[index]}>
+    <section id={`artist-${entries[0].artistSlug}`} data-letter={initials[index]}>
       <AlbumTextDivider
         title={shortenUnique(entries[0].artist, [], 70)}
         fullTitle={entries[0].artist}
