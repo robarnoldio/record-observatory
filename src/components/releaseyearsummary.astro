@@ -1,6 +1,7 @@
 ---
 import { sortByCount, sortByNumKey } from '../lib/collection.js'; 
 import {frameHeader,frameFooter,fillTo} from '../lib/frame.js';
+import InverseBars from './inversebars.astro';
 
 const { collection } = Astro.props;
 
@@ -25,14 +26,6 @@ const yearsByCount = sortByCount(
   Object.entries(yearCounts)
 );
 
-const yearRows = years.map(([year, count]) =>
-  `${year.padEnd(6)} ${'█'.repeat(count)} ${count}`
-);
-
-const countRows = yearsByCount.map(([year, count]) =>
-  `${year.padEnd(6)} ${'█'.repeat(count)} ${count}`
-);
-
 const footer = frameFooter();
 
 ---
@@ -45,23 +38,11 @@ const footer = frameFooter();
 </div>
 
 <div class="year-view" data-mode="YEAR">
-  <pre>
-{
-  years.map(([year, count]) =>
-    `   ${year.padEnd(6)} ${'█'.repeat(count)} ${count}`
-  ).join('\n')
-}
-  </pre>
+  <InverseBars rows={years} labelWidth={6} />
 </div>
 
 <div class="year-view" data-mode="COUNT">
-  <pre>
-{
-  yearsByCount.map(([year, count]) =>
-    `   ${year.padEnd(6)} ${'█'.repeat(count)} ${count}`
-  ).join('\n')
-}
-  </pre>
+  <InverseBars rows={yearsByCount} labelWidth={6} />
 </div>
 
 <pre>{footer}</pre>

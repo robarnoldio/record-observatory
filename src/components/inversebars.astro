@@ -1,0 +1,16 @@
+---
+// Rows of `label` + an inverse-video bar `count` cells long, with the count written in it (the same
+// trick as the artist index). A bar is always at least as wide as its number, so nothing is lost.
+// Long bars scroll inside the widget instead of widening the page.
+const { rows, labelWidth } = Astro.props;
+---
+<pre>{rows.map(([label, count], index) => <Fragment>{index > 0 && '\n'}{`   ${String(label).padEnd(labelWidth)} `}<span class="inverse">{String(count).padStart(count)}</span></Fragment>)}</pre>
+<style>
+  /* About 1.3 line spacing leaves a sliver of white between bars. A fractional pitch (20.8px at 16px)
+     puts each row at a different sub-pixel offset, so the gaps antialias unevenly. round() snaps the
+     pitch to whole pixels at any font size (the root font shrinks on phones); the plain 1.3 is the
+     fallback for browsers without round(). */
+  pre { overflow-x: auto; line-height: 1.3; line-height: round(1.3em, 1px); }
+  /* Inverse video: swap the page's text and background colors. */
+  .inverse { background: CanvasText; color: Canvas; }
+</style>
