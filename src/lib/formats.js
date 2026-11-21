@@ -1,4 +1,5 @@
 import { isUpgradeCandidate } from './collection.js';
+import specialFlags from '../../data/special-flags.json' with { type: 'json' };
 
 const formatNames = {
   LP: 'LP record', Album: 'Album', Comp: 'Compilation', Box: 'Box set',
@@ -46,12 +47,20 @@ export function isMono(format) {
   return (format ?? '').split(/[,+]/).some(token => token.trim() === 'Mono');
 }
 
-// Short uppercase flags for the album-page divider, most important first.
-export function copyFlags(copy) {
+// Explicit Box token, or 3+ discs (a 10xLP set like Sun Bear Concerts has no Box token).
+function isBoxSet(tokens) {
+  return tokens.includes('Box') || tokens.some(token => Number(token.match(/^(\d+)xLP$/)?.[1]) >= 3);
+}
+
+// Short uppercase flags for the album-page divider, most important first (hand-written flags lead).
+// `special` maps Discogs release_id to hand-written flags for things the CSV can't tell us.
+export function copyFlags(copy, special = specialFlags) {
   const tokens = (copy.Format ?? '').split(/[,+]/).map(token => token.trim());
   const has = list => list.some(token => tokens.includes(token));
   const flags = [];
+  flags.push(...(special[copy.release_id] ?? []));
   if (isUpgradeCandidate(copy)) flags.push('UPGRADE CANDIDATE');
+  if (isBoxSet(tokens)) flags.push('BOX SET');
   for (const token of COLOR_TOKENS) {
     if (tokens.includes(token)) flags.push(formatNames[token].toUpperCase());
   }

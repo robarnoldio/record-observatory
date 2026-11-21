@@ -136,5 +136,9 @@ test('copyFlags lists notable traits in priority order', () => {
   assert.equal(copyFlags({ Format: 'LP, Mono' }).includes('MONO'), false);
   assert.ok(isMono('LP, Album, Mono') && !isMono('LP, Stereo') && !isMono(undefined));
   assert.deepEqual(copyFlags({ Format: 'LP, RSD, Num' }), ['LIMITED EDITION']);
+  assert.deepEqual(copyFlags({ Format: '10xLP, Album' }), ['BOX SET']);
+  assert.deepEqual(copyFlags({ Format: 'LP, Comp + Box' }), ['BOX SET']);
+  assert.deepEqual(copyFlags({ Format: '2xLP, Album' }), []);
+  assert.deepEqual(copyFlags({ release_id: '1', Format: 'LP, Comp + Box' }, { 1: ['85 LPS + BOOK'] }), ['85 LPS + BOOK', 'BOX SET']);
   assert.deepEqual(copyFlags({}), []);
 });
