@@ -142,7 +142,11 @@ const rows = [
   ╔══ the record of the day · {displayDate} ════════════════════════════════════╗
 </div>
 
-<pre>{rows.map((row, index) => <Fragment>{index === titleRowIndex && href ? <Fragment>{row.slice(0, row.length - row.trimStart().length)}<a href={href}>{row.trimStart()}</a></Fragment> : row}{'\n'}</Fragment>)}</pre>
+<pre>{rows.map((row, index) => {
+  if (index !== titleRowIndex || !href) return <Fragment>{row}{'\n'}</Fragment>;
+  const start = row.indexOf(title, row.indexOf('═╬═ ') + 4);
+  return <Fragment>{row.slice(0, start)}<a href={href}>{title}</a>{row.slice(start + title.length)}{'\n'}</Fragment>;
+})}</pre>
 
 <pre>{footer}</pre>
 
