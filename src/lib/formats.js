@@ -42,6 +42,10 @@ const COLOR_TOKENS = ['Red', 'Yel', 'Pin', 'Blu', 'Gol', 'Cle', 'Gre', 'Ora', 'V
 const AUDIOPHILE_TOKENS = ['180', 'Quad', 'DMM'];
 const LIMITED_TOKENS = ['Ltd', 'Num', 'RSD'];
 
+export function isMono(format) {
+  return (format ?? '').split(/[,+]/).some(token => token.trim() === 'Mono');
+}
+
 // Short uppercase flags for the album-page divider, most important first.
 export function copyFlags(copy) {
   const tokens = (copy.Format ?? '').split(/[,+]/).map(token => token.trim());

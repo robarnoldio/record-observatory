@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { buildAlbumPages, displayArtist, latestAcquisitions, loadAlbumPages } from './albums.js';
-import { copyFlags, formatIndicators, valueOrUnknown } from './formats.js';
+import { copyFlags, formatIndicators, isMono, valueOrUnknown } from './formats.js';
 import { loadLpCollection } from './collection.js';
 
 const copy = (Artist, Title, extra = {}) => ({ Artist, Title, release_id: '123', ...extra });
@@ -134,6 +134,7 @@ test('copyFlags lists notable traits in priority order', () => {
     copyFlags({ Format: 'LP, Red, 180, Ltd, Mono', 'Collection Media Condition': 'Good (G)' }),
     ['UPGRADE CANDIDATE', 'RED VINYL', 'AUDIOPHILE PRESSING', 'LIMITED EDITION']);
   assert.equal(copyFlags({ Format: 'LP, Mono' }).includes('MONO'), false);
+  assert.ok(isMono('LP, Album, Mono') && !isMono('LP, Stereo') && !isMono(undefined));
   assert.deepEqual(copyFlags({ Format: 'LP, RSD, Num' }), ['LIMITED EDITION']);
   assert.deepEqual(copyFlags({}), []);
 });
