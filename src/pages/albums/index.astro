@@ -2,8 +2,10 @@
 import { artistInitial, loadAlbumPages } from '../../lib/albums.js';
 import AlbumTextLayout from '../../components/albumtextlayout.astro';
 import AlbumTextDivider from '../../components/albumtextdivider.astro';
-import { SLOT, shortenUnique } from '../../lib/text.js';
+import { SLOT, headingLine, shortenUnique } from '../../lib/text.js';
+import { groupByYear, yearCounts } from '../../lib/years.js';
 import AlphabetPicker from '../../components/alphabetpicker.astro';
+import YearPicker from '../../components/yearpicker.astro';
 const { albums } = loadAlbumPages();
 const artists = new Map();
 for (const album of albums) {
@@ -12,11 +14,19 @@ for (const album of albums) {
 }
 // A row is a 2-column indent, a 7-column year, a 1-column gap, then the title.
 const ROW_TITLE_MAX = SLOT - 7 - 1;
+const yearGroups = groupByYear(albums);
+const { counts, unknown } = yearCounts(yearGroups);
+// Siblings (same artist) keep year-view rows distinguishable, like the album-page heading.
+const titlesByArtist = new Map([...artists.entries()].map(([key, entries]) => [key, entries.map(album => album.title)]));
 const initials = [...artists.values()].map(entries => artistInitial(entries[0].artist));
 ---
 <AlbumTextLayout title="Owned LP albums" dashboardTypography>
   <h1 class="visually-hidden">Owned LP albums</h1>
-  <AlphabetPicker available={initials} />
+  <div class="pickers">
+    <AlphabetPicker available={initials} />
+    <YearPicker counts={counts} unknown={unknown} />
+  </div>
+  <div data-bin="artist">
   {Array.from(artists.values(), (entries, index) => (
     <section id={`artist-${entries[0].artistSlug}`} data-letter={initials[index]}>
       <AlbumTextDivider
@@ -33,4 +43,25 @@ const initials = [...artists.values()].map(entries => artistInitial(entries[0].a
       </AlbumTextDivider>
     </section>
   ))}
+  </div>
+  <div data-bin="year" hidden>
+  {yearGroups.map(group => (
+    <section data-year-section={group.key} data-decade={group.decade ?? 'unknown'}>
+      <AlbumTextDivider
+        title={group.year === null ? 'unknown year' : String(group.year)}
+        stats={`${group.albums.length} ${group.albums.length === 1 ? 'album' : 'albums'}`}
+      >
+        <ul class="album-links year-rows">{group.albums.map(album => {
+          const suffix = album.copies.length > 1 ? ` [${album.copies.length}]` : '';
+          const line = headingLine(album.artist, album.title, titlesByArtist.get(album.artistKey), SLOT - suffix.length);
+          return <li><a href={album.href} aria-label={line.full} tabindex="0">{line.text}</a>{suffix}</li>;
+        })}</ul>
+      </AlbumTextDivider>
+    </section>
+  ))}
+  </div>
 </AlbumTextLayout>
+<style>
+  /* The two pickers sit side by side; the year picker starts at column 40 of the 78. */
+  .pickers { display: flex; margin-top: calc(1lh + 1rem); margin-bottom: calc(1lh + 0.75rem); }
+</style>

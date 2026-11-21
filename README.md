@@ -63,6 +63,13 @@ spacing on the album pages is deliberately tight; keep new blocks compact.
 
 Links are the browser's link blue with no underline and no visited color (`src/styles/base.css`).
 
+A two-tier year picker sits to the right of the letter picker (the decade row `? 50s … 20s`,
+and, once a decade is chosen, a second row of its two-digit years). Choosing a decade or year
+regroups the index by year (oldest owned copy's year, undated albums under `?`), filtered to it,
+with rows shown as `artist :: title` in artist order; choosing again clears. The two pickers are
+mutually exclusive: using one clears the other. The year list is rendered at build time (hidden
+until used) from `groupByYear()` in `src/lib/years.js`.
+
 Keyboard: Tab and Shift-Tab step through nav, the letter picker and every album link in order.
 The focused element is an inverse-video cursor (`:focus-visible`, global), album links carry an
 explicit `tabindex="0"` so Safari includes them, and the picker is one tab stop (roving

@@ -58,20 +58,25 @@ const INDENT = 8;
       event.preventDefault();
       if (next) next.focus();
     });
+    // Choosing a decade or year clears the letter selection (the list switches to year groups).
+    window.addEventListener('bin-change', event => {
+      const { source, active } = (event as CustomEvent).detail;
+      if (source === 'year' && active && selected !== null) { selected = null; apply(); }
+    });
     buttons.forEach(button => {
       button.addEventListener('focus', () => setCurrent(button));
       button.addEventListener('click', () => {
         const letter = button.dataset.letterButton!;
         selected = selected === letter ? null : letter; // clicking the selected letter clears it
         apply();
+        window.dispatchEvent(new CustomEvent('bin-change', { detail: { source: 'letter', active: selected !== null } }));
       });
     });
   });
 </script>
 
 <style>
-  /* The spacing the old heading line used to occupy above, plus one extra line below. */
-  .alphabet-picker { margin-top: calc(1lh + 1rem); margin-bottom: calc(1lh + 0.75rem); }
+    .alphabet-picker { flex: none; width: 40ch; }
   .alphabet-picker pre { margin: 0; font: inherit; white-space: pre; overflow-x: auto; }
   .alphabet-picker button { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; }
   .alphabet-picker button:focus-visible { background: CanvasText; color: Canvas; outline: none; }

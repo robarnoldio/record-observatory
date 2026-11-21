@@ -5,6 +5,7 @@ import { copyFlags, fitFlags, formatIndicators, isMono, validateSpecialFlags, va
 import { loadLpCollection } from './collection.js';
 import { statsFieldRows } from './frame.js';
 import { headingLine, shorten, shortenUnique } from './text.js';
+import { decadeOf, groupByYear, yearCounts } from './years.js';
 import { albumCompletion, artistOrders, buildCatalog, completionBar } from './catalog.js';
 
 const copy = (Artist, Title, extra = {}) => ({ Artist, Title, release_id: '123', ...extra });
@@ -268,4 +269,24 @@ test('a title that would clash with a sibling after shortening is kept whole', (
   const heading = (t, sibs) => headingLine('Miles Davis', t, sibs).text;
   assert.equal(heading(vol2, all), `Miles Davis :: ${vol2}`);
   assert.equal(heading(vol2, ['Kind Of Blue']), 'Miles Davis :: In Person…');
+});
+
+test('groupByYear orders years ascending, keeps artist order, and puts undated albums last', () => {
+  const albums = [
+    { title: 'A', year: 1975 }, { title: 'B', year: null }, { title: 'C', year: 1965 },
+    { title: 'D', year: 1975 }, { title: 'E', year: 2003 },
+  ];
+  const groups = groupByYear(albums);
+  assert.deepEqual(groups.map(g => g.key), ['1965', '1975', '2003', 'unknown']);
+  assert.deepEqual(groups.map(g => g.decade), [1960, 1970, 2000, null]);
+  assert.deepEqual(groups[1].albums.map(a => a.title), ['A', 'D']);
+  assert.equal(decadeOf(1999), 1990);
+  assert.deepEqual(yearCounts(groups), { counts: { 1965: 1, 1975: 2, 2003: 1 }, unknown: 1 });
+});
+
+test('every album in the real index lands in exactly one year group', () => {
+  const { albums } = loadAlbumPages();
+  const groups = groupByYear(albums);
+  assert.equal(groups.reduce((total, g) => total + g.albums.length, 0), albums.length);
+  assert.ok(groups.at(-1).key === 'unknown' && groups.slice(0, -1).every(g => /^\d{4}$/.test(g.key)));
 });

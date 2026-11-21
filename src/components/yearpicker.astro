@@ -1,0 +1,148 @@
+---
+// Two-tier year picker, shown beside the letter picker. The top row is the undated bucket (?) and
+// the decades; picking a decade fills the second row with its years (two digits). Picking one
+// regroups the index by year and filters it; picking again clears. The selected key is bracketed.
+// The bracket sits in the single gap shared by neighbouring keys, so brackets cost no width.
+// The years row is indented two columns under the decade row.
+// The two pickers are mutually exclusive: choosing from one clears the other (a `bin-change` event).
+// Each row is one tab stop (roving tabindex); Left/Right move within a row, Up/Down between rows.
+const { counts, unknown } = Astro.props;
+const years = Object.keys(counts).map(Number);
+const first = Math.floor(Math.min(...years) / 10) * 10;
+const last = Math.floor(Math.max(...years) / 10) * 10;
+const decadeKeys = [];
+for (let decade = first; decade <= last; decade += 10) {
+  const count = years.filter(year => year >= decade && year < decade + 10).reduce((total, year) => total + counts[year], 0);
+  decadeKeys.push({ key: String(decade), label: `${String(decade % 100).padStart(2, '0')}s`, count });
+}
+const topKeys = [{ key: 'unknown', label: '?', count: unknown }, ...decadeKeys];
+const firstEnabled = topKeys.find(item => item.count > 0)?.key;
+---
+<div role="toolbar" aria-label="Filter by decade or year" class="year-picker" data-year-picker data-counts={JSON.stringify(counts)}>
+  <pre><span data-row="decades">{topKeys.map(item => <button type="button" data-key={item.key} data-label={item.label} aria-pressed="false" tabindex={item.key === firstEnabled ? 0 : -1} disabled={item.count === 0} aria-label={item.key === 'unknown' ? 'Year unknown' : `${item.label} decade`} title={`${item.count} albums`}>{` ${item.label}`}</button>)}<span data-trailing> </span></span>{'\n'}{'  '}<span data-row="years"></span>{'\n'}</pre>
+</div>
+
+<script>
+  type Row = { el: HTMLElement; keys: HTMLButtonElement[]; trailing: HTMLElement; current?: HTMLButtonElement };
+  document.querySelectorAll<HTMLElement>('[data-year-picker]').forEach(picker => {
+    const counts: Record<string, number> = JSON.parse(picker.dataset.counts!);
+    const decadesEl = picker.querySelector<HTMLElement>('[data-row="decades"]')!;
+    const yearsEl = picker.querySelector<HTMLElement>('[data-row="years"]')!;
+    const top: Row = { el: decadesEl, keys: [...decadesEl.querySelectorAll('button')] as HTMLButtonElement[], trailing: decadesEl.querySelector('[data-trailing]')! };
+    top.current = top.keys.find(b => b.tabIndex === 0) ?? top.keys[0];
+    const years: Row = { el: yearsEl, keys: [], trailing: document.createElement('span') };
+    let decade: string | null = null; // 'unknown' or '1970'
+    let year: number | null = null;
+
+    // Shared-gap rendering: key i's text is its left gap plus its label; the last gap trails.
+    function paint(row: Row, selected: number) {
+      row.keys.forEach((button, i) => {
+        const gap = i === selected ? '[' : i === selected + 1 && selected >= 0 ? ']' : ' ';
+        button.textContent = gap + button.dataset.label;
+        button.setAttribute('aria-pressed', String(i === selected));
+      });
+      const n = row.keys.length;
+      row.trailing.textContent = n && selected === n - 1 ? ']' : ' ';
+    }
+    function buildYears() {
+      years.keys.length = 0;
+      years.current = undefined;
+      yearsEl.replaceChildren();
+      if (decade === null || decade === 'unknown') return;
+      const base = Number(decade);
+      for (let i = 0; i < 10; i++) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.dataset.key = String(base + i);
+        button.dataset.label = String((base + i) % 100).padStart(2, '0');
+        button.setAttribute('aria-label', String(base + i));
+        const count = counts[base + i] ?? 0;
+        button.title = `${count} albums`;
+        button.disabled = count === 0;
+        button.tabIndex = -1;
+        years.keys.push(button);
+        yearsEl.append(button);
+      }
+      years.trailing = document.createElement('span');
+      yearsEl.append(years.trailing);
+      years.current = years.keys.find(b => !b.disabled);
+      if (years.current) years.current.tabIndex = 0;
+    }
+    function render() {
+      paint(top, decade === null ? -1 : top.keys.findIndex(b => b.dataset.key === decade));
+      paint(years, year === null || decade === null ? -1 : year - Number(decade));
+      const artistBin = document.querySelector<HTMLElement>('[data-bin="artist"]');
+      const yearBin = document.querySelector<HTMLElement>('[data-bin="year"]');
+      if (artistBin) artistBin.hidden = decade !== null;
+      if (yearBin) yearBin.hidden = decade === null;
+      document.querySelectorAll<HTMLElement>('[data-year-section]').forEach(section => {
+        const sectionDecade = section.dataset.decade!;
+        section.hidden = decade === null || sectionDecade !== decade || (year !== null && section.dataset.yearSection !== String(year));
+      });
+    }
+    function announce() {
+      window.dispatchEvent(new CustomEvent('bin-change', { detail: { source: 'year', active: decade !== null } }));
+    }
+    function choose(row: Row, button: HTMLButtonElement) {
+      const key = button.dataset.key!;
+      if (row === top) {
+        decade = decade === key ? null : key;
+        year = null;
+        buildYears();
+      } else {
+        year = year === Number(key) ? null : Number(key);
+      }
+      render();
+      announce();
+    }
+    picker.addEventListener('click', event => {
+      const button = (event.target as HTMLElement).closest('button');
+      if (!button || button.disabled) return;
+      choose(top.keys.includes(button) ? top : years, button);
+    });
+    picker.addEventListener('focusin', event => {
+      const button = (event.target as HTMLElement).closest('button');
+      if (!button) return;
+      const row = top.keys.includes(button) ? top : years;
+      if (row.current) row.current.tabIndex = -1;
+      row.current = button;
+      button.tabIndex = 0;
+    });
+    picker.addEventListener('keydown', event => {
+      const key = (event as KeyboardEvent).key;
+      const active = (event.target as HTMLElement).closest('button');
+      if (!active) return;
+      const row = top.keys.includes(active) ? top : years;
+      const enabled = row.keys.filter(b => !b.disabled);
+      const at = enabled.indexOf(active);
+      let next: HTMLButtonElement | undefined;
+      if (key === 'ArrowRight') next = enabled[at + 1];
+      else if (key === 'ArrowLeft') next = enabled[at - 1];
+      else if (key === 'Home') next = enabled[0];
+      else if (key === 'End') next = enabled.at(-1);
+      else if (key === 'ArrowDown' && row === top) next = years.current;
+      else if (key === 'ArrowUp' && row === years) next = top.current;
+      else return;
+      event.preventDefault();
+      next?.focus();
+    });
+    // Choosing a letter clears the year selection and returns to the artist list.
+    window.addEventListener('bin-change', event => {
+      const { source, active } = (event as CustomEvent).detail;
+      if (source === 'letter' && active && decade !== null) {
+        decade = null;
+        year = null;
+        buildYears();
+        render();
+      }
+    });
+    render();
+  });
+</script>
+
+<style is:global>
+  .year-picker pre { margin: 0; font-family: monospace; font-size: 1rem; line-height: normal; white-space: pre; }
+  .year-picker button { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; }
+  .year-picker button:focus-visible { background: CanvasText; color: Canvas; outline: none; }
+  .year-picker button:disabled { opacity: 0.4; cursor: default; }
+</style>
