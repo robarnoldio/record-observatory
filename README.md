@@ -76,6 +76,8 @@ Keyboard: Tab and Shift-Tab step through nav, the letter picker and every album 
 The focused element is an inverse-video cursor (`:focus-visible`, global), album links carry an
 explicit `tabindex="0"` so Safari includes them, and the picker is one tab stop (roving
 tabindex): the arrow keys, Home and End move between keys and Space or Enter selects.
+A focused link also activates on Space (the shared shell adds this; plain links only take Enter,
+and Space would scroll the page instead), so links behave like the picker keys.
 
 Names are fitted to the 78-column frame (74 usable columns, indented 2 on each side).
 `shorten()` in `src/lib/text.js` cuts a too-long title or artist at its first comma,

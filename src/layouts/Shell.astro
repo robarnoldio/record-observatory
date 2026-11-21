@@ -23,6 +23,17 @@ const { title, navTabbable = true } = Astro.props;
     <slot />
   </body>
 </html>
+<script>
+  // A focused link activates on Enter but, unlike a button, Space scrolls the page. Make Space
+  // activate it too, so stepping through links by keyboard behaves like the pickers.
+  document.addEventListener('keydown', event => {
+    if (event.key !== ' ' || event.defaultPrevented || event.shiftKey || event.ctrlKey || event.altKey || event.metaKey) return;
+    const link = (event.target as HTMLElement | null)?.closest?.('a[href]') as HTMLAnchorElement | null;
+    if (!link || link !== document.activeElement) return;
+    event.preventDefault(); // keep the page from scrolling
+    link.click();
+  });
+</script>
 <style is:global>
   body { margin: 8px; }
 </style>
