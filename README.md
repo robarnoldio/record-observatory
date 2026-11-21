@@ -42,7 +42,9 @@ Discogs artist suffixes such as `(2)` are hidden in displayed credits and slugs,
 but original CSV identities are retained internally to prevent accidental merges.
 
 The LP index and detail pages use compact monospace text (1.15 line-height), connected navigation boxes,
-and library statistics. Brackets identify the selected LP ALBUMS navigation
+and a five-row library statistics header: a sparse `·` dot lattice with three
+indented text lines (artists, albums and LP copies, export date). The dots are
+decoration and hidden from assistive tech. Brackets identify the selected LP ALBUMS navigation
 section. Artist groups place their upper rule before the album list and their
 count-bearing lower rule after it. Each album line starts with its oldest valid
 owned release year, and albums sort chronologically within each artist (unknown
@@ -57,6 +59,17 @@ Each copy always shows media condition, sleeve condition, and
 location (`CollectionFolder`), using `unknown` for missing values. Formats expand
 common Discogs abbreviations, multiple-LP counts, and comma/plus-separated tokens;
 unrecognized details remain verbatim rather than guessing their meaning.
+A `Source` row (`Collection Source`) appears only when populated, and Mono copies
+add a `++ in glorious mono ++` line below the listing.
+
+Each copy's divider gains a framed flag line when any of these apply, in priority
+order (lowest priorities are dropped if the line would overflow): hand-written
+flags from `data/special-flags.json`, `UPGRADE CANDIDATE` (media condition VG or
+worse, the same rule as the homepage widget), `BOX SET` (a `Box` token or 3+
+discs), vinyl color, `AUDIOPHILE PRESSING` (180 g, Quad, DMM), and
+`LIMITED EDITION` (Ltd, Num, RSD). `data/special-flags.json` maps a Discogs
+`release_id` to custom flags for details the CSV lacks, such as an 85 LP set
+whose Format is only `LP, Comp`; an unknown `release_id` fails the build.
 
 `Collection dedupe` is not interpreted
 by these pages yet: its existing reference-matching behavior is unchanged, and a
@@ -72,6 +85,12 @@ invalid-date entries are excluded. Each entry links to that copy's section on it
 album page. Entries display titles only within a 78-character-wide widget; long
 titles wrap. Controls are scoped to this component, independent of other dashboard
 filters. Deferred UI work is tracked in [BACKLOG.md](BACKLOG.md).
+
+Record of the day and Upgrade candidates link each record to its owned copy's
+section on its album page. Records are matched to copies by object identity
+(`copyHrefs()`), because Discogs `release_id` values repeat in the CSV. The
+aggregate widgets (labels, months, years, source/condition, top artists) have no
+single album to link to.
 
 Validate with `node --test src/lib/albums.test.js` and `npm run build`.
 
