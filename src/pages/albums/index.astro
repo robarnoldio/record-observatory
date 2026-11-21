@@ -27,7 +27,7 @@ const initials = [...artists.values()].map(entries => artistInitial(entries[0].a
         <ul class="album-links">{entries.map(album => (
           <li>
             <span>{album.year ?? 'unknown'}</span>
-            <span><a href={album.href} aria-label={album.title}>{shortenUnique(album.title, entries.map(other => other.title), ROW_TITLE_MAX - (album.copies.length > 1 ? ` [${album.copies.length}]`.length : 0))}</a>{album.copies.length > 1 && ` [${album.copies.length}]`}</span>
+            <span><a href={album.href} aria-label={album.title} tabindex="0">{shortenUnique(album.title, entries.map(other => other.title), ROW_TITLE_MAX - (album.copies.length > 1 ? ` [${album.copies.length}]`.length : 0))}</a>{album.copies.length > 1 && ` [${album.copies.length}]`}</span>
           </li>
         ))}</ul>
       </AlbumTextDivider>

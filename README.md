@@ -61,6 +61,11 @@ filter. Selecting a letter hides every artist group whose display name (ignoring
 leading "The" and accents) starts with another letter. The `*` key after M selects names that don't start with A-Z (like "Weird Al" Yankovic). Vertical
 spacing on the album pages is deliberately tight; keep new blocks compact.
 
+Keyboard: Tab and Shift-Tab step through nav, the letter picker and every album link in order.
+The focused element is an inverse-video cursor (`:focus-visible`), album links carry an
+explicit `tabindex="0"` so Safari includes them, and the picker is one tab stop (roving
+tabindex): the arrow keys, Home and End move between keys and Space or Enter selects.
+
 Names are fitted to the 78-column frame (74 usable columns, indented 2 on each side).
 `shorten()` in `src/lib/text.js` cuts a too-long title or artist at its first comma,
 slash or paren (leaving at least 8 characters) and adds `…`; with no such marker it

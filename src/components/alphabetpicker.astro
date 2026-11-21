@@ -3,15 +3,18 @@
 // and letters with no matching artists are disabled. The `*` key selects the '#' bucket: artists
 // that don't start with A-Z, like "Weird Al" Yankovic. Filtering hides every [data-letter] element
 // whose letter differs from the selection.
+// The keys are a single tab stop (roving tabindex): Tab enters and leaves the group, the arrow
+// keys move between keys, and Space or Enter selects.
 const { available = [] } = Astro.props;
 const ROWS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM#'];
 const labelFor = key => (key === '#' ? '*' : key);
+const firstKey = [...ROWS.join('')].find(key => available.includes(key)); // the initial tab stop
 const COLUMN_STAGGER = 1; // each row shifts right by one column, like a real keyboard
 const INDENT = 8;
 ---
-<nav aria-label="Filter artists by letter" class="alphabet-picker" data-alphabet-picker>
-  <pre>{ROWS.map((letters, row) => <Fragment>{' '.repeat(INDENT + COLUMN_STAGGER * row)}{[...letters].map(letter => <button type="button" data-letter-button={letter} data-label={labelFor(letter)} aria-pressed="false" aria-label={letter === '#' ? 'Other (not A to Z)' : undefined} disabled={!available.includes(letter)}>{` ${labelFor(letter)} `}</button>)}{'\n'}</Fragment>)}</pre>
-</nav>
+<div role="toolbar" aria-label="Filter artists by letter" class="alphabet-picker" data-alphabet-picker>
+  <pre>{ROWS.map((letters, row) => <Fragment>{' '.repeat(INDENT + COLUMN_STAGGER * row)}{[...letters].map((letter, col) => <button type="button" tabindex={letter === firstKey ? 0 : -1} data-row={row} data-col={col} data-letter-button={letter} data-label={labelFor(letter)} aria-pressed="false" aria-label={letter === '#' ? 'Other (not A to Z)' : undefined} disabled={!available.includes(letter)}>{` ${labelFor(letter)} `}</button>)}{'\n'}</Fragment>)}</pre>
+</div>
 
 <script>
   document.querySelectorAll<HTMLElement>('[data-alphabet-picker]').forEach(picker => {
@@ -29,7 +32,34 @@ const INDENT = 8;
         section.hidden = selected !== null && section.dataset.letter !== selected;
       });
     }
+    // Roving tabindex: exactly one key is in the tab order, the one last focused.
+    let current = [...buttons].find(b => b.tabIndex === 0) ?? buttons[0];
+    function setCurrent(button: HTMLButtonElement) {
+      current.tabIndex = -1;
+      current = button;
+      current.tabIndex = 0;
+    }
+    const at = (row: number, col: number) => {
+      const inRow = [...buttons].filter(b => Number(b.dataset.row) === row && !b.disabled);
+      return inRow.find(b => Number(b.dataset.col) === col) ?? inRow.filter(b => Number(b.dataset.col) < col).at(-1) ?? inRow[0];
+    };
+    picker.addEventListener('keydown', event => {
+      const key = (event as KeyboardEvent).key;
+      const row = Number(current.dataset.row), col = Number(current.dataset.col);
+      const rowKeys = [...buttons].filter(b => Number(b.dataset.row) === row && !b.disabled);
+      let next: HTMLButtonElement | undefined;
+      if (key === 'ArrowRight') next = rowKeys.find(b => Number(b.dataset.col) > col);
+      else if (key === 'ArrowLeft') next = rowKeys.filter(b => Number(b.dataset.col) < col).at(-1);
+      else if (key === 'ArrowDown') next = at(row + 1, col);
+      else if (key === 'ArrowUp') next = at(row - 1, col);
+      else if (key === 'Home') next = rowKeys[0];
+      else if (key === 'End') next = rowKeys.at(-1);
+      else return;
+      event.preventDefault();
+      if (next) next.focus();
+    });
     buttons.forEach(button => {
+      button.addEventListener('focus', () => setCurrent(button));
       button.addEventListener('click', () => {
         const letter = button.dataset.letterButton!;
         selected = selected === letter ? null : letter; // clicking the selected letter clears it
@@ -44,5 +74,6 @@ const INDENT = 8;
   .alphabet-picker { margin-top: calc(1lh + 1rem); margin-bottom: calc(1lh + 0.75rem); }
   .alphabet-picker pre { margin: 0; font: inherit; white-space: pre; overflow-x: auto; }
   .alphabet-picker button { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; }
+  .alphabet-picker button:focus-visible { background: CanvasText; color: Canvas; outline: none; }
   .alphabet-picker button:disabled { opacity: 0.4; cursor: default; }
 </style>
