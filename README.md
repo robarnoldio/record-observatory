@@ -58,8 +58,7 @@ horizontally rather than wrapping.
 The album index has a QWERTY-shaped letter picker under the heading. The selected
 letter is bracketed and none is selected by default; clicking it again clears the
 filter. Selecting a letter hides every artist group whose display name (ignoring a
-leading "The" and accents) starts with another letter. Names that don't start with
-A-Z are grouped under `#` and show only when no letter is selected. Vertical
+leading "The" and accents) starts with another letter. The `*` key after M selects names that don't start with A-Z (like "Weird Al" Yankovic). Vertical
 spacing on the album pages is deliberately tight; keep new blocks compact.
 
 Each copy always shows media condition, sleeve condition, and

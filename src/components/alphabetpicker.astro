@@ -1,14 +1,16 @@
 ---
 // QWERTY-shaped letter picker. The selected letter is bracketed, none is selected by default,
-// and letters with no matching artists are disabled. Filtering hides every [data-letter] element
+// and letters with no matching artists are disabled. The `*` key selects the '#' bucket: artists
+// that don't start with A-Z, like "Weird Al" Yankovic. Filtering hides every [data-letter] element
 // whose letter differs from the selection.
 const { available = [] } = Astro.props;
-const ROWS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'];
+const ROWS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM#'];
+const labelFor = key => (key === '#' ? '*' : key);
 const COLUMN_STAGGER = 1; // each row shifts right by one column, like a real keyboard
 const INDENT = 8;
 ---
 <nav aria-label="Filter artists by letter" class="alphabet-picker" data-alphabet-picker>
-  <pre>{ROWS.map((letters, row) => <Fragment>{' '.repeat(INDENT + COLUMN_STAGGER * row)}{[...letters].map(letter => <button type="button" data-letter-button={letter} aria-pressed="false" disabled={!available.includes(letter)}>{` ${letter} `}</button>)}{'\n'}</Fragment>)}</pre>
+  <pre>{ROWS.map((letters, row) => <Fragment>{' '.repeat(INDENT + COLUMN_STAGGER * row)}{[...letters].map(letter => <button type="button" data-letter-button={letter} data-label={labelFor(letter)} aria-pressed="false" aria-label={letter === '#' ? 'Other (not A to Z)' : undefined} disabled={!available.includes(letter)}>{` ${labelFor(letter)} `}</button>)}{'\n'}</Fragment>)}</pre>
 </nav>
 
 <script>
@@ -19,7 +21,8 @@ const INDENT = 8;
       buttons.forEach(button => {
         const letter = button.dataset.letterButton!;
         const on = letter === selected;
-        button.textContent = on ? `[${letter}]` : ` ${letter} `;
+        const label = button.dataset.label!;
+        button.textContent = on ? `[${label}]` : ` ${label} `;
         button.setAttribute('aria-pressed', String(on));
       });
       document.querySelectorAll<HTMLElement>('[data-letter]').forEach(section => {
